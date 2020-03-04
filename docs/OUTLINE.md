@@ -1,50 +1,6 @@
 # Roteiro das Aulas
 
-## Sumário
-
-[\# 01 - Apresentação da Disciplina (28/08/2019 QUA)](#-01---apresentação-da-disciplina-28082019-qua)<br>
-[\# 02 - Primeiros passos com Javascript (30/08/2019 SEX)](#-02---primeiros-passos-com-javascript-30082019-sex)<br>
-[\# 03 - Algoritmos básicos no Javascript (31/08/2019 SAB)](#-03---algoritmos-básicos-no-javascript-31082019-sab)<br>
-[\# 04 - Funções no Javascript (04/09/2019 QUA)](#-04---funções-no-javascript-04092019-qua)<br>
-[\# 05 - Testes Unitários no Javascript (06/09/2019 SEX)](#-05---testes-unitários-no-javascript-06092019-sex)<br>
-[\# 06 - Trabalhando com Arrays (11/09/2019 QUA)](#-06---trabalhando-com-arrays-11092019-qua)<br>
-[\# 07 - Trabalhando com Arrays (13/09/2019 SEX)](#-07---trabalhando-com-arrays-13092019-sex)<br>
-[\# 08 - Loop em Array com map, filter, reduce (18/09/2019 QUA)](#-08---loop-em-array-com-map-filter-reduce-18092019-qua)<br>
-[\# 09 - Loop em Array com map, filter, reduce (20/09/2019 SEX)](#-09---loop-em-array-com-map-filter-reduce-20092019-sex)<br>
-[\# 10 - Trabalhando com Strings (25/09/2019 QUA)](#-10---trabalhando-com-strings-25092019-qua)<br>
-[\# 11 - Trabalhando com Strings (27/09/2019 SEX)](#-11---trabalhando-com-strings-27092019-sex)<br>
-[\# 12 - Atividades de EcmaScript (28/09/2019 SAB)](#-12---atividades-de-ecmascript-28092019-sab)<br>
-[\# 13 - Simulado ECMA (04/10/2019 SEX)](#-13---simulado-ecma-04102019-sex)<br>
-[\# 14 - Prova de ECMA (16/10/2019 QUA)](#-14---prova-de-ecma-16102019-qua)<br>
-[\# 15 - JavaScript Object Notation (JSON) (18/10/2019 SEX)](#-15---javascript-object-notation-json-18102019-sex)<br>
-[\# 16 - Symbol, Prototype e objetos (encapsulamento) (23/10/2019 QUA)](#-16---symbol-prototype-e-objetos-encapsulamento-23102019-qua)<br>
-[\# 17 - Orientação a Objetos (25/10/2019 SEX)](#-17---orientação-a-objetos-25102019-sex)<br>
-[\# 18 - Exercício de Json e Orientação a Objetos (25/10/2019 SEX)](#-18---exercício-de-json-e-orientação-a-objetos-25102019-sex)<br>
-[\# 19 - Objetos do Navegador (30/10/2019 QUA)](#-19---objetos-do-navegador-30102019-qua)<br>
-[\# 20 - Eventos e Estilo no Javascript (01/11/2019 SEX)](#-20---eventos-e-estilo-no-javascript-01112019-sex)<br>
-[\# 21 - Criando Elementos Dinâmicos (06/11/2019 QUA)](#-21---criando-elementos-dinâmicos-06112019-qua)<br>
-[\# 22 - Criando Elementos Dinâmicos (08/11/2019 SEX)](#-22---criando-elementos-dinâmicos-08112019-sex)<br>
-[\# 23 - Criando Elementos Dinâmicos (13/11/2019 QUA)](#-23---criando-elementos-dinâmicos-13112019-qua)<br>
-[\# 24 - Criando Elementos Dinâmicos (20/11/2019 QUA)](#-24---criando-elementos-dinâmicos-20112019-qua)<br>
-[\# 25 - Revisão e Simulado de Javascript W3C (22/11/2019 SEX)](#-25---revisão-e-simulado-de-javascript-w3c-22112019-sex)<br>
-[\# 26 - SECT - IFTech 2019 (27/11/2019 QUA)](#-26---sect---iftech-2019-27112019-qua)<br>
-[\# 27 - SECT - IFTech 2019 (29/11/2019 SEX)](#-27---sect---iftech-2019-29112019-sex)<br>
-[\# 28 - Especificação de Projeto (30/11/2019 SAB)](#-28---especificação-de-projeto-30112019-sab)<br>
-[\# 29 - Proposta de Projeto (04/12/2019 QUA)](#-29---proposta-de-projeto-04122019-qua)<br>
-[\# 30 - Avaliação de Javascript W3C e Blog (06/12/2019 SEX)](#-30---avaliação-de-javascript-w3c-e-blog-06122019-sex)<br>
-[\# 31 - Requisição Assíncrona (11/12/2019 QUA)](#-31---requisição-assíncrona-11122019-qua)<br>
-[\# 32 - Expressões Regulares (13/12/2019 SEX)](#-32---expressões-regulares-13122019-sex)<br>
-[\# 33 - Módulos no JS (14/12/2019 SAB)](#-33---módulos-no-js-14122019-sab)<br>
-[\# 34 - Acompanhamento de Projetos (16/12/2019 SEG)](#-34---acompanhamento-de-projetos-16122019-seg)<br>
-[\# 35 - Acompanhamento de Projetos (17/12/2019 TER)](#-35---acompanhamento-de-projetos-17122019-ter)<br>
-[\# 36 - Webpack e Pacotes no JS (18/12/2019 QUA)](#-36---webpack-e-pacotes-no-js-18122019-qua)<br>
-[\# 37 - Pacotes no JS (20/12/2019 SEX)](#-37---pacotes-no-js-20122019-sex)<br>
-[\# 38 - Acompanhamento de Projetos (20/01/2020 SEG)](#-38---acompanhamento-de-projetos-20012020-seg)<br>
-[\# 39 - Apresentação de Projetos (29/01/2020 QUA)](#-39---apresentação-de-projetos-29012020-qua)<br>
-[\# 40 - Apresentação de Projetos (31/01/2020 SEX)](#-40---apresentação-de-projetos-31012020-sex)<br>
-
-
-## \# 01 - Apresentação da Disciplina (28/08/2019 QUA)
+## \# 01 - Apresentação da Disciplina
 
 ---
 
@@ -64,12 +20,12 @@
 
 **Exercício:**
 
-- Analise o [site da disciplina](https://ifpb.github.io/ls/) e se inscreva no [telegram da disciplina](https://t.me/joinchat/COqVmhcXZnx4g_ojV3jOEQ).
+- Analise o [site da disciplina](https://ifpb.github.io/ls/) e se inscreva no [telegram da disciplina](https://t.me/joinchat/ifpbls20201).
 - Configure seu computador com essas [ferramentas](TOOLS.html).
 - Pesquise sobre a evolução do Javascript.
 - Veja os [projetos](https://ifpb.github.io/projects/) já realizados nesta disciplina.
 
-## \# 02 - Primeiros passos com Javascript (30/08/2019 SEX)
+## \# 02 - Primeiros passos com Javascript
 
 ---
 
@@ -79,7 +35,7 @@
 - Editando Javascript com [Visual Studio Code (vscode)](http://code.visualstudio.com) e executando com o [Node.js](https://nodejs.org/en/)
 - [Sintaxe do Javascript](https://ifpb.github.io/javascript-guide/ecma/)
   - [Declaração de variáveis](https://ifpb.github.io/javascript-guide/ecma/variable/): var, let e const
-  - [Valores e Tipos](https://ifpb.github.io/javascript-guide/ecma/): Number, String e Boolean
+  - [Valores e Tipos](https://ifpb.github.io/javascript-guide/ecma/values-and-types/): Number, String e Boolean
   - [Expressões e Operadores](https://ifpb.github.io/javascript-guide/ecma/expression-and-operator/)
   - [Tabela de Precedência](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 
@@ -94,6 +50,7 @@
 **Exercício:**
 
 - Compare a sintaxe de declaração de variáveis, expressões e operadores do Javascript com alguma outra linguagem. Detalhe, utilize o prompt do node para testar a sintaxe do Javascript.
+- Crie um exemplo de [Hello World em JS (ecma/basic-hello/)](https://ifpb.github.io/exercises/problems/algorithms/basic-hello/) para rodar no node usando o vscode.
 - Através de `x = 10` crie um script para as seguintes expressões:
 
 | Expressão   | Resultado |
@@ -108,7 +65,7 @@
 - Qual é o resultado data expressão `10 > x < 20` para `const x = 15`? Explique.
 - Considerando que cor no formato ARGB (8 bits para Alfa, Vermelho, Verde e Azul, nessa ordem) seja guardado em `const color = 0x74C365`, então qual seria a intensidade da cor vermelha?
 
-## \# 03 - Algoritmos básicos no Javascript (31/08/2019 SAB)
+## \# 03 - Algoritmos básicos no Javascript
 
 ---
 
@@ -125,14 +82,14 @@
 
 **Exercício:**
 
-- Crie o algoritmo de [Body Mass Index (BMI)](https://ifpb.github.io/javascript-exercises/ecma/basic/bmi/) usando `if` e `switch`;
-- Crie o algoritmo para exibir a séria de [00 até 99](https://ifpb.github.io/javascript-exercises/ecma/basic/numbers/) de dez em dez usando `for`, `while` e `do-while`;
+- Crie o algoritmo de [Body Mass Index (BMI) (ecma/basic-bmi)](https://ifpb.github.io/exercises/problems/algorithms/basic-bmi/) usando `if` e `switch`;
+- Crie o algoritmo para exibir a séria de [00 até 99 (ecma/basic-numbers-series)](https://ifpb.github.io/javascript-exercises/ecma/basic/numbers/) de dez em dez usando `for`, `while` e `do-while`;
 - Crie os algoritmos:
-  - [IRRF 2017](https://ifpb.github.io/javascript-exercises/ecma/basic/irrf-2017/)
-  - [Numbers series](https://ifpb.github.io/javascript-exercises/ecma/basic/numbers/)
-  - [Harmonic series](https://ifpb.github.io/javascript-exercises/ecma/basic/harmonic-series/)
+  - [IRRF 2017 (ecma/basic-irrf/)](https://ifpb.github.io/exercises/problems/algorithms/basic-irrf/)
+  - [Numbers series (ecma/basic-numbers-series/)](https://ifpb.github.io/exercises/problems/algorithms/basic-numbers-series/)
+  - [Harmonic series (ecma/basic-harmonic-series/)](https://ifpb.github.io/exercises/problems/algorithms/basic-harmonic-series/)
 
-## \# 04 - Funções no Javascript (04/09/2019 QUA)
+## \# 04 - Funções no Javascript
 
 ---
 
@@ -143,7 +100,8 @@
   - [Escopo](https://ifpb.github.io/javascript-guide/ecma/function/#scope)
   - [Case sensitive](https://ifpb.github.io/javascript-guide/ecma/function/#case-sensitive)
   - [Parâmetro Default](https://ifpb.github.io/javascript-guide/ecma/function/#default-parameters)
-- [ECMAScript Modules (Named uniq exports)](https://ifpb.github.io/javascript-guide/ecma/modules/#named-uniq-export)
+- [CommonJS (CJS) Modules](https://ifpb.github.io/javascript-guide/ecma/modules/#node-modules---cjs)
+- [ECMAScript Modules (ESM): Named uniq exports](https://ifpb.github.io/javascript-guide/ecma/modules/#named-uniq-export)
 
 **Reflexão:**
 
@@ -156,11 +114,12 @@
 **Exercício:**
 
 - Crie um script para:
-  - [Somar](https://ifpb.github.io/javascript-exercises/ecma/function/sum/)
-  - [Calcular a área do círculo](https://ifpb.github.io/javascript-exercises/ecma/function/area-of-circle/)
-  - [Calcular operações aritméticas básicas](https://ifpb.github.io/javascript-exercises/ecma/function/calc/)
+  - [Somar (ecma/function-sum)](https://ifpb.github.io/exercises/problems/algorithms/function-sum/)
+  - [Calcular a área do círculo (ecma/function-area-of-circle)](https://ifpb.github.io/exercises/problems/algorithms/function-area-of-circle/)
+  - [Calcular operações aritméticas básicas (ecma/function-calc)](https://ifpb.github.io/exercises/problems/algorithms/function-calc/)
+- Crie estes outros [scritps (ecma/function-\*)](https://ifpb.github.io/exercises/problems/algorithms/).
 
-## \# 05 - Testes Unitários no Javascript (06/09/2019 SEX)
+## \# 05 - Testes Unitários no Javascript
 
 ---
 
@@ -180,13 +139,13 @@
 **Exercício:**
 
 - Crie um script para:
-  - [Gerar um Fatorial](https://ifpb.github.io/javascript-exercises/ecma/function/factorial)
-  - [Triangle Checker](https://ifpb.github.io/javascript-exercises/ecma/function/triangle-checker)
-  - [Prime numbers](https://ifpb.github.io/javascript-exercises/ecma/function/prime)
-  - [Calendar](https://ifpb.github.io/javascript-exercises/ecma/function/calendar)
-- Crie estes outros [scritps](https://ifpb.github.io/javascript-exercises/core/#function).
+  - [Gerar um Fatorial (ecma/function-factorial/)](https://ifpb.github.io/exercises/problems/algorithms/function-factorial/)
+  - [Triangle Checker (ecma/function-triangle-checker/)](https://ifpb.github.io/exercises/problems/algorithms/function-triangle-checker/)
+  - [Prime numbers (ecma/function-prime/)](https://ifpb.github.io/exercises/problems/algorithms/function-prime/)
+  - [Calendar (ecma/function-calendar/)](https://ifpb.github.io/exercises/problems/algorithms/function-calendar/)
+- Crie estes outros [scritps envolvendo função (ecma/function-\*)](https://ifpb.github.io/exercises/problems/algorithms/).
 
-## \# 06 - Trabalhando com Arrays (11/09/2019 QUA)
+## \# 06 - Trabalhando com Arrays
 
 ---
 
@@ -217,13 +176,13 @@
 **Exercício:**
 
 - Crie um script para:
-  - [Array Util (Min, Max, Range)](https://ifpb.github.io/javascript-exercises/ecma/array/array-util)
-  - [Array Operations](https://ifpb.github.io/javascript-exercises/ecma/array/array-operations)
-  - [Fibonacci Sequence Array](https://ifpb.github.io/javascript-exercises/ecma/array/fibonacci-sequence)
-  - [Prime Numbers](https://ifpb.github.io/javascript-exercises/ecma/array/prime-numbers)
-  - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#array)
+  - [Array Util: Min, Max, Range (ecma/array-util)](https://ifpb.github.io/exercises/problems/algorithms/array-util/)
+  - [Array Operations (ecma/array-operations)](https://ifpb.github.io/exercises/problems/algorithms/array-operations/)
+  - [Fibonacci Sequence Array (ecma/array-fibonacci-sequence)](https://ifpb.github.io/exercises/problems/algorithms/array-fibonacci-sequence/)
+  - [Prime Numbers (ecma/array-prime-numbers)](https://ifpb.github.io/exercises/problems/algorithms/array-prime-numbers/)
+  - [Outros (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
 
-## \# 07 - Trabalhando com Arrays (13/09/2019 SEX)
+## \# 07 - Trabalhando com Arrays
 
 ---
 
@@ -249,13 +208,13 @@
 **Exercício:**
 
 - Crie um script para:
-  - [Array Util (Zip, Uniq)](https://ifpb.github.io/javascript-exercises/ecma/array/array-util)
-  - [Minimum Withdraw](https://ifpb.github.io/javascript-exercises/ecma/array/min-withdraw)
-  - [Roman Number](https://ifpb.github.io/javascript-exercises/ecma/array/roman-number)
-  - [Prime Factors](https://ifpb.github.io/javascript-exercises/ecma/array/prime-factors)
-  - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#array)
+  - [Array Util: Zip, Uniq (ecma/array-util)](https://ifpb.github.io/exercises/problems/algorithms/array-util/)
+  - [Minimum Withdraw (ecma/array-min-withdraw)](https://ifpb.github.io/exercises/problems/algorithms/array-min-withdraw/)
+  - [Roman Number (ecma/array-roman-number)](https://ifpb.github.io/exercises/problems/algorithms/array-roman-number/)
+  - [Prime Factors (ecma/array-prime-factors)](https://ifpb.github.io/exercises/problems/algorithms/array-prime-factors/)
+  - [Outros (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
 
-## \# 08 - Loop em Array com map, filter, reduce (18/09/2019 QUA)
+## \# 08 - Loop em Array com map, filter, reduce
 
 ---
 
@@ -292,7 +251,7 @@
   - A soma dos valores pares de `array` usando o `reduce` e o `filter` <br><span style="color:#fff">array.filter(e => !(i & 1)).reduce((s, v) => s + v)</span>
   - A soma dos valores pares dobrados de `array` usando o `map`, `reduce` e o `filter` <br><span style="color:#fff">array.filter(e => !(i & 1)).map(e => 2 \* e).reduce((s, v) => s + v)</span>
 
-## \# 09 - Loop em Array com map, filter, reduce (20/09/2019 SEX)
+## \# 09 - Loop em Array com map, filter, reduce
 
 ---
 
@@ -317,13 +276,13 @@
 **Exercício:**
 
 - Crie um script para:
-  - [Array Operations (sum, product, sumOdds)](https://ifpb.github.io/javascript-exercises/ecma/array/array-operations)
-  - [Array Util (Sort)](https://ifpb.github.io/javascript-exercises/ecma/array/array-util)
-  - [Products Array](https://ifpb.github.io/javascript-exercises/ecma/array/products)
-  - [Products Array with Quantity](https://ifpb.github.io/javascript-exercises/ecma/array/products-qtd)
-  - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#array)
+  - [Array Operations: sum, product, sumOdds (ecma/array-operations)](https://ifpb.github.io/exercises/problems/algorithms/array-operations/)
+  - [Array Util: sort (ecma/array-util)](https://ifpb.github.io/exercises/problems/algorithms/array-util/)
+  - [Products Array (ecma/array-products)](https://ifpb.github.io/exercises/problems/algorithms/array-products/)
+  - [Products Array with Quantity (ecma/array-products-qtd)](https://ifpb.github.io/exercises/problems/algorithms/array-products-qtd/)
+  - [Outros (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
 
-## \# 10 - Trabalhando com Strings (25/09/2019 QUA)
+## \# 10 - Trabalhando com Strings
 
 ---
 
@@ -366,7 +325,7 @@
   - [Rna Transcription](https://ifpb.github.io/javascript-exercises/ecma/string/rna-transcription)
   - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#string)
 
-## \# 11 - Trabalhando com Strings (27/09/2019 SEX)
+## \# 11 - Trabalhando com Strings
 
 ---
 
@@ -432,7 +391,7 @@ Charlie; charlie@email.com
   - [Simple substitution](https://ifpb.github.io/javascript-exercises/ecma/string/simple-substitution)
   - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#string)
 
-## \# 12 - Atividades de EcmaScript (28/09/2019 SAB)
+## \# 12 - Atividades de EcmaScript
 
 ---
 
@@ -448,8 +407,7 @@ Charlie; charlie@email.com
 
 - [Javascript Exercises](https://ifpb.github.io/javascript-exercises/)
 
-
-## \# 13 - Simulado ECMA (04/10/2019 SEX)
+## \# 13 - Simulado ECMA
 
 ---
 
@@ -465,7 +423,7 @@ Charlie; charlie@email.com
 
 - [Javascript Exercises](https://ifpb.github.io/javascript-exercises/)
 
-## \# 14 - Prova de ECMA (16/10/2019 QUA)
+## \# 14 - Prova de ECMA
 
 ---
 
@@ -473,7 +431,7 @@ Charlie; charlie@email.com
 
 > Todos os detalhes da avaliação estão disponíveis nesta [página](../exams/prova-ecma.html)
 
-## \# 15 - JavaScript Object Notation (JSON) (18/10/2019 SEX)
+## \# 15 - JavaScript Object Notation (JSON)
 
 ---
 
@@ -557,7 +515,7 @@ console.log(heightAvg(characters, "DC")); //=> 1.895
   - [Exam](https://ifpb.github.io/javascript-exercises/ecma/object/exam)
   - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#object)
 
-## \# 16 - Symbol, Prototype e objetos (encapsulamento) (23/10/2019 QUA)
+## \# 16 - Symbol, Prototype e objetos (encapsulamento)
 
 ---
 
@@ -654,7 +612,7 @@ console.log(toRna(dna)); //=> 'UGCACCAGAAUU'
   - [Products with Quantity](https://ifpb.github.io/javascript-exercises/ecma/object/products-qtd)
   - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#object)
 
-## \# 17 - Orientação a Objetos (25/10/2019 SEX)
+## \# 17 - Orientação a Objetos
 
 ---
 
@@ -668,7 +626,7 @@ console.log(toRna(dna)); //=> 'UGCACCAGAAUU'
   - [Object Array Interaction](https://ifpb.github.io/javascript-guide/ecma/object/syntax.html#object-array-interaction)
   - [Object Interaction](https://ifpb.github.io/javascript-guide/ecma/object/syntax.html#object-interaction)
 
-## \# 18 - Exercício de Json e Orientação a Objetos (25/10/2019 SEX)
+## \# 18 - Exercício de Json e Orientação a Objetos
 
 ---
 
@@ -682,7 +640,7 @@ console.log(toRna(dna)); //=> 'UGCACCAGAAUU'
   - [Object Array Interaction](https://ifpb.github.io/javascript-guide/ecma/object/syntax.html#object-array-interaction)
   - [Object Interaction](https://ifpb.github.io/javascript-guide/ecma/object/syntax.html#object-interaction)
 
-## \# 19 - Objetos do Navegador (30/10/2019 QUA)
+## \# 19 - Objetos do Navegador
 
 ---
 
@@ -715,7 +673,7 @@ console.log(toRna(dna)); //=> 'UGCACCAGAAUU'
   - [IMC](https://ifpb.github.io/javascript-exercises/w3c/bmi-simple/)
   - Algum dos exercícios de [Ecma](https://ifpb.github.io/javascript-exercises/ecma/).
 
-## \# 20 - Eventos e Estilo no Javascript (01/11/2019 SEX)
+## \# 20 - Eventos e Estilo no Javascript
 
 ---
 
@@ -745,7 +703,7 @@ console.log(toRna(dna)); //=> 'UGCACCAGAAUU'
   - [IMC com Estilo](https://ifpb.github.io/javascript-exercises/w3c/bmi-css/)
 - [Outros exercícios](https://ifpb.github.io/javascript-exercises/w3c/)
 
-## \# 21 - Criando Elementos Dinâmicos (06/11/2019 QUA)
+## \# 21 - Criando Elementos Dinâmicos
 
 ---
 
@@ -792,7 +750,7 @@ console.log(toRna(dna)); //=> 'UGCACCAGAAUU'
   - Tabela de IPs ([read](https://ifpb.github.io/javascript-exercises/w3c/iptable-read/), [create](https://ifpb.github.io/javascript-exercises/w3c/iptable-create/))
 - [Outros exercícios](https://ifpb.github.io/javascript-exercises/w3c/)
 
-## \# 22 - Criando Elementos Dinâmicos (08/11/2019 SEX)
+## \# 22 - Criando Elementos Dinâmicos
 
 ---
 
@@ -813,7 +771,7 @@ console.log(toRna(dna)); //=> 'UGCACCAGAAUU'
   - [HTML Entities](https://ifpb.github.io/javascript-exercises/w3c/html-entities/)
 - [Outros exercícios](https://ifpb.github.io/javascript-exercises/w3c/)
 
-## \# 23 - Criando Elementos Dinâmicos (13/11/2019 QUA)
+## \# 23 - Criando Elementos Dinâmicos
 
 ---
 
@@ -850,7 +808,7 @@ function clickEvent(event) {
   - [Calendário](https://ifpb.github.io/javascript-exercises/w3c/calendar/)
 - [Outros exercícios](https://ifpb.github.io/javascript-exercises/w3c/)
 
-## \# 24 - Criando Elementos Dinâmicos (20/11/2019 QUA)
+## \# 24 - Criando Elementos Dinâmicos
 
 ---
 
@@ -871,7 +829,7 @@ function clickEvent(event) {
   - Tabela IP ([Create Uniq](https://ifpb.github.io/javascript-exercises/w3c/iptable-create-uniq/), [CRUD](https://ifpb.github.io/javascript-exercises/w3c/iptable-crud/))
 - [Outros exercícios](https://ifpb.github.io/javascript-exercises/w3c/)
 
-## \# 25 - Revisão e Simulado de Javascript W3C (22/11/2019 SEX)
+## \# 25 - Revisão e Simulado de Javascript W3C
 
 ---
 
@@ -888,7 +846,7 @@ function clickEvent(event) {
 - [Javascript Exercises (W3C)](https://ifpb.github.io/exercises/problems/web/front-end/script/)
 - [Javascript Challenges (W3C)](https://ifpb.github.io/challenges/web/front-end/js/)
 
-## \# 26 - SECT - IFTech 2019 (27/11/2019 QUA)
+## \# 26 - SECT - IFTech 2019
 
 ---
 
@@ -896,8 +854,7 @@ function clickEvent(event) {
 
 [IFTech 2019](https://ifpb.github.io/iftech2019/)
 
-
-## \# 27 - SECT - IFTech 2019 (29/11/2019 SEX)
+## \# 27 - SECT - IFTech 2019
 
 ---
 
@@ -905,7 +862,7 @@ function clickEvent(event) {
 
 [IFTech 2019](https://ifpb.github.io/iftech2019/)
 
-## \# 28 - Especificação de Projeto (30/11/2019 SAB)
+## \# 28 - Especificação de Projeto
 
 ---
 
@@ -913,7 +870,7 @@ function clickEvent(event) {
 
 > Critérios de avaliação [projeto final](../exams/projeto.md)
 
-## \# 29 - Proposta de Projeto (04/12/2019 QUA)
+## \# 29 - Proposta de Projeto
 
 ---
 
@@ -925,7 +882,7 @@ function clickEvent(event) {
 
 - [Blog](../exams/blog.md)
 
-## \# 30 - Avaliação de Javascript W3C e Blog (06/12/2019 SEX)
+## \# 30 - Avaliação de Javascript W3C e Blog
 
 ---
 
@@ -933,7 +890,7 @@ function clickEvent(event) {
 
 > Todos os detalhes da avaliação estão disponíveis nesta [página](../exams/prova-w3c.html)
 
-## \# 31 - Requisição Assíncrona (11/12/2019 QUA)
+## \# 31 - Requisição Assíncrona
 
 ---
 
@@ -972,7 +929,7 @@ TODO Async flow js
 https://www.datchley.name/asynchronous-in-the-browser/
  -->
 
-## \# 32 - Expressões Regulares (13/12/2019 SEX)
+## \# 32 - Expressões Regulares
 
 ---
 
@@ -1006,7 +963,7 @@ https://www.datchley.name/asynchronous-in-the-browser/
 - Crie uma interface Web para o formulário do aplicativo [Address (Via CEP API)](https://ifpb.github.io/javascript-exercises/w3c/address-cep-api/) usando validação do campo CEP via RegExp.
 - [Search on Tools](https://ifpb.github.io/javascript-exercises/ecma/regexp/search-on-tools/)
 
-## \# 33 - Módulos no JS (14/12/2019 SAB)
+## \# 33 - Módulos no JS
 
 ---
 
@@ -1030,20 +987,19 @@ https://www.datchley.name/asynchronous-in-the-browser/
 
 - Inclua o ESM em seu projeto.
 
-## \# 34 - Acompanhamento de Projetos (16/12/2019 SEG)
+## \# 34 - Acompanhamento de Projetos
 
 ---
 
 > [Projeto Final](../exams/projeto.md)
 
-
-## \# 35 - Acompanhamento de Projetos (17/12/2019 TER)
+## \# 35 - Acompanhamento de Projetos
 
 ---
 
 > [Projeto Final](../exams/projeto.md)
 
-## \# 36 - Webpack e Pacotes no JS (18/12/2019 QUA)
+## \# 36 - Webpack e Pacotes no JS
 
 ---
 
@@ -1069,7 +1025,7 @@ https://www.datchley.name/asynchronous-in-the-browser/
 
 - Inclua o ESM em seu projeto.
 
-## \# 37 - Pacotes no JS (20/12/2019 SEX)
+## \# 37 - Pacotes no JS
 
 ---
 
@@ -1088,19 +1044,19 @@ https://www.datchley.name/asynchronous-in-the-browser/
 - [Javascript Packages](https://ifpb.github.io/javascript-exercises/packages/)
   - [Ample Admin Charts](https://ifpb.github.io/javascript-exercises/packages/charts/ample-admin-charts/)
 
-## \# 38 - Acompanhamento de Projetos (20/01/2020 SEG)
+## \# 38 - Acompanhamento de Projetos
 
 ---
 
 > [Projeto Final](../exams/projeto.md)
 
-## \# 39 - Apresentação de Projetos (29/01/2020 QUA)
+## \# 39 - Apresentação de Projetos
 
 ---
 
 > Entrega do [Projeto Final](../exams/projeto.md).
 
-## \# 40 - Apresentação de Projetos (31/01/2020 SEX)
+## \# 40 - Apresentação de Projetos
 
 ---
 
@@ -1128,3 +1084,7 @@ https://www.datchley.name/asynchronous-in-the-browser/
 - Newsletter
   - [JavaScript Weekly](https://javascriptweekly.com)
   - [Brazil JS Weekly](https://braziljs.org/#weekly)
+
+<script src="js/dates.js"></script>
+<script src="js/load-summary.js"></script>
+<script src="js/load-target-blank.js"></script>
