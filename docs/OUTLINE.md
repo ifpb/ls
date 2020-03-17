@@ -180,7 +180,7 @@
   - [Array Operations (ecma/array-operations)](https://ifpb.github.io/exercises/problems/algorithms/array-operations/)
   - [Fibonacci Sequence Array (ecma/array-fibonacci-sequence)](https://ifpb.github.io/exercises/problems/algorithms/array-fibonacci-sequence/)
   - [Prime Numbers (ecma/array-prime-numbers)](https://ifpb.github.io/exercises/problems/algorithms/array-prime-numbers/)
-  - [Outros (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
+- Crie estes outros [scritps envolvendo array (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
 
 ## \# 07 - Trabalhando com Arrays
 
@@ -212,7 +212,7 @@
   - [Minimum Withdraw (ecma/array-min-withdraw)](https://ifpb.github.io/exercises/problems/algorithms/array-min-withdraw/)
   - [Roman Number (ecma/array-roman-number)](https://ifpb.github.io/exercises/problems/algorithms/array-roman-number/)
   - [Prime Factors (ecma/array-prime-factors)](https://ifpb.github.io/exercises/problems/algorithms/array-prime-factors/)
-  - [Outros (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
+- Crie estes outros [scritps envolvendo array (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
 
 ## \# 08 - Loop em Array com map, filter, reduce
 
@@ -280,7 +280,7 @@
   - [Array Util: sort (ecma/array-util)](https://ifpb.github.io/exercises/problems/algorithms/array-util/)
   - [Products Array (ecma/array-products)](https://ifpb.github.io/exercises/problems/algorithms/array-products/)
   - [Products Array with Quantity (ecma/array-products-qtd)](https://ifpb.github.io/exercises/problems/algorithms/array-products-qtd/)
-  - [Outros (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
+- Crie estes outros [scritps envolvendo array (ecma/array-\*)](https://ifpb.github.io/exercises/problems/algorithms/)
 
 ## \# 10 - Trabalhando com Strings
 
@@ -319,11 +319,11 @@
 **Exercício:**
 
 - Crie um script para:
-  - [List Generator](https://ifpb.github.io/javascript-exercises/ecma/string/list-generator)
-  - [Table Generator](https://ifpb.github.io/javascript-exercises/ecma/string/table-generator)
-  - [Hamming](https://ifpb.github.io/javascript-exercises/ecma/string/hamming)
-  - [Rna Transcription](https://ifpb.github.io/javascript-exercises/ecma/string/rna-transcription)
-  - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#string)
+  - [List Generator (ecma/string-list-generator)](https://ifpb.github.io/javascript-exercises/ecma/string/list-generator)
+  - [Table Generator (ecma/string-table-generator)](https://ifpb.github.io/javascript-exercises/ecma/string/table-generator)
+  - [Hamming (ecma/string-hamming)](https://ifpb.github.io/javascript-exercises/ecma/string/hamming)
+  - [Rna Transcription (ecma/string-rna-transcription)](https://ifpb.github.io/javascript-exercises/ecma/string/rna-transcription)
+- Crie estes outros [scritps envolvendo string (ecma/string-\*)](https://ifpb.github.io/javascript-exercises/ecma/#string)
 
 ## \# 11 - Trabalhando com Strings
 
@@ -385,11 +385,11 @@ Charlie; charlie@email.com
 ```
 
 - Crie um script para:
-  - [String Util](https://ifpb.github.io/javascript-exercises/ecma/string/string-util)
-  - [Citation](https://ifpb.github.io/javascript-exercises/ecma/string/citation)
-  - [Lorem ipsum generator](https://ifpb.github.io/javascript-exercises/ecma/string/lorem-ipsum-generator)
-  - [Simple substitution](https://ifpb.github.io/javascript-exercises/ecma/string/simple-substitution)
-  - [Outros](https://ifpb.github.io/javascript-exercises/ecma/#string)
+  - [String Util (ecma/string-string-util)](https://ifpb.github.io/javascript-exercises/ecma/string/string-util)
+  - [Citation (ecma/string-citation)](https://ifpb.github.io/javascript-exercises/ecma/string/citation)
+  - [Lorem ipsum generator (ecma/string-lorem-ipsum-generator)](https://ifpb.github.io/javascript-exercises/ecma/string/lorem-ipsum-generator)
+  - [Simple substitution (ecma/string-simple-substitution)](https://ifpb.github.io/javascript-exercises/ecma/string/simple-substitution)
+- Crie estes outros [scritps envolvendo string (ecma/string-\*)](https://ifpb.github.io/javascript-exercises/ecma/#string)
 
 ## \# 12 - Atividades de EcmaScript
 
