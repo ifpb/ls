@@ -1,4 +1,4 @@
-# Eventos no JavaScript e Manipulação do DOM
+#  Manipulação do DOM e Eventos no JavaScript
 
   - [Árvore DOM](#árvore-dom)
   - [Element](#element)
@@ -22,6 +22,8 @@
 ## Árvore DOM
 
 ![](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/full-process.png)
+
+Fonte: [Google Developers - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model)
 
 ## [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element)
 

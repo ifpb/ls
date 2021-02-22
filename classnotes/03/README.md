@@ -85,7 +85,7 @@ for
 const numbers = [1, 2, 4];
 let result = '';
 
-for (const flag = 0; flag < numbers.length; flag++) {
+for (let flag = 0; flag < numbers.length; flag++) {
   result += numbers[flag] + ' ';
 }
 
@@ -99,7 +99,7 @@ const numbers = [1, 2, 4];
 let result = '';
 
 for (const index in numbers) {
-  result += number[index] + ' ';
+  result += numbers[index] + ' ';
 }
 
 console.log(result); //=> "1 2 4 "

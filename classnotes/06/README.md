@@ -88,60 +88,54 @@ Reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
 ### [Window.innerHeight](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerHeight) & [Window.innerWidth](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth)
 
 ```js
-const width = window.innerWidth
-const height = window.innerHeight
-console.log(width, height)
+const width = window.innerWidth;
+const height = window.innerHeight;
+console.log(width, height);
 ```
 
 ### [Window.alert()](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert)
 
 
 ```js
-window.alert("Hello world!")
+window.alert('Hello world!');
 ```
 
-Ouput:
-
-![](assets/alert.png)
+<button onclick="javascript:window.alert('Hello world!');">Alert</button>
 
 ### [Window.confirm()](https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm)
 
 ```js
-const close = window.confirm("Do you really want to leave?")
-console.log(close)
+const response = window.confirm('Is this JavaScript?');
+console.log(response);
 ```
 
-Ouput:
-
-![](assets/confirm.png)
+<button onclick="javascript:console.log(window.confirm('Is this JavaScript?'))">Confirm</button>
 
 ### [Window.prompt()](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt)
 
 ```js
-const sign = prompt("What's your sign?")
-console.log(sign)
+const name = window.prompt('What is your name?');
+console.log(name);
 ```
 
-Ouput:
-
-![](assets/prompt.png)
+<button onclick="javascript:console.log(window.prompt('What is your name?'))">Prompt</button>
 
 ### [Window.close()](https://developer.mozilla.org/en-US/docs/Web/API/Window/close)
 
 ```js
-window.close()
+window.close();
 ```
 
 ### [Window.open()](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
 
 ```js
-const windowRef = window.open('http://www.ifpb.edu.br')
+const windowRef = window.open('https://developer.mozilla.org/');
 ```
 
 ### [Window.print()](https://developer.mozilla.org/en-US/docs/Web/API/Window/print)
 
 ```js
-window.print()
+window.print();
 ```
 
 ## [Location](https://developer.mozilla.org/en-US/docs/Web/API/Location)
@@ -151,19 +145,19 @@ window.print()
 ### [Location.href](https://developer.mozilla.org/en-US/docs/Web/API/Location/href)
 
 ```js
-location.href = 'http://www.ifpb.edu.br/noticias'
+location.href = 'http://www.ifpb.edu.br/noticias';
 ```
 
 ### [Location.assign()](https://developer.mozilla.org/en-US/docs/Web/API/Location/assign)
 
 ```js
-location.assign('http://www.ifpb.edu.br/')
+location.assign('http://www.ifpb.edu.br/');
 ```
 
 ### [Location.reload()](https://developer.mozilla.org/en-US/docs/Web/API/Location/reload)
 
 ```js
-location.reload()
+location.reload();
 ```
 
 ## [History](https://developer.mozilla.org/en-US/docs/Web/API/History)
@@ -173,13 +167,13 @@ location.reload()
 ### [History.back()](https://developer.mozilla.org/en-US/docs/Web/API/History)
 
 ```js
-history.back()    // history.go(-1)
+history.back();    // history.go(-1)
 ```
 
 ### [History.forward()](https://developer.mozilla.org/en-US/docs/Web/API/History)
 
 ```js
-history.forward() // history.go(1)
+history.forward(); // history.go(1)
 ```
 
 ### [History.go()](https://developer.mozilla.org/en-US/docs/Web/API/History)
@@ -202,8 +196,8 @@ console.clear()
 ### [Console.log()](https://developer.mozilla.org/en-US/docs/Web/API/Console/log)
 
 ```js
-const name = 'Alice'
-console.log(name)
+const name = 'Alice';
+console.log(name);
 ```
 
 ```
@@ -214,8 +208,8 @@ Alice
 ### [Console.table()](https://developer.mozilla.org/en-US/docs/Web/API/Console/table)
 
 ```js
-const fruits = ["apples", "oranges", "bananas"]
-console.table(fruits)
+const fruits = ["apples", "oranges", "bananas"];
+console.table(fruits);
 ```
 
 ![](assets/console-table-fruits.png)
@@ -229,39 +223,39 @@ console.table(fruits)
 ### [Document.body](https://developer.mozilla.org/en-US/docs/Web/API/Document/body)
 
 ```js
-const body = document.body
-console.log(body)
+const body = document.body;
+console.log(body);
 ```
 
 ### [Document.title](https://developer.mozilla.org/en-US/docs/Web/API/Document/title)
 
 ```js
-console.log(document.title)
+console.log(document.title);
 ```
 
 ### [Document.getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
 
 ```js
-const passwordElement = document.getElementById('password')
-console.log(passwordElement.value)
+const passwordElement = document.getElementById('password');
+console.log(passwordElement.value);
 ```
 
 ### [Document.querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
 
 ```js
-const passwordElement = document.querySelector('#password')
-console.log(passwordElement.value)
+const passwordElement = document.querySelector('#password');
+console.log(passwordElement.value);
 ```
 
 ### [Document.querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
 
 ```js
-const inputs = document.querySelector('input')
-Array.from(inputs).map(i => i.value)
+const inputs = document.querySelector('input');
+Array.from(inputs).map(i => i.value);
 ```
 
 ### [Document.write()](https://developer.mozilla.org/en-US/docs/Web/API/Document/write)
 
 ```js
-document.write('<h1>Lorem ipsum</h1>')
+document.write('<h1>Lorem ipsum</h1>');
 ```
