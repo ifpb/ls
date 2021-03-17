@@ -19,7 +19,7 @@
 ---
 
 ```
-foods-read
+foods-crud
 ├── css
 │   ├── bootstrap.min.css
 │   └── style.css

@@ -18,7 +18,7 @@
 ---
 
 ```
-foods-read
+foods-create
 ├── css
 │   ├── bootstrap.min.css
 │   └── style.css
