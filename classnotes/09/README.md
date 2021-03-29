@@ -77,99 +77,12 @@ foods-create/index.html:
 
 foods-create/js/model/dataset.js:
 ```js
-const dataset = [
-  {
-    id: 1,
-    name: 'Hambúrguer',
-    image: 'imgs/hamburguer.jpg',
-  },
-  {
-    id: 2,
-    name: 'Sanduíche',
-    image: 'imgs/sanduiche.jpg',
-  },
-  {
-    id: 3,
-    name: 'Milk Shake',
-    image: 'imgs/milkshake.jpg',
-  },
-  {
-    id: 4,
-    name: 'Suco',
-    image: 'imgs/suco.jpg',
-  },
-];
-
-export default dataset;
+{% include_relative code/foods-create/js/model/dataset.js %}
 ```
 
 foods-create/js/model/food.js:
 ```js
-function nextId() {
-  const foods = readAll();
-
-  const ids = foods.map((food) => food.id);
-
-  const maxId = Math.max(...ids);
-
-  return maxId + 1;
-}
-
-function load(newFoods) {
-  localStorage.setItem('foods', JSON.stringify(newFoods));
-}
-
-function create(food) {
-  food = { id: nextId(), ...food };
-
-  const foods = readAll();
-
-  const newFoods = [...foods, food];
-
-  load(newFoods);
-
-  return food;
-}
-
-function readAll() {
-  return JSON.parse(localStorage.getItem('foods'));
-}
-
-function read(id) {
-  const foods = readAll();
-
-  const food = foods.find((food) => food.id === id);
-
-  return food;
-}
-
-function update(id, food) {
-  const foods = readAll();
-
-  const index = foods.findIndex((food) => food.id === id);
-
-  if (index >= 0) {
-    foods[index] = { id, ...food };
-  }
-
-  load(foods);
-
-  return food;
-}
-
-function destroy(id) {
-  const foods = readAll();
-
-  const index = foods.findIndex((food) => food.id === id);
-
-  if (index >= 0) {
-    foods.splice(index, 1);
-  }
-
-  load(foods);
-}
-
-export default { load, create, readAll, read, update, destroy };
+{% include_relative code/foods-create/js/model/foods.js %}
 ```
 
 ## Dados Novos
@@ -212,60 +125,5 @@ foods-create/index.html:
 
 foods-create/js/main.js:
 ```js
-import dataset from './model/dataset.js';
-import foods from './model/foods.js';
-
-function loadFoods() {
-  foods.load(dataset);
-
-  for (const food of foods.readAll()) {
-    createFoodView(food);
-  }
-}
-
-function createFoodView(food) {
-  const foodsView = `
-        <div class="card-food col-sm-6 col-lg-4 col-xl-3 mb-3" id="food-${food.id}">
-          ...
-        </div>
-      `;
-
-  const foodsDeck = document.querySelector('.card-deck');
-
-  foodsDeck.insertAdjacentHTML('beforeend', foodsView);
-}
-
-function loadFormValues(title, foodName, foodImage) {
-  const formLabel = document.querySelector('#formFoodLabel');
-  const foodNameInput = document.querySelector('#food-name');
-  const foodImageInput = document.querySelector('#food-image');
-
-  formLabel.innerHTML = title;
-  foodNameInput.value = foodName;
-  foodImageInput.value = foodImage;
-}
-
-function loadFormCreateFood() {
-  const formFood = document.querySelector('#formFood');
-
-  loadFormValues('Nova Comida', '', '');
-
-  formFood.onsubmit = (e) => {
-    e.preventDefault();
-
-    let food = Object.fromEntries(new FormData(formFood));
-
-    const newFood = foods.create(food);
-
-    createFoodView(newFood);
-
-    $('#formFoodModal').modal('toggle');
-
-    document.querySelector('#newBtnFood').blur();
-  };
-}
-
-window.loadFormCreateFood = loadFormCreateFood;
-
-loadFoods();
+{% include_relative code/foods-create/js/main.js %}
 ```

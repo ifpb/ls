@@ -102,65 +102,11 @@ foods-read/index.html:
 
 foods-read/js/model/dataset.js:
 ```js
-const dataset = [
-  {
-    id: 1,
-    name: 'Hambúrguer',
-    image: 'imgs/hamburguer.jpg',
-  },
-  {
-    id: 2,
-    name: 'Sanduíche',
-    image: 'imgs/sanduiche.jpg',
-  },
-  {
-    id: 3,
-    name: 'Milk Shake',
-    image: 'imgs/milkshake.jpg',
-  },
-  {
-    id: 4,
-    name: 'Suco',
-    image: 'imgs/suco.jpg',
-  },
-];
-
-export default dataset;
+{% include_relative code/foods-read/js/model/dataset.js %}
 ```
 
 foods-read/js/main.js:
 ```js
-import dataset from './model/dataset.js';
-
-function loadFoods() {
-  const foods = dataset;
-
-  for (const food of foods) {
-    createFoodView(food);
-  }
-}
-
-function createFoodView(food) {
-  const foodsView = `
-        <div class="card-food col-sm-6 col-lg-4 col-xl-3 mb-3" id="food-${food.id}">
-          <div class="card">
-            <div class="card-header text-center font-weight-bold">
-              <span class="food-name">
-                ${food.name}
-              </span>
-            </div>
-            <div class="card-body p-0">
-              <img src="${food.image}" alt="${food.name}" class="food-image w-100">
-            </div>
-          </div>
-        </div>
-      `;
-
-  const foodsDeck = document.querySelector('.card-deck');
-
-  foodsDeck.insertAdjacentHTML('beforeend', foodsView);
-}
-
-loadFoods();
+{% include_relative code/foods-read/js/main.js %}
 ```
 

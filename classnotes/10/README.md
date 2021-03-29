@@ -82,30 +82,7 @@ foods-crud/index.html:
 
 foods-crud/js/model/dataset.js:
 ```js
-const dataset = [
-  {
-    id: 1,
-    name: 'Hambúrguer',
-    image: 'imgs/hamburguer.jpg',
-  },
-  {
-    id: 2,
-    name: 'Sanduíche',
-    image: 'imgs/sanduiche.jpg',
-  },
-  {
-    id: 3,
-    name: 'Milk Shake',
-    image: 'imgs/milkshake.jpg',
-  },
-  {
-    id: 4,
-    name: 'Suco',
-    image: 'imgs/suco.jpg',
-  },
-];
-
-export default dataset;
+{% include_relative code/foods-crud/js/model/dataset.js %}
 ```
 
 foods-crud/js/model/food.js:
@@ -152,7 +129,10 @@ import dataset from './model/dataset.js';
 import foods from './model/foods.js';
 
 function loadFoods() {
-  foods.load(dataset);
+  if (localStorage.getItem('foods-app:loaded') !== 'ok') {
+    foods.load(dataset);
+    localStorage.setItem('foods-app:loaded', 'ok');
+  }
 
   for (const food of foods.readAll()) {
     createFoodView(food);
@@ -247,7 +227,10 @@ import dataset from './model/dataset.js';
 import foods from './model/foods.js';
 
 function loadFoods() {
-  foods.load(dataset);
+    if (localStorage.getItem('foods-app:loaded') !== 'ok') {
+      foods.load(dataset);
+      localStorage.setItem('foods-app:loaded', 'ok');
+    }
 
   for (const food of foods.readAll()) {
     createFoodView(food);
