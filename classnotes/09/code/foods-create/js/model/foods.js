@@ -9,7 +9,7 @@ function nextId() {
 }
 
 function load(newFoods) {
-  localStorage.setItem('foods', JSON.stringify(newFoods));
+  localStorage.setItem('foods-app:foods', JSON.stringify(newFoods));
 }
 
 function create(food) {
@@ -25,7 +25,7 @@ function create(food) {
 }
 
 function readAll() {
-  return JSON.parse(localStorage.getItem('foods'));
+  return JSON.parse(localStorage.getItem('foods-app:foods'));
 }
 
 function read(id) {
