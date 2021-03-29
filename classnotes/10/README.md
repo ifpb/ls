@@ -159,7 +159,7 @@ function createFoodActions(food) {
   return `
         <i
           class="far fa-trash-alt"
-          onclick="deleteFoodView(${food.id}, '${food.name}')"
+          onclick="loadFormDeleteFood(${food.id}, '${food.name}')"
           data-toggle="modal"
           data-target="#deleteFoodModal">
         </i>
@@ -167,7 +167,7 @@ function createFoodActions(food) {
       `;
 }
 
-function deleteFoodView(foodId, foodName) {
+function loadFormDeleteFood(foodId, foodName) {
   document.querySelector('#modal-name-food').innerHTML = foodName;
 
   document.querySelector('#deleteFoodBtn').onclick = (e) => {
@@ -181,7 +181,7 @@ function deleteFoodView(foodId, foodName) {
   };
 }
 
-window.deleteFoodView = deleteFoodView;
+window.loadFormDeleteFood = loadFormDeleteFood;
 ```
 ## Atualizar Dados
 
