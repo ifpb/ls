@@ -2,7 +2,10 @@ import dataset from './model/dataset.js';
 import foods from './model/foods.js';
 
 function loadFoods() {
-  foods.load(dataset);
+  if (localStorage.getItem('loadedFoods') !== 'ok') {
+    foods.load(dataset);
+    localStorage.setItem('loadedFoods', 'ok');
+  }
 
   for (const food of foods.readAll()) {
     createFoodView(food);
