@@ -36,6 +36,12 @@
 
 ![](assets/byte.png)
 
+```
+01010101
+11110000
+11110002
+```
+
 ```js
 const pattern = /[01]{8}/;
 console.log(pattern.test('01010101')); //=> true
@@ -49,10 +55,20 @@ console.log(pattern.test('11110002')); //=> false
 
 ![](assets/cpf.png)
 
+```
+11122233344
+111.222.333-44
+111x222.333-44
+1112223334
+111222333440
+11122233344X
+```
+
 ```js
 const pattern = /^(\d{11}|\d{3}\.\d{3}\.\d{3}-\d{2})$/;
 console.log(pattern.test('11122233344')); //=> true
 console.log(pattern.test('111.222.333-44')); //=> true
+console.log(pattern.test('111x222.333-44')); //=> false
 console.log(pattern.test('1112223334')); //=> false
 console.log(pattern.test('111222333440')); //=> false
 console.log(pattern.test('11122233344X')); //=> false
@@ -63,6 +79,15 @@ console.log(pattern.test('11122233344X')); //=> false
 > /^(\d{8}\|\d{2}\\.?\d{3}-\d{3})\$/
 
 ![](assets/cep.png)
+
+```
+01001000
+01001-000
+01.001-000
+a01001000
+01-001.000
+01.001000
+```
 
 ```js
 const pattern = /^(\d{8}|\d{2}\.?\d{3}-\d{3})$/;
@@ -102,4 +127,4 @@ console.log(message.split(pattern))[('lorem', 'ipsum', 'dolor')];
 
 ### Busca em aplicativos
 
-- Search no VSCode
+- [VSCode - Advanced find and replace options](https://code.visualstudio.com/docs/editor/codebasics#_advanced-find-and-replace-options)
