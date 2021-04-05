@@ -196,13 +196,24 @@ foods-crud-fetch
 
 [Edit on Repl.it](https://replit.com/@lucachaves/foods-crud-fetch#index.html)
 
-### Create
-
 js/services/api.js:
 
 ```js
 const api = 'https://foods-json-server.lucachaves.repl.co';
 
+async function create(food) {}
+async function readAll() {}
+async function readByName(name) {}
+async function readById(id) {}
+async function update(id, food) {}
+async function remove(id) {}
+
+export default { create, readAll, read, readByName, update, remove };
+```
+
+### Create
+
+```js
 async function create(food) {
   const res = await fetch(`${api}/foods`, {
     method: 'post',
@@ -214,6 +225,17 @@ async function create(food) {
 
   return await res.json();
 }
+```
+
+```js
+import api from './service/api.js';
+
+const food = {
+  "name": "Batata",
+  "image": "imgs/batatafrita.jpg"
+};
+
+api.create(food);
 ```
 
 ### Read
@@ -240,6 +262,14 @@ async function readById(id) {
 }
 ```
 
+```js
+import api from './service/api.js';
+
+api.readAll();
+api.readByName('Batata');
+api.readById(5);
+```
+
 ### Update
 
 js/services/api.js:
@@ -258,6 +288,17 @@ async function update(id, food) {
 }
 ```
 
+```js
+import api from './service/api.js';
+
+const food = {
+  "name": "Batata Frita",
+  "image": "imgs/batatafrita.jpg"
+};
+
+api.upadte(5, food);
+```
+
 ### Delete
 
 js/services/api.js:
@@ -268,4 +309,10 @@ async function remove(id) {
     method: 'delete',
   });
 }
+```
+
+```js
+import api from './service/api.js';
+
+api.remove(5);
 ```

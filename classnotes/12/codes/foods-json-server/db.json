@@ -16,9 +16,9 @@
       "image": "imgs/milkshake.jpg"
     },
     {
+      "id": 4,
       "name": "Suco de Laranja",
-      "image": "imgs/suco.jpg",
-      "id": 4
+      "image": "imgs/suco.jpg"
     }
   ]
 }
