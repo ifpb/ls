@@ -16,11 +16,12 @@
     - [Vanilla Bootstrap](#vanilla-bootstrap)
     - [React Bootstrap](#react-bootstrap)
   - [Resultado Final](#resultado-final)
-  - [Referências](#referências)
 
 ## Create React App (CRA)
 
 ---
+
+[ReactJS](https://reactjs.org/) e [Create React App](https://create-react-app.dev/):
 
 ```
 $ npx create-react-app foods-app-cra
@@ -102,7 +103,7 @@ export default App;
 
 ### JSX
 
-src/components/App.jsx:
+src/components/App.jsx ([BabelJS](https://babeljs.io/repl)):
 
 ```jsx
 import foods from '../models/foods';
@@ -448,7 +449,7 @@ export default App;
 
 ### React Bootstrap
 
-src/components/App.jsx:
+src/components/App.jsx ([React Bootstrap](https://react-bootstrap.github.io/)):
 
 ```jsx
 import { useRef, useState } from 'react';
@@ -543,12 +544,3 @@ foods-app-cra
 │       └── foods.js
 └── yarn.lock
 ```
-
-## Referências
-
----
-
-- [ReactJS](https://reactjs.org/)
-- [Create React App](https://create-react-app.dev/)
-- [React Bootstrap](https://react-bootstrap.github.io/)
-- [BabelJS](https://babeljs.io/repl)
