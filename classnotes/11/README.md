@@ -110,17 +110,31 @@ function sumPromise(a, b) {
   return promise
 }
 
-async function result() {
-  try {
-    let res = await sumPromise(2, 2);
-    res = await sumPromise(2, res);
-    return res;
-  } catch(err) {
-    console.log(err);
+async function sumAsync(a, b) {
+  const sleep = (m) => new Promise(r => setTimeout(r, m))
+
+  if (isNaN(a) || isNaN(b)) {
+    throw new Error('Invalid numbers');
+  } else {
+    await sleep(200);
+    return a + b;
   }
 }
 
-result().then((res) => console.log()); //=> 6
+async function result() {
+  try {
+    const res = await sumPromise(2, 2);
+    return await sumAsync(2, res);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    } else {
+      console.log(err);
+    }
+  }
+}
+
+result().then((res) => console.log(res)); //=> 6
 ```
 
 
