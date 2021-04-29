@@ -752,7 +752,7 @@ function Food({ food }) {
     <Col sm={6} lg={4} xl={3} className="mb-3">
       <Card>
         <Card.Header className="text-center font-weight-bold">
-          {* ... *}
+          // ...
         </Card.Header>
         <Card.Body className="p-0">
           <Image

@@ -121,11 +121,7 @@ function App() {
               <span>{food.name}</span>
             </div>
             <div className="card-body p-0">
-              <img
-                src={food.image}
-                alt={food.name}
-                className="food-image w-100"
-              />
+              <img src={food.image} alt={food.name} className="w-100" />
             </div>
           </div>
         </div>
@@ -172,7 +168,7 @@ function Food({ food }) {
           <span>{food.name}</span>
         </div>
         <div className="card-body p-0">
-          <img src={food.image} alt={food.name} className="food-image w-100" />
+          <img src={food.image} alt={food.name} className="w-100" />
         </div>
       </div>
     </div>
@@ -449,11 +445,18 @@ export default App;
 
 ### React Bootstrap
 
-src/components/App.jsx ([React Bootstrap](https://react-bootstrap.github.io/)):
+[React Bootstrap](https://react-bootstrap.github.io/):
+
+```
+$ yarn add react-bootstrap
+$ yarn remove jquery
+```
+
+src/components/App.jsx:
 
 ```jsx
 import { useRef, useState } from 'react';
-import { Button, CardDeck } from 'react-bootstrap';
+import { Button, CardDeck, Container } from 'react-bootstrap';
 
 import data from '../models/foods';
 import Food from './Food';
@@ -470,7 +473,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5 text-center">Menu</h1>
       <div className="text-right">
         <Button
@@ -487,7 +490,7 @@ function App() {
           <Food food={food} key={food.id} />
         ))}
       </CardDeck>
-    </div>
+    </Container>
   );
 }
 
@@ -507,7 +510,7 @@ function Food({ food }) {
           <span>{food.name}</span>
         </Card.Header>
         <Card.Body className="p-0">
-          <img src={food.image} alt={food.name} className="food-image w-100" />
+          <img src={food.image} alt={food.name} className="w-100" />
         </Card.Body>
       </Card>
     </Col>
