@@ -7,6 +7,7 @@ function FoodForm() {
   const {
     selectedFood,
     isShowFoodForm,
+    typeFoodForm,
     toggleFoodForm,
     handleSubmitFoodForm,
   } = useFood();
@@ -14,7 +15,9 @@ function FoodForm() {
   return (
     <Modal show={isShowFoodForm} onHide={toggleFoodForm}>
       <Modal.Header closeButton>
-        <Modal.Title as="h5">Nova Comida</Modal.Title>
+        <Modal.Title as="h5">
+          {typeFoodForm === 'create' ? 'Nova' : 'Atualizar'} Comida
+        </Modal.Title>
       </Modal.Header>
       <Formik
         initialValues={selectedFood}

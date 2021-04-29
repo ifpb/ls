@@ -3,9 +3,9 @@
 - [Introdução ao ReactJS](#introdução-ao-reactjs)
   - [Create React App (CRA)](#create-react-app-cra)
   - [Componentes](#componentes)
-    - [Funciontal Component](#funciontal-component)
+    - [Declaração](#declaração)
     - [Fragment](#fragment)
-    - [JSX](#jsx)
+    - [JavaScript XML (JSX)](#javascript-xml-jsx)
     - [Propriedades](#propriedades)
     - [Lista e Chaves](#lista-e-chaves)
     - [Tratamento de Evento](#tratamento-de-evento)
@@ -21,13 +21,15 @@
 
 ---
 
-[ReactJS](https://reactjs.org/) e [Create React App](https://create-react-app.dev/):
+[ReactJS](https://reactjs.org/) com [Create React App](https://create-react-app.dev/):
 
 ```
 $ npx create-react-app foods-app-cra
 $ cd foods-app-cra
 $ yarn start
 ```
+
+Simplificação:
 
 ```
 $ rm public/favicon.ico \
@@ -44,6 +46,8 @@ src/setupTests.js \
 README.md
 ```
 
+Estrutura Final:
+
 ```
 foods-app-cra
 ├── .gitignore
@@ -51,16 +55,36 @@ foods-app-cra
 ├── public
 │   └── index.html
 ├── src
-│   ├── App.jsx
+│   ├── components
+│   │   └── App.jsx
 │   └── index.jsx
 └── yarn.lock
 ```
+
+Observações:
+
+  - Single Page Application (SPA)
+  - [Fast Refresh - HMR](https://github.com/gaearon/react-hot-loader) ([Webpack - WDS](https://webpack.js.org/configuration/dev-server/))
+  - [BabelJS](https://babeljs.io/repl)
+  - [ESLint](https://github.com/eslint/eslint)
+  - [Yarn](https://yarnpkg.com/)
+  - [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 
 ## Componentes
 
 ---
 
-### Funciontal Component
+![](assets/components-reactjs.png)
+
+- Web: [react-dom](https://github.com/facebook/react/) (ReactJS), [react-native-dom](https://github.com/vincentriemer/react-native-dom) (React Native)
+- Mobile: android-native, ios-native ([React Native](https://reactnative.dev/))
+- Desktop: [react-native-windows](https://github.com/Microsoft/react-native-windows), [proton-native](https://github.com/kusti8/proton-native) (React Native)
+- TV: [react-native-tvos](https://github.com/react-native-tvos/react-native-tvos) (React Native)
+- [Outras](https://reactnative.dev/docs/out-of-tree-platforms)
+
+![](assets/components-react-native.png)
+
+### Declaração
 
 src/index.jsx:
 
@@ -76,9 +100,23 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 src/components/App.jsx:
 
+Function Component
+
 ```jsx
 function App() {
   return <h1>Menu</h1>;
+}
+
+export default App;
+```
+
+Class Component
+
+```jsx
+class App extends React.Component {
+  render() {
+    return <h1>Menu</h1>;
+  }
 }
 
 export default App;
@@ -101,9 +139,38 @@ function App() {
 export default App;
 ```
 
-### JSX
+###  JavaScript XML (JSX)
 
-src/components/App.jsx ([BabelJS](https://babeljs.io/repl)):
+src/models/foods.js:
+
+```js
+const foods = [
+  {
+    id: 1,
+    name: 'Hambúrguer',
+    image: 'imgs/hamburguer.jpg',
+  },
+  {
+    id: 2,
+    name: 'Sanduíche',
+    image: 'imgs/sanduiche.jpg',
+  },
+  {
+    id: 3,
+    name: 'Milk Shake',
+    image: 'imgs/milkshake.jpg',
+  },
+  {
+    id: 4,
+    name: 'Suco',
+    image: 'imgs/suco.jpg',
+  },
+];
+
+export default foods;
+```
+
+src/components/App.jsx:
 
 ```jsx
 import foods from '../models/foods';
@@ -121,11 +188,7 @@ function App() {
               <span>{food.name}</span>
             </div>
             <div className="card-body p-0">
-              <img
-                src={food.image}
-                alt={food.name}
-                className="food-image w-100"
-              />
+              <img src={food.image} alt={food.name} className="w-100" />
             </div>
           </div>
         </div>
@@ -164,6 +227,7 @@ export default App;
 src/components/Food.jsx:
 
 ```jsx
+{% raw %}
 function Food({ food }) {
   return (
     <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
@@ -172,7 +236,12 @@ function Food({ food }) {
           <span>{food.name}</span>
         </div>
         <div className="card-body p-0">
-          <img src={food.image} alt={food.name} className="food-image w-100" />
+          <img
+            src={food.image}
+            alt={food.name}
+            class="w-100"
+            style={{ width: 100 }}
+          />
         </div>
       </div>
     </div>
@@ -180,6 +249,7 @@ function Food({ food }) {
 }
 
 export default Food;
+{% endraw %}
 ```
 
 ### Lista e Chaves
@@ -269,8 +339,6 @@ function App() {
     };
 
     foods.push(newFood);
-
-    console.log(foods);
   };
 
   return (
@@ -449,11 +517,18 @@ export default App;
 
 ### React Bootstrap
 
-src/components/App.jsx ([React Bootstrap](https://react-bootstrap.github.io/)):
+[React Bootstrap](https://react-bootstrap.github.io/):
+
+```
+$ yarn add react-bootstrap
+$ yarn remove jquery
+```
+
+src/components/App.jsx:
 
 ```jsx
 import { useRef, useState } from 'react';
-import { Button, CardDeck } from 'react-bootstrap';
+import { Button, CardDeck, Container } from 'react-bootstrap';
 
 import data from '../models/foods';
 import Food from './Food';
@@ -470,7 +545,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5 text-center">Menu</h1>
       <div className="text-right">
         <Button
@@ -487,7 +562,7 @@ function App() {
           <Food food={food} key={food.id} />
         ))}
       </CardDeck>
-    </div>
+    </Container>
   );
 }
 
@@ -507,7 +582,7 @@ function Food({ food }) {
           <span>{food.name}</span>
         </Card.Header>
         <Card.Body className="p-0">
-          <img src={food.image} alt={food.name} className="food-image w-100" />
+          <img src={food.image} alt={food.name} className="w-100" />
         </Card.Body>
       </Card>
     </Col>

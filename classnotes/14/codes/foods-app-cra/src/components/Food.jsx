@@ -8,7 +8,7 @@ function Food({ food }) {
           <span>{food.name}</span>
         </Card.Header>
         <Card.Body className="p-0">
-          <img src={food.image} alt={food.name} className="food-image w-100" />
+          <img src={food.image} alt={food.name} className="w-100" />
         </Card.Body>
       </Card>
     </Col>

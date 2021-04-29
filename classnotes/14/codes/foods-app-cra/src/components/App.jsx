@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Button, CardDeck } from 'react-bootstrap';
+import { Button, CardDeck, Container } from 'react-bootstrap';
 
 import data from '../models/foods';
 import Food from './Food';
@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5 text-center">Menu</h1>
       <div className="text-right">
         <Button
@@ -41,7 +41,7 @@ function App() {
           <Food food={food} key={food.id} />
         ))}
       </CardDeck>
-    </div>
+    </Container>
   );
 }
 

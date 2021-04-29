@@ -1,27 +1,63 @@
 # Foods App (CRUD)
 
 - [Foods App (CRUD)](#foods-app-crud)
-  - [Atualizar Comida](#atualizar-comida)
-  - [CSS Modules](#css-modules)
-  - [Excluir Comida](#excluir-comida)
-  - [Resultado do CRUD no CRA](#resultado-do-crud-no-cra)
+  - [CRA](#cra)
+    - [Atualizar Comida](#atualizar-comida)
+    - [CSS Modules](#css-modules)
+    - [Excluir Comida](#excluir-comida)
+    - [Resultado do CRUD](#resultado-do-crud)
   - [NextJS](#nextjs)
     - [Criando o projeto](#criando-o-projeto)
     - [Navegação (next/link)](#navegação-nextlink)
     - [Image (next/image)](#image-nextimage)
     - [Resultado Final](#resultado-final)
+  - [Próximos Passos](#próximos-passos)
 
-## Atualizar Comida
+## CRA
 
 ---
+
+### Atualizar Comida
 
 ```
 $ yarn add react-icons
 ```
 
+src/components/Food.jsx:
+
+```jsx
+import { Card, Col } from 'react-bootstrap';
+import { FaPencilAlt } from 'react-icons/fa';
+
+import { useFood } from '../contexts/FoodContext';
+
+function Food({ food }) {
+  const { handleLoadUpdateFoodForm } = useFood();
+
+  return (
+    <Col sm={6} lg={4} xl={3} className="mb-3">
+      <Card>
+        <Card.Header className="text-center font-weight-bold">
+          <span>{food.name}</span>
+          <span className="float-right">
+            <FaPencilAlt onClick={() => handleLoadUpdateFoodForm(food)} />
+          </span>
+        </Card.Header>
+        <Card.Body className="p-0">
+          <img src={food.image} alt={food.name} className="w-100" />
+        </Card.Body>
+      </Card>
+    </Col>
+  );
+}
+
+export default Food;
+```
+
 src/contexts/FoodContext.jsx:
 
 ```jsx
+{% raw %}
 import { createContext, useState, useContext } from 'react';
 
 import api from '../services/api';
@@ -111,6 +147,7 @@ export function FoodContextProvider({ children }) {
 export function useFood() {
   return useContext(FoodContext);
 }
+{% endraw %}
 ```
 
 src/components/App.jsx:
@@ -167,37 +204,6 @@ function App() {
 export default App;
 ```
 
-src/components/Food.jsx:
-
-```jsx
-import { Card, Col } from 'react-bootstrap';
-import { FaPencilAlt } from 'react-icons/fa';
-
-import { useFood } from '../contexts/FoodContext';
-
-function Food({ food }) {
-  const { handleLoadUpdateFoodForm } = useFood();
-
-  return (
-    <Col sm={6} lg={4} xl={3} className="mb-3">
-      <Card>
-        <Card.Header className="text-center font-weight-bold">
-          <span>{food.name}</span>
-          <span className="float-right">
-            <FaPencilAlt onClick={() => handleLoadUpdateFoodForm(food)} />
-          </span>
-        </Card.Header>
-        <Card.Body className="p-0">
-          <img src={food.image} alt={food.name} className="w-100" />
-        </Card.Body>
-      </Card>
-    </Col>
-  );
-}
-
-export default Food;
-```
-
 src/components/FoodForm.jsx:
 
 ```jsx
@@ -210,6 +216,7 @@ function FoodForm() {
   const {
     selectedFood,
     isShowFoodForm,
+    typeFoodForm,
     toggleFoodForm,
     handleSubmitFoodForm,
   } = useFood();
@@ -217,7 +224,9 @@ function FoodForm() {
   return (
     <Modal show={isShowFoodForm} onHide={toggleFoodForm}>
       <Modal.Header closeButton>
-        <Modal.Title as="h5">Nova Comida</Modal.Title>
+        <Modal.Title as="h5">
+          {typeFoodForm === 'create' ? 'Nova' : 'Atualizar'} Comida
+        </Modal.Title>
       </Modal.Header>
       <Formik
         initialValues={selectedFood}
@@ -267,9 +276,7 @@ function FoodForm() {
 export default FoodForm;
 ```
 
-## CSS Modules
-
----
+### CSS Modules
 
 src/components/Food/style.module.css ([CSS Modules](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/)):
 ```jsx
@@ -310,65 +317,7 @@ function Food({ food }) {
 export default Food;
 ```
 
-## Excluir Comida
-
----
-
-src/components/App.jsx:
-
-```jsx
-import { useEffect, useRef } from 'react';
-import { Button, CardDeck, Container } from 'react-bootstrap';
-
-import Food from './Food';
-import FoodForm from './FoodForm';
-import DeleteFoodModal from './DeleteFoodModal';
-import api from '../services/api';
-import { useFood } from '../contexts/FoodContext';
-
-import 'bootstrap/dist/css/bootstrap.css';
-
-function App() {
-  const buttonEl = useRef(null);
-
-  const { foods, setFoods, handleLoadCreateFoodForm } = useFood();
-
-  useEffect(() => {
-    const loadFoods = async () => {
-      const data = await api.readAll();
-
-      setFoods([...foods, ...data]);
-    };
-
-    loadFoods();
-  }, []);
-
-  return (
-    <Container>
-      <h1 className="mt-5 text-center">Menu</h1>
-      <div className="text-right">
-        <Button
-          variant="secondary"
-          className="rounded-circle mr-4 font-weight-bold"
-          onClick={() => handleLoadCreateFoodForm(buttonEl)}
-          ref={buttonEl}
-        >
-          +
-        </Button>
-      </div>
-      <CardDeck className="my-3">
-        {foods.map((food) => (
-          <Food food={food} key={food.id} />
-        ))}
-      </CardDeck>
-      <FoodForm />
-      <DeleteFoodModal />
-    </Container>
-  );
-}
-
-export default App;
-```
+### Excluir Comida
 
 src/components/Food/index.jsx:
 
@@ -443,9 +392,66 @@ function DeleteFoodModal() {
 export default DeleteFoodModal;
 ```
 
+src/components/App.jsx:
+
+```jsx
+import { useEffect, useRef } from 'react';
+import { Button, CardDeck, Container } from 'react-bootstrap';
+
+import Food from './Food';
+import FoodForm from './FoodForm';
+import DeleteFoodModal from './DeleteFoodModal';
+import api from '../services/api';
+import { useFood } from '../contexts/FoodContext';
+
+import 'bootstrap/dist/css/bootstrap.css';
+
+function App() {
+  const buttonEl = useRef(null);
+
+  const { foods, setFoods, handleLoadCreateFoodForm } = useFood();
+
+  useEffect(() => {
+    const loadFoods = async () => {
+      const data = await api.readAll();
+
+      setFoods([...foods, ...data]);
+    };
+
+    loadFoods();
+  }, []);
+
+  return (
+    <Container>
+      <h1 className="mt-5 text-center">Menu</h1>
+      <div className="text-right">
+        <Button
+          variant="secondary"
+          className="rounded-circle mr-4 font-weight-bold"
+          onClick={() => handleLoadCreateFoodForm(buttonEl)}
+          ref={buttonEl}
+        >
+          +
+        </Button>
+      </div>
+      <CardDeck className="my-3">
+        {foods.map((food) => (
+          <Food food={food} key={food.id} />
+        ))}
+      </CardDeck>
+      <FoodForm />
+      <DeleteFoodModal />
+    </Container>
+  );
+}
+
+export default App;
+```
+
 src/contexts/FoodContext.jsx:
 
 ```jsx
+{% raw %}
 import { createContext, useState, useContext } from 'react';
 
 import api from '../services/api';
@@ -560,11 +566,10 @@ export function FoodContextProvider({ children }) {
 export function useFood() {
   return useContext(FoodContext);
 }
+{% endraw %}
 ```
 
-## Resultado do CRUD no CRA
-
----
+### Resultado do CRUD
 
 [![Edit foods-app-cra-crud](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/foods-app-cra-lk5mm?fontsize=14&hidenavigation=1&theme=dark)
 
@@ -617,6 +622,19 @@ public/vercel.svg \
 styles/globals.css \
 styles/Home.module.css \
 README.md
+$ rm -rf pages/api/ styles/
+```
+
+```
+foods-app-next-crud
+├── .gitignore
+├── package.json
+├── src
+│   └── pages
+│       ├── _app.js
+│       └── index.js
+├── public
+└── yarn.lock
 ```
 
 src/pages/index.js:
@@ -752,7 +770,7 @@ function Food({ food }) {
     <Col sm={6} lg={4} xl={3} className="mb-3">
       <Card>
         <Card.Header className="text-center font-weight-bold">
-          {* ... *}
+          // ...
         </Card.Header>
         <Card.Body className="p-0">
           <Image
@@ -783,7 +801,6 @@ foods-app-next-crud
 ├── package.json
 ├── public
 │   └── imgs
-│       ├── .DS_Store
 │       ├── batatafrita.jpg
 │       ├── hamburguer.jpg
 │       ├── milkshake.jpg
@@ -808,3 +825,17 @@ foods-app-next-crud
 │       └── api.js
 └── yarn.lock
 ```
+
+## Próximos Passos
+
+---
+
+- Roadmap
+  - [Developer Roadmaps](https://roadmap.sh/)
+    - [Frontend Developer](https://roadmap.sh/frontend)
+    - [React Developer](https://roadmap.sh/react)
+  - [adam-golab/react-developer-roadmap](https://github.com/adam-golab/react-developer-roadmap)
+- Github Awesome
+  - [brillout/awesome-react-components](https://github.com/brillout/awesome-react-components)
+  - [enaqx/awesome-react](https://github.com/enaqx/awesome-react)
+  - [unicodeveloper/awesome-nextjs](https://github.com/unicodeveloper/awesome-nextjs)

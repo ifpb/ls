@@ -1,6 +1,6 @@
-# Foods App
+# Foods App (Create)
 
-- [Foods App](#foods-app)
+- [Foods App (Create)](#foods-app-create)
   - [Modal](#modal)
   - [React Hooks](#react-hooks)
     - [Efeitos Colaterais (useEffect)](#efeitos-colaterais-useeffect)
@@ -11,6 +11,8 @@
 ## Modal
 
 ---
+
+src/components/FoodForm.jsx:
 
 ```jsx
 import { Button, Form, Modal } from 'react-bootstrap';
@@ -55,9 +57,11 @@ function FoodForm({ isShowFoodForm, setIsShowFoodForm }) {
 export default FoodForm;
 ```
 
+src/components/App.jsx:
+
 ```jsx
 import { useRef, useState } from 'react';
-import { Button, CardDeck } from 'react-bootstrap';
+import { Button, CardDeck, Container } from 'react-bootstrap';
 
 import data from './model/foods';
 import Food from './components/Food';
@@ -78,7 +82,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5 text-center">Menu</h1>
       <div className="text-right">
         <Button
@@ -99,7 +103,7 @@ function App() {
         isShowFoodForm={isShowFoodForm}
         setIsShowFoodForm={setIsShowFoodForm}
       />
-    </div>
+    </Container>
   );
 }
 
@@ -112,9 +116,11 @@ export default App;
 
 ### Efeitos Colaterais (useEffect)
 
+src/components/App.jsx:
+
 ```jsx
 import { useEffect, useRef, useState } from 'react';
-import { Button, CardDeck } from 'react-bootstrap';
+import { Button, CardDeck, Container } from 'react-bootstrap';
 
 import Food from './components/Food';
 import FoodForm from './components/FoodForm';
@@ -145,7 +151,7 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5 text-center">Menu</h1>
       <div className="text-right">
         <Button
@@ -166,7 +172,7 @@ function App() {
         isShowFoodForm={isShowFoodForm}
         setIsShowFoodForm={setIsShowFoodForm}
       />
-    </div>
+    </Container>
   );
 }
 
@@ -174,6 +180,8 @@ export default App;
 ```
 
 ### Context API (useContext)
+
+src/index.jsx:
 
 ```jsx
 import React from 'react';
@@ -190,7 +198,10 @@ ReactDOM.render(
 );
 ```
 
+src/contexts/FoodContext.jsx:
+
 ```jsx
+{% raw %}
 import { createContext, useState, useContext } from 'react';
 
 export const FoodContext = createContext({});
@@ -221,11 +232,14 @@ export function FoodContextProvider({ children }) {
 export function useFood() {
   return useContext(FoodContext);
 }
+{% endraw %}
 ```
+
+src/components/App.jsx:
 
 ```jsx
 import { useEffect, useRef } from 'react';
-import { Button, CardDeck } from 'react-bootstrap';
+import { Button, CardDeck, Container } from 'react-bootstrap';
 
 import Food from './Food';
 import FoodForm from './FoodForm';
@@ -256,7 +270,7 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5 text-center">Menu</h1>
       <div className="text-right">
         <Button
@@ -274,12 +288,14 @@ function App() {
         ))}
       </CardDeck>
       <FoodForm />
-    </div>
+    </Container>
   );
 }
 
 export default App;
 ```
+
+src/components/FoodForm.jsx:
 
 ```jsx
 import { Button, Form, Modal } from 'react-bootstrap';
@@ -333,7 +349,10 @@ export default FoodForm;
 $ yarn add formik
 ```
 
+src/components/FoodForm.jsx:
+
 ```jsx
+{% raw %}
 import { Button, Form, Modal } from 'react-bootstrap';
 import { Formik } from 'formik';
 
@@ -356,7 +375,7 @@ function FoodForm() {
       <Modal.Header closeButton>
         <Modal.Title as="h5">Nova Comida</Modal.Title>
       </Modal.Header>
-      <Formik initialValues={{ name: '', price: {} }} onSubmit={onSubmit}>
+      <Formik initialValues={{ name: '', image: {} }} onSubmit={onSubmit}>
         {({ handleSubmit, handleChange, handleBlur, values }) => (
           <Form onSubmit={handleSubmit}>
             <Modal.Body>
@@ -398,6 +417,7 @@ function FoodForm() {
 }
 
 export default FoodForm;
+{% endraw %}
 ```
 
 ## Resultado Final
