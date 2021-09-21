@@ -1,0 +1,10 @@
+@startuml
+title Update
+hide footbox
+skinparam monochrome true
+
+Client -> Server: PUT /foods/1
+note right: PUT /foods/1 HTTP/1.1\nHost: 127.0.0.1:3000\nContent-Type: application/json\n\n{\n  "name": "Batata Frita",\n  "image": "imgs/batatafrita.jpg"\n}
+Server -> Client: HTTP/1.1 200 Ok
+note left: HTTP/1.1 200 Ok\n\n{\n  "id": 1,\n  "name": "Batata Frita",\n  "image": "imgs/batatafrita.jpg"\n}
+@enduml

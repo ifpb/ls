@@ -1,0 +1,25 @@
+digraph hierarchy {
+  graph [rankdir=TB,concentrate=true] // nodesep=0.2
+  node [fontname=Courier,shape=box,width=2.5]
+  edge [dir=none]
+
+  EventTargetpoint [shape=point,width=0.01,height=0.01]
+  Elementpoint [shape=point,width=0.01,height=0.01]
+  documentpoint [shape=point,width=0.01,height=0.01]
+  windowpoint [shape=point,width=0.01,height=0.01]
+  XMLHttpRequestpoint [shape=point,width=0.01,height=0.01]
+  AudioNodepoint [shape=point,width=0.01,height=0.01]
+  AudioContextpoint [shape=point,width=0.01,height=0.01]
+  otherspoint [shape=point,width=0.01,height=0.01]
+
+  EventTarget->EventTargetpoint
+  EventTargetpoint->{Elementpoint, documentpoint, windowpoint, XMLHttpRequestpoint, AudioNodepoint, AudioContextpoint, otherspoint}
+  Elementpoint->Element
+  documentpoint->document
+  windowpoint->window
+  XMLHttpRequestpoint->XMLHttpRequest
+  AudioNodepoint->AudioNode
+  AudioContextpoint->AudioContext
+  otherspoint->others
+
+}

@@ -1,0 +1,31 @@
+@startmindmap
+skinparam monochrome true
+* LS
+-- Linguagem de Script
+--- Fundamentos
+--- Linguagem Javascript
+----_ Padrão ECMA
+----_ Objetos do W3C
+----_ Biblioteca e Frameworks
+-- Sintaxe Javascript
+---_ Introdução
+---_ Elementos básicos
+---_ Expressões
+---_ Sentenças
+---_ Funções
+---_ Objetos
+++ Objetos do Javascript
++++_ String, Number, Array
++++_ RegExp
++++_ Date
+++ Recursos do Navegador
++++_ Fundamentos
++++_ Eventos
++++_ Objetos do Browser
++++_ API DOM
++++_ HTML DOM
++++_ AJAX & Fetch API
+++ Frameworks
++++_ Fundamentos
++++_ Demonstração
+@endmindmap

@@ -1,9 +1,24 @@
 const replace = require('replace-in-file');
 const options = {
-  //you may need to modify the file address to suite your project
-  files: './build/index.html',
-  from: [/src="\//g, /href="\//g],
-  to: ['src="./', 'href="./'],
+  files: ['./docs/**/*.html', './docs/_next/static/chunks/**/*.js'],
+  from: [
+    /src="\/?imgs/g,
+    /src:"\/?imgs/g,
+    /href="\/imgs/g,
+    /href:"\/imgs/g,
+    /href="\/codes/g,
+    /href:"\/codes/g,
+    /src:"\/codes/g,
+  ],
+  to: [
+    'src="/ls/imgs',
+    'src:"/ls/imgs',
+    'href="/ls/imgs',
+    'href:"/ls/imgs',
+    'href="/ls/codes',
+    'href:"/ls/codes',
+    'src:"/ls/codes',
+  ],
 };
 (async function () {
   try {

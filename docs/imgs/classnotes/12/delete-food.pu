@@ -1,0 +1,10 @@
+@startuml
+title Delete
+hide footbox
+skinparam monochrome true
+
+Client -> Server: DELETE /foods/1
+note right: DELETE /foods/1 HTTP/1.1\nHost: 127.0.0.1:3000
+Server -> Client: HTTP/1.1 204 No Content
+note left: HTTP/1.1 204 No Content
+@enduml

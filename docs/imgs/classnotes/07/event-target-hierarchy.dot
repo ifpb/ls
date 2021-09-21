@@ -1,0 +1,10 @@
+digraph hierarchy {
+  graph [rankdir=TB,splines=ortho,concentrate=true] // nodesep=0.2
+  node [fontname=Courier,shape=box,width=2.5]
+  edge [dir=none]
+
+  EventTargetpoint [shape=point,width=0.01,height=0.01]
+
+  EventTarget->EventTargetpoint
+  EventTargetpoint->{Element, document, window, XMLHttpRequest, others}
+}

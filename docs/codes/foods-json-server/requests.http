@@ -1,0 +1,42 @@
+@hostname = http://localhost:3000
+
+### Create Food (Batata)
+
+# @name createFood
+POST {{hostname}}/foods
+Content-Type: application/json
+
+{
+  "name": "Batata",
+  "image": "imgs/batatafrita.jpg"
+}
+
+### Read Foods
+
+GET {{hostname}}/foods
+
+
+### Read Food by name
+
+GET {{hostname}}/foods?name=Batata
+
+### Read Food by id
+
+@id = {{createFood.response.body.$.id}}
+GET {{hostname}}/foods/{{id}}
+
+### Update Food
+
+@id = {{createFood.response.body.$.id}}
+PUT {{hostname}}/foods/{{id}}
+Content-Type: application/json
+
+{
+  "name": "Batata Frita",
+  "image": "imgs/batatafrita.jpg"
+}
+
+### Delete Food
+
+@id = {{createFood.response.body.$.id}}
+DELETE {{hostname}}/foods/{{id}}
