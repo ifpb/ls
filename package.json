@@ -3,18 +3,21 @@
   "private": true,
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://ifpb.github.io/ls",
   "workspaces": [
     "packages/nextra",
     "packages/nextra-theme-docs"
   ],
   "scripts": {
-    "start": "next",
+    "replaceFilePaths": "node replacer.js",
     "dev": "next dev",
-    "build": "next build",
-    "export": "next build && next export",
+    "start": "next start",
+    "export": "next export -o build && yarn run replaceFilePaths",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
+    "build": "next build && next export -o build && yarn run replaceFilePaths",
     "build:core": "yarn workspace nextra run build",
-    "build:theme-docs": "yarn workspace nextra-theme-docs run build",
-    "build:theme-blog": "yarn workspace nextra-theme-blog run build"
+    "build:theme-docs": "yarn workspace nextra-theme-docs run build"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +26,9 @@
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3",
+    "replace-in-file": "^6.2.0"
   }
 }
