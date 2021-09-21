@@ -1,0 +1,23 @@
+{
+  "blog": {
+    "title": "Blog",
+    "type": "nav",
+    "hidden": true
+  },
+  "projeto": "Projeto",
+  "prova-ecma": {
+    "title": "Prova ECMA",
+    "type": "nav",
+    "hidden": true
+  },
+  "prova-w3c": {
+    "title": "Prova W3C",
+    "type": "nav",
+    "hidden": true
+  },
+  "prova-final": {
+    "title": "Prova Final",
+    "type": "nav",
+    "hidden": true
+  }
+}

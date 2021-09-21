@@ -1,0 +1,27 @@
+{
+  "name": "nextra-ls",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "packages/nextra",
+    "packages/nextra-theme-docs"
+  ],
+  "scripts": {
+    "start": "next",
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next build && next export",
+    "build:core": "yarn workspace nextra run build",
+    "build:theme-docs": "yarn workspace nextra-theme-docs run build",
+    "build:theme-blog": "yarn workspace nextra-theme-blog run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^11.1.2",
+    "prism-react-renderer": "^1.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

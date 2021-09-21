@@ -1,0 +1,262 @@
+import Code from '../../../components/Code.jsx';
+
+# Objetos do Navegador
+
+## Integrando JS e HTML
+
+[hello-js/index.html](/codes/bom/hello-js/index.html):
+
+<Code src="/codes/bom/hello-js/index.html" lang="markup" />
+
+[hello-js/js/index.js](/codes/bom/hello-js/js/index.js):
+
+<Code src="/codes/bom/hello-js/js/index.js" lang="js" />
+
+## Web APIs
+
+- Standards
+  - [W3C](https://www.w3.org/)
+    - [Work Groups](https://www.w3.org/groups/wg/)
+      - [CSS Working Group](https://www.w3.org/groups/wg/css)
+      - [HTML Working Group](https://www.w3.org/groups/wg/htmlwg)
+      - [Web Payments Working Group](https://www.w3.org/groups/wg/payments)
+    - [Standards](https://www.w3.org/standards/)
+      - [Web Design and Applications](https://www.w3.org/standards/webdesign/)
+        - [JavaScript Web APIs](https://www.w3.org/TR/?tag=webapi)
+  - [WHATWG](https://whatwg.org/)
+    - [Standards](https://spec.whatwg.org/)
+- [Web APIs (MDN)](https://developer.mozilla.org/en-US/docs/Web/API):
+  - [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+  - [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+  - [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+  - [Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API)
+  - [Web Notifications](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)
+  - [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
+  - [Websockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- BOM
+  - [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+  - [Location](https://developer.mozilla.org/en-US/docs/Web/API/Location)
+  - [History](https://developer.mozilla.org/en-US/docs/Web/API/History)
+  - [Console](https://developer.mozilla.org/en-US/docs/Web/API/Console)
+  - [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+
+## Window
+
+### Window Features
+
+![Firefox Window](https://developer.mozilla.org/@api/deki/files/210/=FirefoxChromeToolbarsDescription7a.gif)<br />
+Reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
+
+### Window Hierarchy
+
+![](/imgs/classnotes/06/dom-hierarchy.svg)
+
+### Window.innerWidth
+
+```js
+const width = window.innerWidth;
+console.log(width);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth)
+
+### Window.alert()
+
+
+```js
+window.alert('Hello world!');
+```
+export const handleAlert = () => alert('Hello world!')
+
+<button onClick={handleAlert}>Alert</button>
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert)
+
+### Window.confirm()
+
+```js
+const response = window.confirm('Is this JavaScript?');
+console.log(response);
+```
+export const handleConfirm = () => console.log(confirm('Is this JavaScript?'))
+
+<button onClick={handleConfirm}>Confirm</button>
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm)
+
+### Window.prompt()
+
+```js
+const name = window.prompt('What is your name?');
+console.log(name);
+```
+
+export const handlePrompt = () => console.log(prompt('What is your name?'))
+
+<button onClick={handlePrompt}>Prompt</button>
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt)
+
+### Window.close()
+
+```js
+window.close();
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/close)
+
+### Window.open()
+
+```js
+const windowRef = window.open('https://developer.mozilla.org/');
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
+
+### Window.print()
+
+```js
+window.print();
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/print)
+
+## Location
+
+### Location.href
+
+```js
+location.href = 'http://www.ifpb.edu.br/noticias';
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Location/href)
+
+### Location.assign()
+
+```js
+location.assign('http://www.ifpb.edu.br/');
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Location/assign)
+
+### Location.reload()
+
+```js
+location.reload();
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Location/reload)
+
+## History
+
+### History.back()
+
+```js
+history.back();    // history.go(-1)
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/History)
+
+### History.forward()
+
+```js
+history.forward(); // history.go(1)
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/History)
+
+### History.go()
+
+```js
+history.go(-1)
+history.go(1)
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/History)
+
+## Console
+
+### Console.clear()
+
+```js
+console.clear()
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Console/clear)
+### Console.log()
+
+```js
+const name = 'Alice';
+console.log(name);
+```
+
+```txt
+Alice
+> undefined
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Console/log)
+### Console.table()
+
+```js
+const fruits = ["apples", "oranges", "bananas"];
+console.table(fruits);
+```
+
+![](/imgs/classnotes/06/console-table-fruits.png)
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Console/table)
+
+## Document
+
+### Document.body
+
+```js
+const body = document.body;
+console.log(body);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/body)
+
+### Document.title
+
+```js
+console.log(document.title);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/title)
+
+### Document.getElementById()
+
+```js
+const passwordElement = document.getElementById('password');
+console.log(passwordElement.value);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
+
+### Document.querySelector()
+
+```js
+const passwordElement = document.querySelector('#password');
+console.log(passwordElement.value);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+
+### Document.querySelectorAll()
+
+```js
+const inputs = document.querySelector('input');
+Array.from(inputs).map(i => i.value);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
+
+### Document.write()
+
+```js
+document.write('<h1>Lorem ipsum</h1>');
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/write)
