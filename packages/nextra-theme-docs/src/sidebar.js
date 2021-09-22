@@ -169,12 +169,15 @@ export default function Sidebar({
               )
             ) : null)}
         </div>
-        <div className="hidden md:block">
+        <div>
+          <Menu directories={directories} anchors={anchors} />
+        </div>
+        {/* <div className="hidden md:block">
           <Menu directories={directories} anchors={anchors} />
         </div>
         <div className="md:hidden">
           <Menu directories={fullDirectories} anchors={anchors} />
-        </div>
+        </div> */}
       </div>
     </aside>
   )
