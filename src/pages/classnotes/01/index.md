@@ -29,7 +29,7 @@
 
 Testar a instalação:
 
-```
+```text
 $ node -v
 $ npm -v
 $ npx -v

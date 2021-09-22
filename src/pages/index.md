@@ -2,7 +2,7 @@
 
 ![Banner da disciplina](imgs/ls.png)
 
-A disciplina de [Linguagem de Script](/docs/plano-de-ensino.pdf) (LS) do Curso Superior de Tecnologia em Sistemas para Internet do IFPB tem como objetivo apresentar ao aluno conceitos sobre linguagens de script para processamentos de front-end. Sua carga horária apresenta um total de 67 horas aula e será ministrada pelos professores Alana Morais e Luiz Carlos Chaves. Para as aulas serão utilizadas exposições e atividades práticas, além de avaliações individuais e em grupo.
+A disciplina de [Linguagem de Script](/docs/plano-de-ensino.pdf) (LS) do Curso Superior de Tecnologia em Sistemas para Internet do IFPB tem como objetivo apresentar ao aluno conceitos sobre linguagens de script para processamentos de front-end. Sua carga horária apresenta um total de 67 horas aula e será ministrada pelos professores Francisco Dantas e Luiz Carlos Chaves. Para as aulas serão utilizadas exposições e atividades práticas, além de avaliações individuais e em grupo.
 
 > Esta discipilna possui como pré-requisito necessário o conhecimento prévio de Algoritmos, HTML e CSS.
 
