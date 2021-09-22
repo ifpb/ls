@@ -1,31 +1,17 @@
 {
-  "name": "nextra-ls",
+  "name": "ls-nextra",
   "private": true,
-  "version": "1.0.0",
-  "description": "",
   "workspaces": [
     "packages/nextra",
-    "packages/nextra-theme-docs"
+    "packages/nextra-theme-docs",
+    "src"
   ],
   "scripts": {
-    "replaceFilePaths": "node replacer.js",
-    "start": "next start",
-    "dev": "next dev",
-    "export": "next export -o docs && yarn run replaceFilePaths",
-    "predeploy": "yarn run build",
-    "build": "next build && yarn export && touch docs/.nojekyll",
-    "build:core": "yarn workspace nextra run build",
-    "build:theme-docs": "yarn workspace nextra-theme-docs run build"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "next": "^11.1.2",
-    "prism-react-renderer": "^1.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "devDependencies": {
-    "replace-in-file": "^6.2.0"
+    "start": "yarn workspace src start",
+    "dev": "yarn workspace src dev",
+    "export": "yarn workspace src export",
+    "build": "yarn build:core && yarn build:theme-docs && yarn workspace src build",
+    "build:core": "yarn workspace nextra build",
+    "build:theme-docs": "yarn workspace nextra-theme-docs build"
   }
 }
