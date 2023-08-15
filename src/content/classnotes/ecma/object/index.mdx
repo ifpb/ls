@@ -1,0 +1,172 @@
+---
+title: Objeto
+---
+
+# {frontmatter.title}
+
+## Criação
+
+| NAME    | EMAIL             |
+| ------- | ----------------- |
+| fulano  | {'fulano@gmail.com'}  |
+| sicrano | {'sicrano@gmail.com'} |
+
+Quoted (.json, .js):
+
+```json
+[
+  {
+    "name": "fulano",
+    "email": "fulano@gmail.com",
+  },
+  {
+    "name": "sicrano",
+    "email": "sicrano@gmail.com",
+  },
+]
+```
+
+Unquoted (.js):
+
+```js
+const students = [
+  {
+    name: 'fulano',
+    email: 'fulano@gmail.com',
+  },
+  {
+    name: 'sicrano',
+    email: 'sicrano@gmail.com',
+  },
+];
+```
+
+Indexed & Unquoted (.js):
+
+```js
+const students = {
+  20181234: {
+    name: 'fulano',
+    email: 'fulano@gmail.com',
+  },
+  20181235: {
+    name: 'sicrano',
+    email: 'sicrano@gmail.com',
+  },
+};
+```
+
+[{'http://ip-api.com/json/8.8.8.8'}](http://ip-api.com/json/8.8.8.8) (IP API: [doc](http://ip-api.com/docs/), [json](http://ip-api.com/docs/api:json)):
+
+```json
+{
+  "as":"AS15169 Google Inc.",
+  "city":"Mountain View",
+  "country":"United States",
+  "countryCode":"US",
+  "isp":"Google",
+  "lat":37.4229,
+  "lon":-122.085,
+  "org":"Google",
+  "query":"8.8.8.8",
+  "region":"CA",
+  "regionName":"California",
+  "status":"success",
+  "timezone":"America/Los_Angeles",
+  "zip":""
+}
+```
+
+## Acesso e Alteração
+
+![](/imgs/ecma/object/object-ip.png)
+
+```js
+const ip = { address: '192.168.0.2', mask: '255.255.255.0' };
+
+console.log(ip); //=> { address: "192.168.0.2", mask: "255.255.255.0" }
+console.log(ip.address); //=> "192.168.0.2"
+console.log(ip['address']); //=> "192.168.0.2"
+```
+
+```js
+// add property
+ip.version = 'v6';
+console.log(ip); //=> { address: "192.168.0.2", mask: "255.255.255.0", version: "v6" }
+console.log(ip.version); //=> "v6"
+
+// change property
+ip.version = 'v4';
+console.log(ip); //=> { address: "192.168.0.2", mask: "255.255.255.0", version: "v4" }
+console.log(ip.version); //=> "v4"
+
+// delete property
+delete ip.version;
+console.log(ip); //=> { address: "192.168.0.2", mask: "255.255.255.0" }
+console.log(ip.version); //=> undefined
+```
+
+## Spread properties
+
+```js
+const ip = { address: '192.168.0.2', mask: '255.255.255.0' };
+console.log({ ...ip, version: 'v4' });
+//=> {address: "192.168.0.2", mask: "255.255.255.0", version: "v4"}
+```
+
+## Property Shorthand
+
+```js
+const address = '192.168.0.2';
+const mask = '255.255.255.0';
+const version = 'v4';
+console.log({ address: address, mask: mask, version: version });
+console.log({ address, mask, version });
+//=> {address: "192.168.0.2", mask: "255.255.255.0", version: "v4"}
+```
+
+## Iteração
+
+```js
+const ips = [
+  { address: '192.168.0.2', mask: '255.255.255.0' },
+  { address: '192.168.0.10', mask: '255.255.255.0' },
+  { address: '192.168.0.26', mask: '255.255.255.0' },
+];
+
+for (const ip of ips) {
+  console.log(ip.address + '/' + ip.mask);
+}
+//=>
+// "192.168.0.2/255.255.255.0"
+// "192.168.0.10/255.255.255.0"
+// "192.168.0.26/255.255.255.0"
+```
+
+```js
+const ips = {
+  database: { address: '192.168.0.2', mask: '255.255.255.0' },
+  dns: { address: '192.168.0.10', mask: '255.255.255.0' },
+  http: { address: '192.168.0.26', mask: '255.255.255.0' },
+};
+
+for (const host in ips) {
+  console.log(ips[host].address + '/' + ips[host].mask);
+}
+//=>
+// "192.168.0.2/255.255.255.0"
+// "192.168.0.10/255.255.255.0"
+// "192.168.0.26/255.255.255.0"
+```
+
+## Objeto JSON
+
+Methods: `parse()`, `stringify()`
+
+```js
+console.log(JSON.parse('{"value": 10}')); //=> { value: 10 }
+```
+
+```js
+console.log(JSON.stringify({ value: 10 })); //=> "{"value": 10}"
+```

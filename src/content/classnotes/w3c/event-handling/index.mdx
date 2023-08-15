@@ -1,0 +1,95 @@
+---
+title: Manipulação de Eventos
+---
+
+# {frontmatter.title}
+
+## GlobalEventHandlers
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers)
+
+### Hierarchy
+
+![](/imgs/w3c/event-handling/global-event-handlers-hierarchy.svg)
+
+### Registering on-event handlers
+
+HTML attribute named on(eventtype):
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Lorem ipsum</h1>
+    <button onclick="window.print()">Print</button>
+  </body>
+</html>
+```
+
+Setting the on-event handlers property from JavaScript:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Lorem ipsum</h1>
+    <button>Print</button>
+  </body>
+</html>
+```
+
+```js
+const button = document.querySelector('button');
+button.onclick = function () {
+  window.print();
+};
+```
+
+### On-event handlers
+
+- onclick
+- onkeyup
+- onload
+- onchange
+
+## EventTarget
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)
+
+![](/imgs/w3c/event-handling/event-target-hierarchy.svg)
+
+### EventTarget.addEventListener()
+
+Click ([MouseEvent](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent)):
+
+```js
+const button = document.querySelector('button#print');
+
+button.addEventListener('click', function () {
+  window.print();
+});
+```
+
+Keyup ([KeyboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent), [Key Values](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)):
+
+```js
+document.addEventListener('keyup', function (event) {
+  if (event.key == 'Enter') {
+    console.log('Enter key');
+  }
+});
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)

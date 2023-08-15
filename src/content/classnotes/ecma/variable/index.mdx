@@ -1,0 +1,125 @@
+---
+title: Variáveis
+---
+
+# {frontmatter.title}
+
+## Tipos de dados
+
+![JavaScript's type hierarchy](http://exploringjs.com/impatient-js/img-book/b8c834a3420a3b2d2df0d90dfa0c1dfd1f2ffbc9.svg)
+
+[JavaScript for impatient programmers (Book)](http://exploringjs.com/impatient-js/ch_values.html)
+
+| Category  | Types                               | Values                                                                                        |
+| --------- | ----------------------------------- | --------------------------------------------------------------------------------------------- |
+| Primitive | [Undefined](../undefined/syntax.md)   | `undefined`                                                                                    |
+| Primitive | [Null](../null/syntax.md)           | `null`                                                                                        |
+| Primitive | [Boolean](../boolean/syntax.md)     | `true`, `false`                                                                               |
+| Primitive | [Number](../number/syntax.md)       | `-15`<br />`15`, `0b1111`, `0o17`, `0xf`<br />`-123.45`<br />`123.45`, `1.2345e2`, `12345E-2` |
+| Primitive | [String](../string/syntax.md)       | `'Hello'`, `"Hello"`, `` `Hello` ``                                                           |
+| Object    | [Array](../array/syntax.md)         | `[]`<br />`[1, 2, 3]`<br />`[1, '2', true, [3, false]]`<br />`["Alice", "alice@email"]`       |
+| Object    | [Object](../object/syntax.md)       | `{name: "Alice", email: "alice@email"}`                                                       |
+
+## Declaração de variáveis
+
+Linguagem C:
+
+```c
+int number = 10;
+```
+
+Linguagem Python:
+
+```py
+number = 10
+```
+
+Keyword
+
+```js
+var number = 10;
+console.log(number); //=> 10
+```
+
+```js
+let number = 10;
+console.log(number); //=> 10
+```
+
+```js
+const number = 10;
+console.log(number); //=> 10
+```
+
+## Reassociação
+
+```js
+var number;
+number = 10;
+number = 100;
+console.log(number); //=> 100
+```
+
+```js
+let number;
+number = 10;
+number = 100;
+console.log(number); //=> 100
+```
+
+```js
+const number; // SyntaxError
+const number = 10;
+number = 100; // TypeError
+```
+
+```js
+const numbers = [];
+numbers.push(1);
+console.log(numbers); //=> [ 1 ]
+```
+
+## Escopo
+
+```js
+var number = 10;
+var number = 10;
+```
+
+```js
+let number = 10;
+let number = 10; // SyntaxError: Identifier 'number' has already been declared
+```
+
+```js
+const number = 10;
+const number = 10; // SyntaxError: Identifier 'number' has already been declared
+```
+
+## Tipagem Dinâmica
+
+```js
+let variable = 10;
+console.log(variable); //=> 10
+console.log(typeof variable); //=> number
+
+variable = 'fulano';
+console.log(variable); //=> 'fulano'
+console.log(typeof variable); //=> string
+```
+
+## Tipagem Fraca
+
+```js
+const x = 10;
+const y = '5';
+console.log(x - y); //=> 5
+```
+
+## Case Sensitive
+
+```js
+const number = 8;
+const Number = 80;
+const NUMBER = 800;
+```

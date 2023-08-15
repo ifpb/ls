@@ -1,0 +1,80 @@
+---
+title: Elementos Dinâmicos
+---
+
+import CodePreview from '../../../../components/CodePreview.astro';
+import CodeTree from '../../../../components/CodeTree.astro';
+
+# {frontmatter.title}
+
+## Element
+
+
+### Element.innerHTML
+
+```js
+const body = document.body;
+body.innerHTML = '<h1>Lorem ipsum</h1>'
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML)
+
+### Element.insertAdjacentHTML()
+
+```js
+const body = document.body;
+body.insertAdjacentHTML('afterbegin', '<h1>Lorem ipsum</h1>')
+```
+
+```markup
+<!-- beforebegin -->
+<body>
+  <!-- afterbegin -->
+  ...
+  <!-- beforeend -->
+</body>
+<!-- afterend -->
+```
+
+Referências:
+
+- [Element.insertAdjacentHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML)
+- [Document.createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [Document.creaTextNode](https://developer.mozilla.org/en-US/docs/Web/API/Document/creaTextNode)
+- [Node.insertBefore](https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore)
+- [Node.appendChild](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+
+## Document
+
+```js
+const h1 = document.createElement("h1");
+const text = document.createTextNode("Lorem ipsum");
+h1.appendChild(text);
+
+const body = document.body;
+body.appendChild(h1);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+
+## InvestApp
+
+<div class="border-2 mb-6">
+![](/imgs/w3c/dynamic-elements/invest-app.png)
+</div>
+
+{/* [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ifpb/ls) */}
+
+<CodeTree src="/codes/w3c/dynamic-elements/invest-app" />
+
+<CodePreview src="/codes/w3c/dynamic-elements/invest-app/index.html" />
+
+<CodePreview src="/codes/w3c/dynamic-elements/invest-app/js/main.js" />
+
+<CodePreview src="/codes/w3c/dynamic-elements/invest-app/js/data.js" />
+
+<CodePreview src="/codes/w3c/dynamic-elements/invest-app/js/components/InvestmentCard.js" />
+
+<CodePreview src="/codes/w3c/dynamic-elements/invest-app/js/lib/utils.js" />
+
+

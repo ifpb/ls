@@ -1,3 +1,0 @@
-# Prova LS - Final
-
-Em definição...

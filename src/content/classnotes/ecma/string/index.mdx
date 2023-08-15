@@ -1,0 +1,141 @@
+---
+title: String
+---
+
+# {frontmatter.title}
+
+## Criação
+
+```js
+console.log('h'); //=> "h"
+console.log('hello world'); //=> "hello world"
+console.log("hello world"); //=> "hello world"
+console.log(`hello world`); //=> "hello world"
+console.log(String('hello world')); //=> "hello world"
+console.log(new String('hello world')); //=> "hello world"
+```
+
+## Casos Especiais
+
+```js
+console.log('<img src="url">'); //=> "<img src="url">"
+console.log("<img src=\"url\">"); //=> "<img src="url">"
+console.log("hello' world"); //=> "hello\' world"
+```
+
+## Caracteres especiais
+
+```js
+console.log("hello\' world"); //=> "hello\' world"
+console.log('hello\nworld'); //=> "hello\nworld"
+console.log('I \u2661 JavaScript!'); //=> "I ♡ JavaScript!"
+```
+
+## Concatenação e Template literals
+
+```js
+const name = 'John';
+console.log('Hello ' + name); //=> "Hello John"
+```
+
+```js
+const name = 'John';
+const email = 'john@email.com';
+const id = '1';
+
+const row =
+  '<tr><td>' + id + '</td><td>' + name + '</td><td>' + email + '</td></tr>';
+
+console.log(row);
+//=> "<tr><td>1</td><td>John</td><td>john@email.com</td></tr>"
+```
+
+```js
+const name = 'John';
+const email = 'john@email.com';
+const id = '1';
+
+const row = `<tr><td>${id}</td><td>${name}</td><td>${email}</td></tr>`;
+
+console.log(row);
+//=> "<tr><td>1</td><td>John</td><td>john@email.com</td></tr>"
+```
+
+## Objeto String
+
+Property: `length`
+
+```js
+console.log('lorem ipsum'.length); //=> 11
+```
+
+Methods: `includes`, `repeat`, `startsWith`, `endsWith`, `substr`, `substring`, `slice`, `split`, `toLowerCase`, `toUpperCase`, `match`, `replace`, `search`, `trim`, `padStart`
+
+```js
+console.log('lorem ipsum'.includes('lorem')); //=> true
+console.log('lorem ipsum'.includes('dolor')); //=> false
+```
+
+```js
+console.log('hello'.repeat(3)); //=> "hellohellohello"
+console.log('hello'.repeat(-3)); //=> RangerError
+```
+
+```js
+console.log('lorem ipsum'.substr(1, 2)); //=> "or"
+console.log('lorem ipsum'.substr(1)); //=> "orem ipsum"
+```
+
+```js
+console.log('lorem ipsum'.substring(1, 2)); //=> "o"
+console.log('lorem ipsum'.substring(1)); //=> "orem ipsum"
+```
+
+```js
+console.log('lorem ipsum'.slice(1, 2)); //=> "o"
+console.log('lorem ipsum'.slice(1)); //=> "orem ipsum"
+```
+
+```js
+console.log('lorem ipsum'.split('')); //=> [ "l", "o", "r", "e", "m", " ", "i", "p", "s", "u", "m" ]
+console.log('lorem ipsum'.split(' ')); //=> [ "lorem", "ipsum" ]
+console.log('lorem ipsum dolor'.split(' ', 1)); //=> [ "lorem" ]
+console.log('lorem\nipsum-dolor'.split(/[-\n]/g)); //=> [ "lorem", "ipsum", "dolor" ]
+```
+
+```js
+console.log('lorem ipsum'.match(/\w+/g)); //=> [ "lorem", "ipsum" ]
+```
+
+```js
+console.log('lorem ipsum'.replace('lorem', 'LOREM')); //=> "LOREM ipsum"
+```
+
+```js
+console.log('lorem ipsum'.search('lorem')); //=> 0
+```
+
+```js
+console.log('LOREM IPSUM'.toLowerCase()); //=> "lorem ipsum"
+```
+
+```js
+console.log('lorem ipsum'.toUpperCase()); //=> "LOREM IPSUM"
+```
+
+```js
+console.log('  lorem  ipsum  '.trim()); //=> "lorem  ipsum"
+```
+
+```js
+console.log('10'.padStart(4)); //=> "  10"
+console.log('10'.padStart(4, 0)); //=> "0010"
+```
+
+```js
+console.log('lorem ipsum'.startsWith('lorem')); //=> true
+```
+
+```js
+console.log('lorem ipsum'.endsWith('ipsum')); //=> true
+```

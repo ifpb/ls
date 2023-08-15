@@ -1,0 +1,98 @@
+---
+title: Função
+---
+
+import CodePreview from '../../../../components/CodePreview.astro';
+
+# {frontmatter.title}
+
+## Declaração de função
+
+```js
+function addition(param1, param2) {
+  return param1 + param2;
+}
+
+console.log(addition(1)); //=> NaN
+console.log(addition(1, 2)); //=> 3
+console.log(addition(1, 2, 3)); //=> 3
+```
+
+```js
+const addition = function (param1, param2) {
+  return param1 + param2;
+};
+
+console.log(addition(1, 2)); //=> 3
+```
+
+```js
+const addition = (param1, param2) => {
+  return param1 + param2;
+};
+
+console.log(addition(1, 2)); //=> 3
+```
+
+```js
+const addition = (param1, param2) => param1 + param2;
+
+console.log(addition(1, 2)); //=> 3
+```
+
+## Case Sensitive
+
+```js
+function addition(param1, param2) {
+  return param1 + param2;
+}
+
+function Addition(param) {
+  return param + 1;
+}
+
+console.log(Addition(1)); //=> 2
+console.log(Addition(1, 2)); //=> 2
+```
+
+## Redefinição de Função
+
+```js
+function addition(param1, param2) {
+  return param1 + param2;
+}
+
+function addition(param) {
+  return param + 1;
+}
+
+console.log(addition(1)); //=> 2
+console.log(addition(1, 2)); //=> 2
+```
+
+## Parâmetro Default
+
+```js
+function addition(param1, param2 = 0) {
+  return param1 + param2;
+}
+
+console.log(addition(1)); //=> 1
+console.log(addition(1, 2)); //=> 3
+```
+
+## Parâmetro Rest
+
+```js
+function addition(...params) {
+  let summation = 0;
+  for (let value of params) {
+    summation += value;
+  }
+  return summation;
+}
+
+console.log(addition(1)); //=> 1 ([1])
+console.log(addition(1, 1)); //=> 2 ([1, 1])
+console.log(addition(1, 1, 1, 1)); //=> 4 ([1, 1, 1, 1])
+```

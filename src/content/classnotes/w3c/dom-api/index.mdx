@@ -1,0 +1,138 @@
+---
+title: Manipulação do DOM
+---
+
+# {frontmatter.title}
+
+## Árvore DOM
+
+![](/imgs/w3c/dom-api/dom-tree.png)
+
+Fonte: [Google Developers - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model)
+
+## Element
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element)
+
+### Element.innerHTML
+
+```js
+document.body.innerHTML = '<h1>Lorem ipsum</h1>';
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML)
+
+### Element.innerText
+
+```js
+const p = document.querySelector('p');
+p.innerText = 'Lorem ipsum';
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerText)
+
+### Element.classList
+
+```js
+document.body.classList.remove('color-red');
+document.body.classList.add('color-blue');
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+
+### Element.className
+
+```js
+document.body.className = 'text-center';
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/className)
+
+### Element.setAttribute()
+
+```js
+document.body.setAttribute('class', 'active red');
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+
+## HTMLElement
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)
+
+### HTMLElement.style
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)
+
+[CSSStyleDeclaration](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration):
+
+```js
+const p = document.querySelector('p');
+p.style.cssText = 'color: blue;';
+```
+
+[CSSStyleDeclaration.cssText](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/cssText):
+
+```js
+const p = document.querySelector('p');
+p.style.cssText = 'color: blue; font-size: 1.1rem;';
+```
+
+[CSS Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference):
+
+```js
+const p = document.querySelector('p');
+p.style.fontSize = '1.1rem';
+```
+
+[Element.setAttribute()](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute) (Alternative):
+
+```js
+const p = document.querySelector('p');
+p.setAttribute('style', 'color: blue; font-size: 1.1rem;');
+```
+
+```js
+const p = document.querySelector('p');
+p.setAttribute('class', 'active red');
+```
+
+[Element.classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) (Alternative):
+
+```js
+const p = document.querySelector('p');
+p.classList.add('color-blue');
+```
+
+[Element.className](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) (Alternative):
+
+```js
+const p = document.querySelector('p');
+p.className = 'text-center';
+```
+
+## HTMLInputElement
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement)
+
+### HTMLInputElement.value
+
+```js
+const input = document.querySelector('#name');
+console.log(input.value);
+
+input.value = 'Alice';
+console.log(input.value);
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement)
+
+### HTMLInputElement.checked
+
+```js
+const input = document.querySelector('#male');
+input.checked;
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement)
+

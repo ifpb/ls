@@ -1,0 +1,84 @@
+---
+title: Decisão e Repetição
+---
+
+# {frontmatter.title}
+
+## Estruturas de Decisão
+
+```js
+const number1 = 10;
+const number2 = 10;
+const operator = '+'; // (+, -)
+
+// decision
+
+console.log(result); //=> 20
+```
+
+### if
+
+```js
+if (operator === '+') {
+  result = number1 + number2;
+} else if (operator === '-') {
+  result = number1 - number2;
+} else {
+  result = 'Invalid operator';
+}
+```
+
+### switch
+
+```js
+switch (operator) {
+  case '+':
+    result = number1 + number2;
+    break;
+  case '-':
+    result = number1 - number2;
+    break;
+  default:
+    result = 'Invalid operator';
+}
+```
+
+## Estrutura de Repetição
+
+```txt
+1
+2
+...
+9
+10
+```
+
+### while
+
+```js
+let flag = 1;
+
+while (flag <= 10) {
+  console.log(flag);
+  flag += 1;
+}
+```
+
+### do...while
+
+```js
+let flag = 1;
+
+do {
+  console.log(flag);
+  flag += 1;
+} while (flag < 10);
+```
+
+### for
+
+```js
+for (let flag = 1; flag <= 10; flag += 1) {
+  console.log(flag);
+}
+```

@@ -1,0 +1,101 @@
+---
+title: Módulos
+---
+
+import CodePreview from '../../../../components/CodePreview.astro';
+
+# {frontmatter.title}
+
+## Tipos
+
+- [Common Javascript - CJS](https://nodejs.org/api/modules.html)
+- [ECMAScript Modules - ESM](https://nodejs.org/api/esm.html)
+
+## Cenários
+
+<CodePreview src="/codes/ecma/modules/function-sum/index.js" />
+
+```txt
+src
+├── lib.js
+└── main.js
+```
+
+|     | Uma Função | Várias Funções |
+| --- | ---------- | -------------- |
+| CJS | 1.1        | 2.1            |
+| ESM | 1.2        | 2.2            |
+
+## Cenário 1.1 - Uma função no CJS
+
+<CodePreview src="/codes/ecma/modules/cjs-default/lib.js" />
+
+<CodePreview src="/codes/ecma/modules/cjs-default/main.js" />
+
+## Cenário 1.2 - Uma função no ESM
+
+<CodePreview src="/codes/ecma/modules/esm-default/lib.js" />
+
+<CodePreview src="/codes/ecma/modules/esm-default/main.js" />
+
+**Warning:** To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
+
+<CodePreview src="/codes/ecma/modules/esm-default/package.json" />
+
+## Cenário 2.1 - Várias funções no CJS
+
+<CodePreview src="/codes/ecma/modules/cjs-named/lib.js" />
+
+<CodePreview src="/codes/ecma/modules/cjs-named/main.js" />
+
+## Cenário 2.2 - Várias funções no ESM
+
+<CodePreview src="/codes/ecma/modules/esm-named/lib.js" />
+
+<CodePreview src="/codes/ecma/modules/esm-named/main.js" />
+
+## Resumo dos Cenários
+
+export const singleCJS = `
+module.exports = sum
+const sum = require('./lib')
+`;
+
+export const multiCJS = `
+module.exports = { sum, minus }
+const { sum, minus } = require('./lib')
+`;
+
+export const singleESM = `
+export default sum
+import sum from './lib'
+`;
+
+export const multiESM = `
+export { sum, minus }
+import { sum, minus } from './lib'
+`;
+
+| Uma Função                                                                        | Várias Funções                                                                   |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <CodePreview content={singleCJS} showLineNumbers={false} lang="js" title="CJS" /> | <CodePreview content={multiCJS} showLineNumbers={false} lang="js" title="CJS" /> |
+| <CodePreview content={singleESM} showLineNumbers={false} lang="js" title="ESM" /> | <CodePreview content={multiESM} showLineNumbers={false} lang="js" title="ESM" /> |
+
+## Named e Default
+
+<CodePreview src="/codes/ecma/modules/esm-default-named/lib.js" />
+
+<CodePreview src="/codes/ecma/modules/esm-default-named/main.js" />
+
+
+## NPM
+
+<CodePreview src="/codes/ecma/modules/esm-npm/lib.js" />
+
+<CodePreview src="/codes/ecma/modules/esm-npm/main.js" />
+
+```text
+$ npm install mathjs
+```
+
+<CodePreview src="/codes/ecma/modules/esm-npm/package.json" />
