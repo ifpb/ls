@@ -96,3 +96,17 @@ console.log(addition(1)); //=> 1 ([1])
 console.log(addition(1, 1)); //=> 2 ([1, 1])
 console.log(addition(1, 1, 1, 1)); //=> 4 ([1, 1, 1, 1])
 ```
+
+## Callback
+
+```js
+function calc(param1, param2, callback) {
+  return callback(param1, param2);
+}
+
+console.log(calc(2, 1, (x, y) => x + y)); //=> 3
+console.log(calc(2, 1, (x, y) => x - y)); //=> 1
+console.log(calc(2, 1, (x, y) => x * y)); //=> 2
+console.log(calc(2, 1, (x, y) => x / y)); //=> 2
+console.log(calc(2, 1, (x, y) => x ** y)); //=> 2
+```
