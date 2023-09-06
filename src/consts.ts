@@ -10,12 +10,12 @@ export const CLASSNOTE_SLUGS = [
   'ecma/array',
   'ecma/string',
   'ecma/object',
+  // 'ecma/regexp',
   'w3c/browser-objects',
   'w3c/dynamic-elements',
-  'w3c/dom-api', // create investment
-  // 'package/vite', // tailwind-css
-  'w3c/event-handling', // create investment, crud investment
-  // 'ecma/regexp',
+  'package/vite', // tailwind-css
+  'w3c/event-handling',
+  'w3c/dom-api', // create investment, crud investment
   // 'w3c/fetch-api',
   // 'w3c/rest-api', // supabase, firebase
   // 'package/introduction-react',

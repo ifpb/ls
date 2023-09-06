@@ -13,7 +13,7 @@ export interface Props {
 const { src, content } = Astro.props;
 
 const codeTree = existsSync(resolve('./public' + src))
-  ? tree(resolve('./public' + src))
+  ? tree(resolve('./public' + src), { exclude: [/node_modules/] })
   : 'Code not found';
 
 const markdown = `\`\`\`plaintext title="Arquivos"\n${

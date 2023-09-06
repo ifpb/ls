@@ -1,0 +1,80 @@
+---
+title: Built Tool
+---
+
+import CodePreview from '../../../../components/CodePreview.astro';
+import CodeTree from '../../../../components/CodeTree.astro';
+
+# {frontmatter.title}
+
+## Vite
+
+[Vite doc](https://vitejs.dev/guide/):
+
+```bash
+$ npm create vite@latest invest-app -- --template vanilla
+
+Need to install the following packages:
+  create-vite@4.4.1
+Ok to proceed? (y)
+
+Scaffolding project in /home/.../invest-app...
+
+Done. Now run:
+
+  cd invest-app
+  npm install
+  npm run dev
+```
+
+<CodeTree src="/codes/package/vite/invest-app/" />
+
+```bash
+$ cd invest-app
+$ npm install
+$ npm run dev
+
+> invest-app@0.0.0 dev
+> vite
+
+
+  VITE v4.4.9  ready in 191 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+```
+
+
+[http://localhost:5173/](http://localhost:5173/):
+
+![](/ls/imgs/packages/vite/vite-hello.png)
+
+Static Asset Handling
+
+<CodePreview src="/codes/package/vite/invest-app/main.js" />
+
+## Tailwind css
+
+[Tailwind CSS](https://tailwindcss.com/docs/installation/using-postcss):
+
+```bash
+$ npm install -D tailwindcss postcss autoprefixer
+$ npx tailwindcss init
+```
+
+<CodePreview src="/codes/package/tailwind-css/invest-app/postcss.config.js" />
+
+<CodePreview src="/codes/package/tailwind-css/invest-app/tailwind.config.js" />
+
+<CodePreview src="/codes/package/tailwind-css/invest-app/css/style.css" />
+
+<CodePreview src="/codes/package/tailwind-css/invest-app/js/main.js" />
+
+```bash
+$ npm run dev
+```
+
+<CodeTree src="/codes/package/tailwind-css/invest-app/" />
+
+![](/ls/imgs/package/tailwind-css/invest-app.png)
