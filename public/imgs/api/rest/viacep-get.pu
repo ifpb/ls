@@ -1,0 +1,10 @@
+@startuml
+title GET
+hide footbox
+skinparam monochrome true
+
+Client -> Server: GET /ws/58015430/json/
+note right: GET /ws/58015430/json/ HTTP/1.1\nHost: https://viacep.com.br/
+Server -> Client: HTTP/1.1 200 OK
+note left: HTTP/1.1 200 OK\n\n{\n  "cep": "58015-430",\n  "logradouro": "Avenida Primeiro de Maio",\n  "complemento": "até 469/470",\n  "bairro": "Jaguaribe",\n  "localidade": "João Pessoa",\n  "uf": "PB",\n  "ibge": "2507507",\n  "gia": "",\n  "ddd": "83",\n  "siafi": "2051"\n}
+@enduml

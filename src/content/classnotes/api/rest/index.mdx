@@ -1,0 +1,243 @@
+---
+title: REST API
+---
+
+import CodePreview from '../../../../components/CodePreview.astro';
+
+# {frontmatter.title}
+
+## Web API
+
+- Exemplos de Web API
+  - [ViaCEP](https://viacep.com.br/)
+  - [Github - Rest API](https://docs.github.com/en/rest)
+
+- Web API Pública
+  - [public-apis/public-apis](https://github.com/public-apis/public-apis)
+  - [TonnyL/Awesome_APIs](https://github.com/TonnyL/Awesome_APIs)
+  - [public-api-lists/public-api-lists](https://github.com/public-api-lists/public-api-lists)
+  - [n0shake/Public-APIs](https://github.com/n0shake/Public-APIs)
+
+## ViaCEP API
+
+[{'https://viacep.com.br/ws/58015430/json/'}](https://viacep.com.br/ws/58015430/json/):
+
+![](/imgs/api/rest/viacep-get.png)
+
+[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client):
+
+<CodePreview src="/codes/api/rest/viacep.http" />
+
+[curl](https://curl.se/):
+
+```bash
+$ curl https://viacep.com.br/ws/58015430/json/
+```
+
+## Github REST API
+
+Exemplos:
+
+- [{'https://api.github.com/users/lucachaves'}](https://api.github.com/users/lucachaves)
+- [{'https://api.github.com/orgs/ifpb/repos'}](https://api.github.com/orgs/ifpb/repos)
+- [{'https://api.github.com/repos/ifpb/ls'}](https://api.github.com/repos/ifpb/ls)
+{/* - [Exemplo](https://ifpb.github.io/challenges/web/front-end/js/github-profile-comparator/) */}
+
+### Rotas
+
+| Método | Caminho                                | Status | Resposta                                      |
+| ------ | -------------------------------------- | ------ | --------------------------------------------- |
+| POST   | `/user/repos`                          | `201`  | Cria um novo repositório                      |
+| GET    | `/users/lucachaves/repos`              | `200`  | Retorna todos os repositórios                 |
+| GET    | `/users/lucachaves/repos?type=private` | `200`  | Retorna todos os repositórios privados        |
+| GET    | `/repos/lucachaves/ls`                 | `200`  | Retorna o repositório com nome lucachaves/ls  |
+| PATCH  | `/repos/lucachaves/ls`                 | `200`  | Atualiza o repositório com nome lucachaves/ls |
+| DELETE | `/repos/lucachaves/ls`                 | `204`  | Exclui o repositório com nome lucachaves/ls   |
+
+### HTTP
+
+[HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+  - Respostas de informação (100-199)
+  - Respostas de sucesso (200-299)
+  - Redirecionamentos (300-399)
+  - Erros do cliente (400-499)
+  - Erros do servidor (500-599)
+
+Exemplos de Códigos
+
+| Código | Nome                  | Significado                                                                     |
+| ------ | --------------------- | ------------------------------------------------------------------------------- |
+| `200`  | Ok                    | Solicitação gerada com sucesso                                                  |
+| `201`  | Created               | Solicitação gerada com sucesso e um novo recurso foi criado como resultado      |
+| `204`  | No Content            | Solicitação gerada com sucesso e não há conteúdo para ser enviado               |
+| `400`  | Bad Request           | Solicitação não compreendida por motivos de erro                                |
+| `401`  | Unauthorized          | Solicitação foi bloqueada porque não possui credenciais de autenticação válidas |
+| `404`  | Not Found             | O servidor não pode encontrar o recurso solicitado                              |
+| `500`  | Internal Server Error | O servidor encontrou uma situação com a qual não sabe lidar.                    |
+
+### Token
+
+- [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+- [Authenticating to the REST API](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28)
+  - [Authenticating with a personal access token](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token)
+- [Quickstart for GitHub REST API](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
+  - [Getting started using curl](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28#getting-started-using-curl)
+
+### Rotas
+
+### Create a repository
+
+![](/ls/imgs/api/rest/github-post-repository.png)
+
+```http
+@token={{$dotenv GITHUB_TOKEN}}
+@username=lucachaves
+@repo=github-repo-api
+
+###
+POST https://api.github.com/user/repos
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+Content-Type: application/json
+
+{
+  "name": "{{repo}}",
+  "description": "This is your first repo!",
+  "homepage": "https://github.com",
+  "private": false,
+  "is_template": true
+}
+```
+
+```bash
+$ TOKEN=abc
+$ curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/user/repos \
+  -d '{"name":"github-repo-api","description":"This is your first repo!","homepage":"https://github.com","private":false,"is_template":true}'
+```
+
+[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Create a repository for the authenticated user](https://docs.github.com/en/free-pro-team@latest/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-for-the-authenticated-user))
+
+### Read repositories
+
+![](/ls/imgs/api/rest/github-get-repositories.png)
+
+```http
+@token={{$dotenv GITHUB_TOKEN}}
+@username=lucachaves
+
+###
+GET https://api.github.com/users/{{username}}/repos
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+```
+
+```bash
+$ TOKEN=abc
+$ curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/users/lucachaves/repos
+```
+[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([List repositories for a user](https://docs.github.com/en/free-pro-team@latest/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user))
+
+### Read a repository (name)
+
+![](/ls/imgs/api/rest/github-get-repository.png)
+
+```http
+@token={{$dotenv GITHUB_TOKEN}}
+@username=lucachaves
+@repo=github-repo-api
+
+###
+
+GET https://api.github.com/repos/{{username}}/{{repo}}
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+```
+
+```bash
+$ TOKEN=abc
+$ curl -L \
+   -H "Accept: application/vnd.github+json" \
+   -H "Authorization: Bearer ${TOKEN}" \
+   -H "X-GitHub-Api-Version: 2022-11-28" \
+   https://api.github.com/repos/lucachaves/github-repo-api
+```
+
+[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Get a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository))
+
+### Update a repository
+
+![](/ls/imgs/api/rest/github-patch-repository.png)
+
+```http
+@token={{$dotenv GITHUB_TOKEN}}
+@username=lucachaves
+@repo=github-repo-api
+
+###
+PATCH https://api.github.com/repos/{{username}}/{{repo}}
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+Content-Type: application/json
+
+{
+  "name": "{{repo}}",
+  "description": "This is your first repository",
+  "homepage": "https://github.com",
+  "private": false,
+  "is_template": false
+}
+```
+
+```bash
+$ TOKEN=abc
+$ curl -L \
+   -X PATCH \
+   -H "Accept: application/vnd.github+json" \
+   -H "Authorization: Bearer ${TOKEN}" \
+   -H "X-GitHub-Api-Version: 2022-11-28" \
+   https://api.github.com/repos/lucachaves/github-repo-api \
+   -d '{"name":"github-repo-api","description":"This is your first repo!","homepage":"https://github.com","private":false,"is_template":false}'
+```
+
+[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Update a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#update-a-repository))
+
+### Delete a repository
+
+![](/ls/imgs/api/rest/github-delete-repository.png)
+
+```http
+@token={{$dotenv GITHUB_TOKEN}}
+@username=lucachaves
+@repo=github-repo-api
+
+###
+DELETE https://api.github.com/repos/{{username}}/{{repo}}
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+```
+
+```bash
+$ TOKEN=abc
+$ curl -L \
+   -X DELETE \
+   -H "Accept: application/vnd.github+json" \
+   -H "Authorization: Bearer ${TOKEN}" \
+   -H "X-GitHub-Api-Version: 2022-11-28" \
+   https://api.github.com/repos/lucachaves/github-repo-api
+```
+
+[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Delete a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#delete-a-repository))

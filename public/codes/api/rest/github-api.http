@@ -1,0 +1,52 @@
+@token={{$dotenv GITHUB_TOKEN}}
+@username=lucachaves
+@repo=github-repo-api
+
+
+### Create a repository
+POST https://api.github.com/user/repos
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+Content-Type: application/json
+
+{
+  "name": "{{repo}}",
+  "description": "This is your first repo!",
+  "homepage": "https://github.com",
+  "private": false,
+  "is_template": true
+}
+
+### Read repositories
+GET https://api.github.com/users/{{username}}/repos
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+
+### Read a repository
+GET https://api.github.com/repos/{{username}}/{{repo}}
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+
+### Update a repository
+PATCH https://api.github.com/repos/{{username}}/{{repo}}
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28
+Content-Type: application/json
+
+{
+  "name": "{{repo}}",
+  "description": "This is your first repository",
+  "homepage": "https://github.com",
+  "private": false,
+  "is_template": false
+}
+
+### Delete a repository
+DELETE https://api.github.com/repos/{{username}}/{{repo}}
+Accept: application/vnd.github+json
+Authorization: Bearer {{token}}
+X-GitHub-Api-Version: 2022-11-28

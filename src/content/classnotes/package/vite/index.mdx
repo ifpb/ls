@@ -27,7 +27,17 @@ Done. Now run:
   npm run dev
 ```
 
-<CodeTree src="/codes/package/vite/invest-app/" />
+```text title="Arquivos"
+invest-app
+├── counter.js
+├── index.html
+├── javascript.svg
+├── main.js
+├── package.json
+├── public
+│   └── vite.svg
+└── style.css
+```
 
 ```bash
 $ cd invest-app
@@ -48,13 +58,63 @@ $ npm run dev
 
 [http://localhost:5173/](http://localhost:5173/):
 
-![](/ls/imgs/packages/vite/vite-hello.png)
+![](/ls/imgs/package/vite/vite-hello.png)
+
+Deploying a Static Site
+
+```bash
+$ npm run build
+
+> invest-app@0.0.0 build
+> vite build
+
+vite v4.3.0 building for production...
+✓ 7 modules transformed.
+dist/index.html                      0.45 kB │ gzip: 0.29 kB
+dist/assets/javascript-8dac5379.svg  1.00 kB │ gzip: 0.60 kB
+dist/assets/index-48a8825f.css       1.24 kB │ gzip: 0.65 kB
+dist/assets/index-44b5bae5.js        1.45 kB │ gzip: 0.75 kB
+✓ built in 132ms
+
+$ npm run preview
+
+> invest-app@0.0.0 preview
+> vite preview
+
+  ➜  Local:   http://localhost:4173/
+  ➜  Network: use --host to expose
+```
+
+<CodeTree src="/codes/package/vite/invest-app/" />
 
 Static Asset Handling
 
 <CodePreview src="/codes/package/vite/invest-app/main.js" />
 
-## Tailwind css
+## Bootstrap
+
+[Bootstrap](#):
+
+```bash
+$ npm install bootstrap
+```
+
+<CodePreview src="/codes/package/bootstrap/invest-app/index.html" />
+
+<CodePreview src="/codes/package/bootstrap/invest-app/js/main.js" />
+
+<CodePreview src="/codes/package/bootstrap/invest-app/js/components/InvestmentCard.js" />
+
+```bash
+$ npm run dev
+```
+
+<CodeTree src="/codes/package/bootstrap/invest-app/" />
+
+![](/ls/imgs/package/vite/bootstrap-invest-app.png)
+
+
+## Tailwind CSS
 
 [Tailwind CSS](https://tailwindcss.com/docs/installation/using-postcss):
 
@@ -71,10 +131,14 @@ $ npx tailwindcss init
 
 <CodePreview src="/codes/package/tailwind-css/invest-app/js/main.js" />
 
+<CodePreview src="/codes/package/tailwind-css/invest-app/index.html" />
+
+<CodePreview src="/codes/package/tailwind-css/invest-app/js/components/InvestmentCard.js" />
+
 ```bash
 $ npm run dev
 ```
 
 <CodeTree src="/codes/package/tailwind-css/invest-app/" />
 
-![](/ls/imgs/package/tailwind-css/invest-app.png)
+![](/ls/imgs/package/vite/tailwindcss-invest-app.png)

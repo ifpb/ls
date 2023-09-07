@@ -1,0 +1,10 @@
+@startuml
+title GET
+hide footbox
+skinparam monochrome true
+
+Client -> Server: GET /users/lucachaves/repos
+note right: GET /users/lucachaves/repos HTTP/1.1\nHost: https://api.github.com\nAccept: application/vnd.github+json\nAuthorization: Bearer TOKEN\nX-GitHub-Api-Version: 2022-11-28
+Server -> Client: HTTP/1.1 200 OK
+note left: HTTP/1.1 200 OK\nServer: GitHub.com\n\n[\n  {\n    "id": 151515,\n    "node_id": "MDE...0MDQ=",\n    "name": "algorithms",\n    "full_name": "lucachaves/algorithms",\n    ...\n  },\n  ...\n]
+@enduml

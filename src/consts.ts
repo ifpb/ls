@@ -10,15 +10,20 @@ export const CLASSNOTE_SLUGS = [
   'ecma/array',
   'ecma/string',
   'ecma/object',
-  // 'ecma/regexp',
+  'ecma/regexp',
+  'ecma/promise',
   'w3c/browser-objects',
   'w3c/dynamic-elements',
-  'package/vite', // tailwind-css
+  'package/vite',
   'w3c/event-handling',
-  'w3c/dom-api', // create investment, crud investment
+  'w3c/dom-api',
+  'api/rest',
+  // 'package/supabase-api',
   // 'w3c/fetch-api',
-  // 'w3c/rest-api', // supabase, firebase
-  // 'package/introduction-react',
+  // 'package/axios',
+  // 'package/supabase-client',
+  // 'w3c/crud-elements',
+  // 'react/introduction-react',
 ];
 
 export const MENU = [
