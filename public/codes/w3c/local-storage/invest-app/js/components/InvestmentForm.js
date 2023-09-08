@@ -207,7 +207,7 @@ function create() {
   $('.new-investment-btn').onclick = () => {
     $('form').reset();
 
-    handleSubmit((investment) => Investments.create(investment));
+    handleSubmit(Investments.create);
   };
 }
 

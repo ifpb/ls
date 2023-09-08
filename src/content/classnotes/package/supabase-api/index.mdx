@@ -2,6 +2,8 @@
 title: Supabase API
 ---
 
+import CodePreview from '../../../../components/CodePreview.astro';
+
 # {frontmatter.title}
 
 ## Serviços para Dados
@@ -20,22 +22,27 @@ title: Supabase API
 
 https://supabase.com/dashboard/projects
 
+Projeto invest-app (Table Editor)
+
 ![](/ls/imgs/package/supabase-api/database.png)
 
 ```sql
 create table investments (
-    id serial primary key,
-    name character varying null,
-    value bigint null,
-    created_at timestamp with time zone not null default now(),
-  );
+  id uuid not null default gen_random_uuid (),
+  name character varying null,
+  value bigint null,
+  origin character varying null,
+  category character varying null,
+  interest character varying null,
+  created_at timestamp with time zone not null default now(),
+);
 ```
 
 ```sql
-insert into investments (name, value)
+insert into investments (name, value, origin, category, interest)
 values
-  ('Tesouro Selic 2029', 100000),
-  ('Tesouro IPCA 2029', 10000);
+  ('Tesouro Selic 2029', 100000, 'Tesouro Nacional', 'Pós', '100% Selic'),
+  ('Tesouro IPCA 2029', 10000, 'Tesouro Nacional', 'Pós', 'IPCA + 6,10%');
 ```
 
 ### Permitir Acesso Anônimo
@@ -70,11 +77,22 @@ CREATE POLICY "Allow anonymous access"
 
 ![](/ls/imgs/package/supabase-api/post-investment.png)
 
+[PostgREST - Table and Views - Insert](https://postgrest.org/en/stable/references/api/tables_views.html#insert)
+
+Return
+- `Prefer: return=minimal`
+- `Prefer: return=headers-only`
+- `Prefer: return=representation`
+
+<CodePreview src="/codes/package/supabase-api/.env.example" />
+
 ```http
-@host = https://xyz.supabase.co
+# @host = https://xyz.supabase.co
+@host = {{$dotenv SUPABASE_URL}}
 @token = {{$dotenv SUPABASE_KEY}}
 
 ### Create a investment
+# @name createInvestment
 POST {{host}}/rest/v1/investments
 apikey: {{token}}
 Authorization: Bearer {{token}}
@@ -83,7 +101,10 @@ Prefer: return=representation
 
 {
   "name": "Tesouro Selic 2029",
-  "value": 10000
+  "value": 10000,
+  "origin": "Tesouro Direto",
+  "category": "Pós",
+  "interest": "100% Selic"
 }
 ```
 
@@ -94,27 +115,20 @@ $ curl -X POST 'https://xyz.supabase.co/rest/v1/investments' \
   -H "Authorization: Bearer ${SUPABASE_KEY}" \
   -H "Content-Type: application/json" \
   -H "Prefer: return=representation" \
-  -d '{ "name": "Tesouro Selic 2029", "value": 10000 }'
+  -d '{ "name": "Tesouro Selic 2029", "value": 10000, "origin": "Tesouro Nacional", "category": "Pós", "interest": "100% Selic" }'
 ```
-
-Return
-- `Prefer: return=minimal`
-- `Prefer: return=headers-only`
-- `Prefer: return=representation`
-
-[PostgREST - Table and Views - Insert](https://postgrest.org/en/stable/references/api/tables_views.html#insert)
 
 ### Read investments
 
 ![](/ls/imgs/package/supabase-api/get-investments.png)
 
+[PostgREST - Table and Views - Read](https://postgrest.org/en/stable/references/api/tables_views.html#read)
+
 ```http
-@host = https://xyz.supabase.co
+@host = {{$dotenv SUPABASE_URL}}
 @token = {{$dotenv SUPABASE_KEY}}
-@createdInvestmentId = {{readInvestments.response.body.$[0].id}}
 
 ### Read investments
-# @name readInvestments
 GET {{host}}/rest/v1/investments?select=*
 apikey: {{token}}
 Authorization: Bearer {{token}}
@@ -127,16 +141,16 @@ $ curl 'https://xyz.supabase.co/rest/v1/investments?select=*' \
   -H "Authorization: Bearer ${SUPABASE_KEY}"
 ```
 
-[PostgREST - Table and Views - Read](https://postgrest.org/en/stable/references/api/tables_views.html#read)
-
 ### Read a investment
 
 ![](/ls/imgs/package/supabase-api/get-investment.png)
 
+[PostgREST - Table and Views - Read](https://postgrest.org/en/stable/references/api/tables_views.html#read)
+
 ```http
-@host = https://xyz.supabase.co
+@host = {{$dotenv SUPABASE_URL}}
 @token = {{$dotenv SUPABASE_KEY}}
-@createdInvestmentId = {{readInvestments.response.body.$[0].id}}
+@createdInvestmentId = {{createInvestment.response.body.$[0].id}}
 
 ### Read a investment
 GET {{host}}/rest/v1/investments?id=eq.{{createdInvestmentId}}
@@ -151,11 +165,13 @@ $ curl 'https://xyz.supabase.co/rest/v1/investments?id=eq.1' \
   -H "Authorization: Bearer ${SUPABASE_KEY}"
 ```
 
-[PostgREST - Table and Views - Read](https://postgrest.org/en/stable/references/api/tables_views.html#read)
+
 
 ### Update a investment
 
 ![](/ls/imgs/package/supabase-api/patch-investment.png)
+
+[PostgREST - Table and Views - Update](https://postgrest.org/en/stable/references/api/tables_views.html#update)
 
 ```http
 ### Update a investment
@@ -180,18 +196,17 @@ $ curl -X PATCH 'https://xyz.supabase.co/rest/v1/investments?some_column=eq.some
   -d '{ "value": 15000 }'
 ```
 
-[PostgREST - Table and Views - Update](https://postgrest.org/en/stable/references/api/tables_views.html#update)
-
 ### Delete a investment
 
 ![](/ls/imgs/package/supabase-api/delete-investment.png)
 
-```http
-@host = https://xyz.supabase.co
-@token = {{$dotenv SUPABASE_KEY}}
-@createdInvestmentId = {{readInvestments.response.body.$[0].id}}
+[PostgREST - Table and Views - Delete](https://postgrest.org/en/stable/references/api/tables_views.html#delete)
 
-### Delete a investment
+```http
+@host = {{$dotenv SUPABASE_URL}}
+@token = {{$dotenv SUPABASE_KEY}}
+@createdInvestmentId = {{createInvestment.response.body.$[0].id}}
+
 ### Delete a investment
 DELETE {{host}}/rest/v1/investments?id=eq.{{createdInvestmentId}}
 apikey: {{token}}
@@ -204,6 +219,3 @@ $ curl -X DELETE 'https://xyz.supabase.co/rest/v1/investments?some_column=eq.som
   -H "apikey: ${SUPABASE_KEY}" \
   -H "Authorization: Bearer ${SUPABASE_KEY}"
 ```
-
-[PostgREST - Table and Views - Delete](https://postgrest.org/en/stable/references/api/tables_views.html#delete)
-

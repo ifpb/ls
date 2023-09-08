@@ -4,7 +4,7 @@ hide footbox
 skinparam monochrome true
 
 Client -> Server: POST /rest/v1/investments
-note right: POST /rest/v1/investments HTTP/1.1\nHost: https://xyz.supabase.co\napikey: TOKEN\nAuthorization: Bearer TOKEN\nPrefer: return=representation\nContent-Type: application/json\n\n{\n  "name": "Tesouro Selic 2029",\n  "value": 10000\n}
+note right: POST /rest/v1/investments HTTP/1.1\nHost: https://xyz.supabase.co\napikey: TOKEN\nAuthorization: Bearer TOKEN\nPrefer: return=representation\nContent-Type: application/json\n\n{\n  "name": "Tesouro Selic 2029",\n  "value": 10000,\n  "origin": "Tesouro Nacional",\n  "category": "Pós",\n  "interest": "100% Selic"\n}
 Server -> Client: HTTP/1.1 201 Created
-note left: HTTP/1.1 201 Created\n\n[\n  {\n    "id": 1,\n    "name": "Tesouro Selic 2029",\n    "name": "algorithms",\n    "value": 10000,\n    "created_at": "2023-09-08T01:58:13.676422+00:00"\n  }\n]
+note left: HTTP/1.1 201 Created\n\n[\n  {\n    "id": 1,\n    "name": "Tesouro Selic 2029",\n    "value": 10000,\n    "origin": "Tesouro Nacional",\n    "category": "Pós",\n    "interest": "100% Selic",\n    "created_at": "2023-09-08T01:58:13.676422+00:00"\n  }\n]
 @enduml

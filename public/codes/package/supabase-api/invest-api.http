@@ -1,4 +1,4 @@
-@host = https://qxxivxowaxwsgeruydka.supabase.co
+@host = {{$dotenv SUPABASE_URL}}
 @token = {{$dotenv SUPABASE_KEY}}
 @createdInvestmentId = {{createInvestment.response.body.$[0].id}}
 

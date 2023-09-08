@@ -2,6 +2,8 @@
 title: Supabase Client
 ---
 
+import CodeTree from '../../../../components/CodeTree.astro';
+
 # {frontmatter.title}
 
 ### Supabase JavaScript Client
@@ -11,6 +13,8 @@ JavaScript Client Library: [@supabase/supabase-js](https://supabase.com/docs/ref
 ```bash
 $ npm install @supabase/supabase-js
 ```
+
+Exemplo:
 
 ```js
 import { createClient } from '@supabase/supabase-js';
@@ -27,13 +31,15 @@ const { data, error } = await supabase
 console.log(data);
 ```
 
-### Front-end
+### Invest-app (CRUD)
 
-```js title="/service/api.js"
+<CodeTree src="/codes/package/supabase-client/invest-app/" />
+
+```js title="/codes/package/axios/supabase-client/js/services/storage.js"
 import { createClient } from '@supabase/supabase-js';
 
-const API_KEY = 'abc';
-const API_URL = 'https://qxxivxowaxwsgeruydka.supabase.co/rest/v1';
+const API_KEY = import.meta.env.VITE_APP_SUPABASE_KEY;
+const API_URL = import.meta.env.VITE_APP_SUPABASE_URL;
 
 const supabase = createClient(API_URL, API_KEY);
 
@@ -45,49 +51,57 @@ async function remove(resource) {}
 export default { create, read, update, remove };
 ```
 
-### Create a investment
+#### Create a investment
 
 ![](/ls/imgs/package/supabase-api/post-investment.png)
 
 [Supabase - JavaScript Client - Insert](https://supabase.com/docs/reference/javascript/insert)
 
-```js
+```js title="/codes/package/axios/supabase-client/js/services/storage.js"
 async function create(resource, data) {
-  const { data: newData, error } = await supabase
+  const { data: createdData, error } = await supabase
     .from(resource)
     .insert(data)
-    .select('*' );
+    .select('*');
 
   if (error) {
     throw error;
   }
 
-  return newData?.[0];
+  return createdData?.[0];
 }
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
 const investment = {
   name: "Tesouro Selic 2029",
   value: 10000,
+  origin: "Tesouro Direto",
+  category: "Pós",
+  interest: "100% Selic",
+  created_at: "2021-09-10T00:00:00-03:00",
 };
 
 API.create('investments', investment);
 ```
 
-### Read investments
+#### Read investments
 
 ![](/ls/imgs/package/supabase-api/get-investments.png)
 
 [Supabase - JavaScript Client - Fetch data](https://supabase.com/docs/reference/javascript/select)
 
-```js
-async function read(resource) {
-  const { data, error } = await supabase
-    .from(resource)
-    .select('*');
+```js title="/codes/package/axios/supabase-client/js/services/storage.js"
+async function read(resource, id) {
+  let select = '*';
+
+  if (id) {
+    select = `*?id=eq.${id}`;
+  }
+
+  const { data, error } = await supabase.from(resource).select(select);
 
   if (error) {
     throw error;
@@ -98,49 +112,52 @@ async function read(resource) {
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
 API.read('investments');
-API.read('investments/?id=eq.1');
+API.read('investments', 1);
 ```
 
-### Update a investment
+#### Update a investment
 
 ![](/ls/imgs/package/supabase-api/patch-investment.png)
 
 [Supabase - JavaScript Client - Update](https://supabase.com/docs/reference/javascript/update)
 
-```js
-async function update(resource, id, data) {
-  const { newData, error } = await supabase
+```js title="/codes/package/axios/supabase-client/js/services/storage.js"
+async function update(resource, data) {
+  const { data: updatedData, error } = await supabase
     .from(resource)
     .update(data)
-    .eq('id', id)
+    .eq('id', data.id)
     .select('*');
 
   if (error) {
     throw error;
   }
 
-  return newData;
+  return updatedData?.[0];
 }
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
-API.update('investments/?id=eq.1', { value: 15000 });
+API.update('investments', { id: 1, value: 15000 });
 ```
 
-### Delete a investment
+#### Delete a investment
 
 ![](/ls/imgs/package/supabase-api/delete-investment.png)
 
 [Supabase - JavaScript Client - Delete](https://supabase.com/docs/reference/javascript/delete)
 
-```js
+```js title="/codes/package/axios/supabase-client/js/services/storage.js"
 async function remove(resource, id) {
-  const { error } = await supabase.from(resource).delete().eq('id', id);
+  const { error } = await supabase
+    .from(resource)
+    .delete()
+    .eq('id', id);
 
   if (error) {
     throw error;
@@ -151,7 +168,7 @@ async function remove(resource, id) {
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
-API.remove('investments/?id=eq.1');
+API.remove('investments', 1);
 ```

@@ -1,0 +1,24 @@
+{
+  "name": "invest-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "@iconify/iconify": "^3.1.1",
+    "@preline/overlay": "^1.4.0",
+    "@supabase/supabase-js": "^2.33.1",
+    "preline": "^1.9.0",
+    "uuid": "^9.0.0"
+  }
+}

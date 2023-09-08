@@ -2,9 +2,10 @@
 title: Axios
 ---
 
-# {frontmatter.title}
+import CodePreview from '../../../../components/CodePreview.astro';
+import CodeTree from '../../../../components/CodeTree.astro';
 
-### Axios Config
+# {frontmatter.title}
 
 [axios](https://axios-http.com/)
 
@@ -12,32 +13,18 @@ title: Axios
 $ npm install axios
 ```
 
-```js title="/service/api.js"
-import axios from 'axios';
+<CodePreview src="/codes/package/axios/via-cep/index.js" />
 
-const API_KEY = 'abc';
-const API_URL = 'https://xyz.supabase.co/rest/v1';
+### Invest-app (CRUD)
 
-export default axios.create({
-  baseURL: API_URL,
-  headers: {
-    common: {
-      apikey: '${API_KEY}'
-      Authorization: 'Bearer ${API_KEY}'
-    },
-    post: {
-      Prefer: 'return=representation'
-    },
-    patch: {
-      Prefer: 'return=representation'
-    },
-  }
-});
-```
+#### Axios Config
 
-### Front-end
 
-```js title="/service/api.js"
+<CodeTree src="/codes/package/axios/invest-app/" />
+
+<CodePreview src="/codes/package/axios/invest-app/js/services/api.js" />
+
+```js title="/codes/package/axios/invest-app/js/services/storage.js"
 import API from '/services/api.js';
 
 async function create(resource, data) {}
@@ -48,79 +35,83 @@ async function remove(resource) {}
 export default { create, read, update, remove };
 ```
 
-### Create a investment
+#### Create a investment
 
 ![](/ls/imgs/package/supabase-api/post-investment.png)
 
 [Axios - POST Request](https://axios-http.com/docs/post_example)
 
-```js
+```js  title="/codes/package/axios/invest-app/js/services/storage.js"
 async function create(resource, data) {
-  const { newData } = await api.post(resource, data);
+  const { data: createdData } = await API.post(resource, data);
 
-  return newData;
+  return createdData?.[0];
 }
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
 const investment = {
   name: "Tesouro Selic 2029",
   value: 10000,
+  origin: "Tesouro Direto",
+  category: "Pós",
+  interest: "100% Selic",
+  created_at: "2021-09-10T00:00:00-03:00",
 };
 
 API.create('investments', investment);
 ```
 
-### Read investments
+#### Read investments
 
 ![](/ls/imgs/package/supabase-api/get-investments.png)
 
 [Axios - GET Request](https://axios-http.com/docs/example)
 
-```js
+```js  title="/codes/package/axios/invest-app/js/services/storage.js"
 async function read(resource) {
-  const { data } = await api.get(resource);
+  const { data } = await API.get(resource);
 
   return data;
 }
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
 API.read('investments');
 API.read('investments/?id=eq.1');
 ```
 
-### Update a investment
+#### Update a investment
 
 ![](/ls/imgs/package/supabase-api/patch-investment.png)
 
 [Axios - PATCH Request](https://axios-http.com/docs/api_intro)
 
-```js
+```js  title="/codes/package/axios/invest-app/js/services/storage.js"
 async function update(resource, data) {
-  const { newData } = await api.patch(resource, data);
+  const { data: updatedData } = await API.patch(resource, data);
 
-  return newData;
+  return updatedData?.[0];
 }
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
 API.update('investments/?id=eq.1', { value: 15000 });
 ```
 
-### Delete a investment
+#### Delete a investment
 
 ![](/ls/imgs/package/supabase-api/delete-investment.png)
 
 [Axios - DELETE Resquest](https://axios-http.com/docs/api_intro)
 
-```js
+```js  title="/codes/package/axios/invest-app/js/services/storage.js"
 async function remove(resource) {
   const { error } = await API.delete(resource);
 
@@ -133,7 +124,7 @@ async function remove(resource) {
 ```
 
 ```js
-import API from './service/api.js';
+import API from './services/api.js';
 
 API.remove('investments/?id=eq.1');
 ```

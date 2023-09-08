@@ -27,3 +27,14 @@ $ npx json-server --watch db.json
 <CodePreview src="/codes/package/json-server/package.json" />
 
 <CodePreview src="/codes/package/json-server/src/server.js" />
+
+### Rotas
+
+| Método | Caminho             | Resposta                                       |
+| ------ | ------------------- | ---------------------------------------------- |
+| POST   | `/investments`      | Cria um novo investimento                      |
+| GET    | `/investments`      | Retorna todos os investimentos                 |
+| GET    | `/investments?id=1` | Retorna o investimento com id igual a 1        |
+| GET    | `/investments/1`    | Retorna o investimento com id igual a 1        |
+| PATCH  | `/investments/1`    | Atualiza o investimento com id igual a 1       |
+| DELETE | `/investments/1`    | Exclui o investimento com id igual a 1         |

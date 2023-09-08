@@ -15,7 +15,13 @@ const name = 'value';
 
 localStorage.setItem('name', name);
 
-console.log(localStorage.getItem('name')); //=> value
+console.log(localStorage.getItem('name'));
+//=> value
+
+localStorage.setItem('person', JSON.stringify({ name: 'John' }));
+
+console.log(JSON.parse(localStorage.getItem('name')));
+//=> { name: 'John' }
 ```
 
 Alternativas Remotas

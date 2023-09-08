@@ -3,9 +3,13 @@ hide circle
 skinparam linetype ortho
 skinparam monochrome true
 
-entity "Investment" as investiment {
-  *id : text
-  name : text
-  price: integer
+entity "Investments" as investiments {
+  *id : uuid
+  name : character
+  price: bigint
+  origin : character
+  category : character
+  interest : character
+  created_at : timestamp
 }
 @enduml

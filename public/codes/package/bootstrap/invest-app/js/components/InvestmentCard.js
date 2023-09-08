@@ -1,4 +1,4 @@
-import { formatCurrency, formatDate } from '../lib/utils.js';
+import { formatCurrency, formatDate } from '../lib/utils';
 
 export function InvestmentCard(investment) {
   return `

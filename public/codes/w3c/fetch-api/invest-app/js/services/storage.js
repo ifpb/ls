@@ -8,16 +8,18 @@ async function create(resource, data) {
     method: 'post',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
       Prefer: 'return=representation',
+      'Content-Type': 'application/json',
     },
   };
 
   const res = await fetch(resource, options);
 
-  return await res.json();
+  const createdData = await res.json();
+
+  return createdData?.[0];
 }
 
 async function read(resource) {
@@ -43,16 +45,18 @@ async function update(resource, data) {
     method: 'patch',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
       Prefer: 'return=representation',
+      'Content-Type': 'application/json',
     },
   };
 
   const res = await fetch(resource, options);
 
-  return await res.json();
+  const updatedData = await res.json();
+
+  return updatedData?.[0];
 }
 
 async function remove(resource) {

@@ -6,5 +6,5 @@ skinparam monochrome true
 Client -> Server: GET /rest/v1/investments?select=*
 note right: GET /rest/v1/investments?select=* HTTP/1.1\nHost: https://xyz.supabase.co\napikey: TOKEN\nAuthorization: Bearer TOKEN
 Server -> Client: HTTP/1.1 200 OK
-note left: HTTP/1.1 200 OK\n\n[\n  {\n    "id": 1,\n    "name": "Tesouro Selic 2029",\n    "name": "algorithms",\n    "value": 10000,\n    "created_at": "2023-09-08T01:58:13.676422+00:00"\n  },\n  ...\n]
+note left: HTTP/1.1 200 OK\n\n[\n  {\n    "id": 1,\n    "name": "Tesouro Selic 2029",\n    "value": 10000,\n    "origin": "Tesouro Nacional",\n    "category": "Pós",\n    "interest": "100% Selic",\n    "created_at": "2023-09-08T01:58:13.676422+00:00"\n  },\n  ...\n]
 @enduml

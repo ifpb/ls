@@ -2,13 +2,12 @@
 title: Requisição Assíncrona
 ---
 
+import CodeTree from '../../../../components/CodeTree.astro';
 import CodePreview from '../../../../components/CodePreview.astro';
 
 # {frontmatter.title}
 
 ### Fetch API
-
-[Fetch API | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 ```js
 fetch(resource)
@@ -17,31 +16,82 @@ fetch(resource, options)
 
 Exemplo
 
+<CodePreview src="/codes/w3c/fetch-api/via-cep/index.js" />
+
+[Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+- Access-Control-Allow-Origin
+- Access-Control-Allow-Methods
+- Access-Control-Allow-Headers
+- Access-Control-Allow-Credentials
+- Access-Control-Max-Age
+
+```http
+HTTP/1.1 200 OK
+Server: nginx/1.22.0
+Date: Seg, 11 Sep 2023 12:03:17 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+Expires: Sun, 10 Sep 2023 13:03:17 GMT
+Cache-Control: max-age=3600, public
+Pragma: public
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET
+Access-Control-Allow-Headers: Content-Type, X-Request-With, X-Requested-By
+Access-Control-Allow-Credentials: true
+Access-Control-Max-Age: 86400
+
+{
+  "cep": "58015-430",
+  "logradouro": "Avenida Primeiro de Maio",
+  "complemento": "até 469/470",
+  "bairro": "Jaguaribe",
+  "localidade": "João Pessoa",
+  "uf": "PB",
+  "ibge": "2507507",
+  "gia": "",
+  "ddd": "83",
+  "siafi": "2051"
+}
+```
+
+O [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) é uma alternativa ao [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+
 ```js
+function makeRequest (method, url) {
+  return new Promise(function (resolve, reject) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open(method, url);
+
+    // xhr.setRequestHeader('Authorization', `Bearer TOKEN`);
+
+    xhr.onload = resolve;
+
+    xhr.onerror = reject;
+
+    xhr.send();
+  });
+}
+
 const cep = '58015430';
 
 const resource = `https://viacep.com.br/ws/${cep}/json/`;
 
-fetch(resource)
-  .then((res) => res.json())
-  .then((data) => console.log(data));
-```
-
-```js
-async getCep(cep) {
-  const resource = `https://viacep.com.br/ws/${cep}/json/`;
-
-  const res = await fetch(resource);
-
-  return await res.json();
-}
-
-const data = await getCep('58015430');
-
-console.log(data);
+makeRequest('GET', resource)
+    .then(function (e) {
+        console.log(e.target.response);
+    }, function (e) {
+        // handle errors
+    });
 ```
 
 ### Invest-app (CRUD)
+
+![](/ls/imgs/w3c/fetch-api/invest-app-crud.png)
+
+<CodeTree src="/codes/w3c/fetch-api/invest-app/" />
 
 <CodePreview src="/codes/w3c/fetch-api/invest-app/.env.example" />
 
@@ -57,11 +107,11 @@ async function remove(resource) {}
 export default { create, read, update, remove };
 ```
 
-### Create a investment
+#### Create a investment
 
 ![](/ls/imgs/package/supabase-api/post-investment.png)
 
-```js
+```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
 async function create(resource, data) {
   resource = `${API_URL}/${resource}`;
 
@@ -69,35 +119,41 @@ async function create(resource, data) {
     method: 'post',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
-      Prefer: 'return=representation'
+      Prefer: 'return=representation',
+      'Content-Type': 'application/json',
     },
   };
 
   const res = await fetch(resource, options);
 
-  return await res.json();
+  const createdData = await res.json();
+
+  return createdData?.[0];
 }
 ```
 
 ```js
-import API from './js/service/api.js';
+import API from './js/services/api.js';
 
 const investment = {
   name: "Tesouro Selic 2029",
   value: 10000,
+  origin: "Tesouro Direto",
+  category: "Pós",
+  interest: "100% Selic",
+  created_at: "2021-09-10T00:00:00-03:00",
 };
 
 API.create('investments', investment);
 ```
 
-### Read investments
+#### Read investments
 
 ![](/ls/imgs/package/supabase-api/get-investments.png)
 
-```js
+```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
 async function read(resource) {
   resource = `${API_URL}/${resource}`;
 
@@ -116,17 +172,17 @@ async function read(resource) {
 ```
 
 ```js
-import API from './js/service/api.js';
+import API from './js/services/api.js';
 
 API.read('investments');
 API.read('investments/?id=eq.1');
 ```
 
-### Update a investment
+#### Update a investment
 
 ![](/ls/imgs/package/supabase-api/patch-investment.png)
 
-```js
+```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
 async function update(resource, data) {
   resource = `${API_URL}/${resource}`;
 
@@ -134,30 +190,32 @@ async function update(resource, data) {
     method: 'patch',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
-      Prefer: 'return=representation'
+      Prefer: 'return=representation',
+      'Content-Type': 'application/json',
     },
   };
 
   const res = await fetch(resource, options);
 
-  return await res.json();
+  const updatedData = await res.json();
+
+  return updatedData?.[0];
 }
 ```
 
 ```js
-import API from './js/service/api.js';
+import API from './js/services/api.js';
 
 API.update('investments/?id=eq.1', { value: 15000 });
 ```
 
-### Delete a investment
+#### Delete a investment
 
 ![](/ls/imgs/package/supabase-api/delete-investment.png)
 
-```js
+```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
 async function remove(resource) {
   resource = `${API_URL}/${resource}`;
 
@@ -176,7 +234,7 @@ async function remove(resource) {
 ```
 
 ```js
-import API from './js/service/api.js';
+import API from './js/services/api.js';
 
 API.remove('investments/?id=eq.1');
 ```

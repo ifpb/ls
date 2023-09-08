@@ -1,6 +1,7 @@
+import { investments } from './data';
+import { InvestmentCard } from './components/InvestmentCard';
+
 import '../css/style.css';
-import { investments } from './data.js';
-import { InvestmentCard } from './components/InvestmentCard.js';
 
 const investmentsGrid = document.querySelector('.investments');
 

@@ -1,6 +1,6 @@
 import 'bootstrap';
-import { investments } from './data.js';
-import { InvestmentCard } from './components/InvestmentCard.js';
+import { investments } from './data';
+import { InvestmentCard } from './components/InvestmentCard';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
