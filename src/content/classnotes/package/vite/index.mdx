@@ -55,12 +55,13 @@ $ npm run dev
   ➜  press h to show help
 ```
 
+<CodeTree src="/codes/package/vite/invest-app/" />
 
 [http://localhost:5173/](http://localhost:5173/):
 
 ![](/ls/imgs/package/vite/vite-hello.png)
 
-Deploying a Static Site
+[Building the App](https://vitejs.dev/guide/static-deploy.html#building-the-app)
 
 ```bash
 $ npm run build
@@ -85,11 +86,29 @@ $ npm run preview
   ➜  Network: use --host to expose
 ```
 
-<CodeTree src="/codes/package/vite/invest-app/" />
+[Deploying a Static Site](https://vitejs.dev/guide/static-deploy.html)
 
-Static Asset Handling
+- [GitHub Pages](https://vitejs.dev/guide/static-deploy.html#github-pages)
+- [Netlify](https://vitejs.dev/guide/static-deploy.html#netlify)
+- [Vercel](https://vitejs.dev/guide/static-deploy.html#vercel)
+
+
+[Static Asset Handling](https://vitejs.dev/guide/assets.html)
 
 <CodePreview src="/codes/package/vite/invest-app/main.js" />
+
+[NPM Dependency Resolving and Pre-Bundling](https://vitejs.dev/guide/features.html#npm-dependency-resolving-and-pre-bundling)
+
+```js
+import 'bootstrap'
+```
+
+Import JavaScript
+
+```js
+// import Investments from './lib/investments.js'
+import Investments from './lib/investments'
+```
 
 ## Bootstrap
 
