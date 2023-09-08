@@ -3,3 +3,175 @@ title: Requisição Assíncrona
 ---
 
 # {frontmatter.title}
+
+### Fetch API
+
+[Fetch API | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+
+```js
+fetch(resource)
+fetch(resource, options)
+```
+
+Exemplo
+
+```js
+const cep = '58015430';
+
+const resource = `https://viacep.com.br/ws/${cep}/json/`;
+
+fetch(resource)
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+```
+
+```js
+async getCep(cep) {
+  const resource = `https://viacep.com.br/ws/${cep}/json/`;
+
+  const res = await fetch(resource);
+
+  return await res.json();
+}
+
+const data = await getCep('58015430');
+
+console.log(data);
+```
+
+### Front-end
+
+```js title="/service/api.js"
+const API_URL = 'https://xyz.supabase.co/rest/v1';
+
+async function create(resource, data) {}
+async function read(resource) {}
+async function update(resource, data) {}
+async function remove(resource) {}
+
+export default { create, read, update, remove };
+```
+
+### Create a investment
+
+![](/ls/imgs/package/supabase-api/post-investment.png)
+
+```js
+async function create(resource, data) {
+  resource = `${API_URL}/${resource}`;
+
+  const options = {
+    method: 'post',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      apikey: '${token}'
+      Authorization: 'Bearer ${token}'
+      Prefer: 'return=representation'
+    },
+  };
+
+  const res = await fetch(resource, options);
+
+  return await res.json();
+}
+```
+
+```js
+import API from './service/api.js';
+
+const investment = {
+  name: "Tesouro Selic 2029",
+  value: 10000,
+};
+
+API.create('investments', investment);
+```
+
+### Read investments
+
+![](/ls/imgs/package/supabase-api/get-investments.png)
+
+```js
+async function read(resource) {
+  resource = `${API_URL}/${resource}`;
+
+  const options = {
+    method: 'get',
+    headers: {
+      apikey: '${token}'
+      Authorization: 'Bearer ${token}'
+    },
+  };
+
+  const res = await fetch(resource, options);
+
+  return await res.json();
+}
+```
+
+```js
+import API from './service/api.js';
+
+API.read('investments');
+API.read('investments/?id=eq.1');
+```
+
+### Update a investment
+
+![](/ls/imgs/package/supabase-api/patch-investment.png)
+
+```js
+async function update(resource, data) {
+  resource = `${API_URL}/${resource}`;
+
+  const options = {
+    method: 'patch',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      apikey: '${token}'
+      Authorization: 'Bearer ${token}'
+      Prefer: 'return=representation'
+    },
+  };
+
+  const res = await fetch(resource, options);
+
+  return await res.json();
+}
+```
+
+```js
+import API from './service/api.js';
+
+API.update('investments/?id=eq.1', { value: 15000 });
+```
+
+### Delete a investment
+
+![](/ls/imgs/package/supabase-api/delete-investment.png)
+
+```js
+async function remove(resource) {
+  resource = `${API_URL}/${resource}`;
+
+  const options = {
+    method: 'delete',
+    headers: {
+      apikey: '${token}'
+      Authorization: 'Bearer ${token}'
+    },
+  };
+
+  const res = await fetch(resource, options);
+
+  return res.ok;
+}
+```
+
+```js
+import API from './service/api.js';
+
+API.remove('investments/?id=eq.1');
+```

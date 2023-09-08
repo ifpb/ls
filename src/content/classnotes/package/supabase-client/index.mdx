@@ -2,7 +2,156 @@
 title: Supabase Client
 ---
 
-import CodePreview from '../../../../components/CodePreview.astro';
-import CodeTree from '../../../../components/CodeTree.astro';
-
 # {frontmatter.title}
+
+### Supabase JavaScript Client
+
+JavaScript Client Library: [@supabase/supabase-js](https://supabase.com/docs/reference/javascript/introduction)
+
+```bash
+$ npm install @supabase/supabase-js
+```
+
+```js
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  'https://xyz.supabase.co',
+  'public-anon-key'
+);
+
+const { data, error } = await supabase
+  .from('investments')
+  .select();
+
+console.log(data);
+```
+
+### Front-end
+
+```js title="/service/api.js"
+import { createClient } from '@supabase/supabase-js';
+
+const API_KEY = 'abc';
+const API_URL = 'https://qxxivxowaxwsgeruydka.supabase.co/rest/v1';
+
+const supabase = createClient(API_URL, API_KEY);
+
+async function create(resource, data) {}
+async function read(resource) {}
+async function update(resource, data) {}
+async function remove(resource) {}
+
+export default { create, read, update, remove };
+```
+
+### Create a investment
+
+![](/ls/imgs/package/supabase-api/post-investment.png)
+
+[Supabase - JavaScript Client - Insert](https://supabase.com/docs/reference/javascript/insert)
+
+```js
+async function create(resource, data) {
+  const { data: newData, error } = await supabase
+    .from(resource)
+    .insert(data)
+    .select('*' );
+
+  if (error) {
+    throw error;
+  }
+
+  return newData?.[0];
+}
+```
+
+```js
+import API from './service/api.js';
+
+const investment = {
+  name: "Tesouro Selic 2029",
+  value: 10000,
+};
+
+API.create('investments', investment);
+```
+
+### Read investments
+
+![](/ls/imgs/package/supabase-api/get-investments.png)
+
+[Supabase - JavaScript Client - Fetch data](https://supabase.com/docs/reference/javascript/select)
+
+```js
+async function read(resource) {
+  const { data, error } = await supabase
+    .from(resource)
+    .select('*');
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+```
+
+```js
+import API from './service/api.js';
+
+API.read('investments');
+API.read('investments/?id=eq.1');
+```
+
+### Update a investment
+
+![](/ls/imgs/package/supabase-api/patch-investment.png)
+
+[Supabase - JavaScript Client - Update](https://supabase.com/docs/reference/javascript/update)
+
+```js
+async function update(resource, id, data) {
+  const { newData, error } = await supabase
+    .from(resource)
+    .update(data)
+    .eq('id', id)
+    .select('*');
+
+  if (error) {
+    throw error;
+  }
+
+  return newData;
+}
+```
+
+```js
+import API from './service/api.js';
+
+API.update('investments/?id=eq.1', { value: 15000 });
+```
+
+### Delete a investment
+
+![](/ls/imgs/package/supabase-api/delete-investment.png)
+
+[Supabase - JavaScript Client - Delete](https://supabase.com/docs/reference/javascript/delete)
+
+```js
+async function remove(resource, id) {
+  const { error } = await supabase.from(resource).delete().eq('id', id);
+
+  if (error) {
+    throw error;
+  } else {
+    return true;
+  }
+}
+```
+
+```js
+import API from './service/api.js';
+
+API.remove('investments/?id=eq.1');
+```

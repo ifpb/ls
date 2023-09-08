@@ -43,16 +43,13 @@ Exemplos:
 - [{'https://api.github.com/repos/ifpb/ls'}](https://api.github.com/repos/ifpb/ls)
 {/* - [Exemplo](https://ifpb.github.io/challenges/web/front-end/js/github-profile-comparator/) */}
 
-### Rotas
+### Token
 
-| Método | Caminho                                | Status | Resposta                                      |
-| ------ | -------------------------------------- | ------ | --------------------------------------------- |
-| POST   | `/user/repos`                          | `201`  | Cria um novo repositório                      |
-| GET    | `/users/lucachaves/repos`              | `200`  | Retorna todos os repositórios                 |
-| GET    | `/users/lucachaves/repos?type=private` | `200`  | Retorna todos os repositórios privados        |
-| GET    | `/repos/lucachaves/ls`                 | `200`  | Retorna o repositório com nome lucachaves/ls  |
-| PATCH  | `/repos/lucachaves/ls`                 | `200`  | Atualiza o repositório com nome lucachaves/ls |
-| DELETE | `/repos/lucachaves/ls`                 | `204`  | Exclui o repositório com nome lucachaves/ls   |
+- [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+- [Authenticating to the REST API](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28)
+  - [Authenticating with a personal access token](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token)
+- [Quickstart for GitHub REST API](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
+  - [Getting started using curl](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28#getting-started-using-curl)
 
 ### HTTP
 
@@ -75,27 +72,30 @@ Exemplos de Códigos
 | `404`  | Not Found             | O servidor não pode encontrar o recurso solicitado                              |
 | `500`  | Internal Server Error | O servidor encontrou uma situação com a qual não sabe lidar.                    |
 
-### Token
-
-- [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-- [Authenticating to the REST API](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28)
-  - [Authenticating with a personal access token](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token)
-- [Quickstart for GitHub REST API](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
-  - [Getting started using curl](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28#getting-started-using-curl)
 
 ### Rotas
+
+| Método | Caminho                                | Status | Resposta                                      |
+| ------ | -------------------------------------- | ------ | --------------------------------------------- |
+| POST   | `/user/repos`                          | `201`  | Cria um novo repositório                      |
+| GET    | `/users/lucachaves/repos`              | `200`  | Retorna todos os repositórios                 |
+| GET    | `/users/lucachaves/repos?type=private` | `200`  | Retorna todos os repositórios privados        |
+| GET    | `/repos/lucachaves/ls`                 | `200`  | Retorna o repositório com nome lucachaves/ls  |
+| PATCH  | `/repos/lucachaves/ls`                 | `200`  | Atualiza o repositório com nome lucachaves/ls |
+| DELETE | `/repos/lucachaves/ls`                 | `204`  | Exclui o repositório com nome lucachaves/ls   |
 
 ### Create a repository
 
 ![](/ls/imgs/api/rest/github-post-repository.png)
 
 ```http
+@host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
 @username=lucachaves
 @repo=github-repo-api
 
 ###
-POST https://api.github.com/user/repos
+POST {{host}}/user/repos
 Accept: application/vnd.github+json
 Authorization: Bearer {{token}}
 X-GitHub-Api-Version: 2022-11-28
@@ -128,11 +128,12 @@ $ curl -L \
 ![](/ls/imgs/api/rest/github-get-repositories.png)
 
 ```http
+@host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
 @username=lucachaves
 
 ###
-GET https://api.github.com/users/{{username}}/repos
+GET {{host}}/users/{{username}}/repos
 Accept: application/vnd.github+json
 Authorization: Bearer {{token}}
 X-GitHub-Api-Version: 2022-11-28
@@ -153,13 +154,14 @@ $ curl -L \
 ![](/ls/imgs/api/rest/github-get-repository.png)
 
 ```http
+@host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
 @username=lucachaves
 @repo=github-repo-api
 
 ###
 
-GET https://api.github.com/repos/{{username}}/{{repo}}
+GET {{host}}/repos/{{username}}/{{repo}}
 Accept: application/vnd.github+json
 Authorization: Bearer {{token}}
 X-GitHub-Api-Version: 2022-11-28
@@ -181,12 +183,13 @@ $ curl -L \
 ![](/ls/imgs/api/rest/github-patch-repository.png)
 
 ```http
+@host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
 @username=lucachaves
 @repo=github-repo-api
 
 ###
-PATCH https://api.github.com/repos/{{username}}/{{repo}}
+PATCH {{host}}/repos/{{username}}/{{repo}}
 Accept: application/vnd.github+json
 Authorization: Bearer {{token}}
 X-GitHub-Api-Version: 2022-11-28
@@ -219,12 +222,13 @@ $ curl -L \
 ![](/ls/imgs/api/rest/github-delete-repository.png)
 
 ```http
+@host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
 @username=lucachaves
 @repo=github-repo-api
 
 ###
-DELETE https://api.github.com/repos/{{username}}/{{repo}}
+DELETE {{host}}/repos/{{username}}/{{repo}}
 Accept: application/vnd.github+json
 Authorization: Bearer {{token}}
 X-GitHub-Api-Version: 2022-11-28

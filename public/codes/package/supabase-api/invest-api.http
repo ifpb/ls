@@ -1,0 +1,43 @@
+@host = https://qxxivxowaxwsgeruydka.supabase.co
+@token = {{$dotenv SUPABASE_KEY}}
+@createdInvestmentId = {{createInvestment.response.body.$[0].id}}
+
+### Create a investment
+# @name createInvestment
+POST {{host}}/rest/v1/investments
+apikey: {{token}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+  "name": "Tesouro Selic 2029",
+  "value": 10000
+}
+
+### Read investments
+GET {{host}}/rest/v1/investments?select=*
+apikey: {{token}}
+Authorization: Bearer {{token}}
+
+### Read a investment
+GET {{host}}/rest/v1/investments?id=eq.{{createdInvestmentId}}
+apikey: {{token}}
+Authorization: Bearer {{token}}
+
+
+### Update a investment
+PATCH  {{host}}/rest/v1/investments?id=eq.{{createdInvestmentId}}
+apikey: {{token}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+  "value": 15000
+}
+
+### Delete a investment
+DELETE {{host}}/rest/v1/investments?id=eq.{{createdInvestmentId}}
+apikey: {{token}}
+Authorization: Bearer {{token}}

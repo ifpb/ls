@@ -17,12 +17,12 @@ export const CLASSNOTE_SLUGS = [
   'package/vite',
   'w3c/event-handling',
   'w3c/dom-api',
+  'w3c/local-storage',
   'api/rest',
-  // 'package/supabase-api',
-  // 'w3c/fetch-api',
-  // 'package/axios',
-  // 'package/supabase-client',
-  // 'w3c/crud-elements',
+  'package/supabase-api',
+  'w3c/fetch-api',
+  'package/axios',
+  'package/supabase-client',
   // 'react/introduction-react',
 ];
 

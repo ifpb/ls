@@ -1,0 +1,10 @@
+@startuml
+title DELETE
+hide footbox
+skinparam monochrome true
+
+Client -> Server: DELETE /rest/v1/investments?id=eq.1
+note right: DELETE /rest/v1/investments?id=eq.1 HTTP/1.1\nHost: https://xyz.supabase.co\napikey: TOKEN\nAuthorization: Bearer TOKEN
+Server -> Client: HTTP/1.1 204 No Content
+note left: HTTP/1.1 204 No Content
+@enduml
