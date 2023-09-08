@@ -6,3 +6,46 @@ import CodePreview from '../../../../components/CodePreview.astro';
 import CodeTree from '../../../../components/CodeTree.astro';
 
 # {frontmatter.title}
+
+
+## Local Storage
+
+```js
+const name = 'value';
+
+localStorage.setItem('name', name);
+
+console.log(localStorage.getItem('name')); //=> value
+```
+
+Alternativas Remotas
+
+- [JSON Server](/ls/package/json-server)
+- [Supabase](/ls/package/supabase-api)
+- Firebase
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/data/seed.js" />
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/services/storage.js" />
+
+## Font-end (CRUD)
+
+<CodeTree src="/codes/w3c/local-storage/invest-app/" />
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/index.html" />
+
+```bash
+$ npm i @iconify/iconify
+$ npm i preline
+$ npm i @preline/overlay
+```
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/tailwind.config.js" />
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/main.js" />
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/investments.js" />
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/components/InvestmentCard.js" />
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/components/InvestmentForm.js" />
