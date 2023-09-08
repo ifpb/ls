@@ -11,6 +11,8 @@ function create(investment) {
   const createdInvestment = Storage.create(investment);
 
   InvestmentCard.create(createdInvestment);
+
+  return createdInvestment;
 }
 
 function update(investment) {
@@ -19,6 +21,8 @@ function update(investment) {
   const updatedInvestment = Storage.update(id, investment);
 
   InvestmentCard.update(updatedInvestment);
+
+  return updatedInvestment;
 }
 
 function remove(investment) {

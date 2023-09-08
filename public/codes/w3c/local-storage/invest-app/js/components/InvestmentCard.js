@@ -7,7 +7,7 @@ function create(investment) {
   const card = `
     <div
       id="investment-${investment.id}"
-      class="bg-white shadow-md rounded-lg p-4"
+      class="bg-white shadow-md rounded-lg p-4 relative"
     >
       <div class="flex justify-between items-center">
         <h3 class="investment-name text-lg font-semibold text-gray-700">
@@ -43,8 +43,11 @@ function create(investment) {
           </span>
         </p>
       </div>
-      <div class="float-right flex">
-        <span class="icon-trash mr-1 text-gray-400 hover:text-gray-700 cursor-pointer">
+      <div class="absolute bottom-4 right-4 inline-flex">
+        <span
+          class="icon-trash mr-1 text-gray-400 hover:text-gray-700 cursor-pointer"
+          data-hs-overlay="#hs-basic-modal"
+        >
           <span
             class="iconify"
             data-icon="solar:trash-bin-minimalistic-broken"
@@ -73,8 +76,12 @@ function create(investment) {
     InvestmentForm.handleSubmit((investment) => Investments.update(investment));
   };
 
-  $(`#investment-${investment.id} .icon-trash`).onclick = () =>
-    Investments.remove(investment);
+  $(`#investment-${investment.id} .icon-trash`).onclick = () => {
+    $(`.modal .investment-name`).innerText = investment.name;
+
+    $(`.modal .remove-investment-btn`).onclick = () =>
+      Investments.remove(investment);
+  };
 }
 
 function update({ id, name, value, origin, category, interest, created_at }) {

@@ -3,33 +3,44 @@ import { investments } from '../data/seed';
 
 load(investments);
 
-function storageInsert(data) {
-  localStorage.setItem('@invest-app:investments', JSON.stringify(data));
+function storageInsert(key, value) {
+  if (typeof value === 'object') {
+    value = JSON.stringify(value);
+  }
+
+  localStorage.setItem(`@invest-app:${key}`, value);
 }
 
-function storageSelect() {
-  return JSON.parse(localStorage.getItem('@invest-app:investments'));
+function storageSelect(key, isJSON = true) {
+  let value = localStorage.getItem(`@invest-app:${key}`);
+
+  if (isJSON) {
+    value = JSON.parse(value);
+  }
+
+  return value;
 }
 
 function load(data) {
-  if (localStorage.getItem('@invest-app:loaded') !== 'ok') {
-    storageInsert(data);
-    localStorage.setItem('@invest-app:loaded', 'ok');
+  if (storageSelect('loaded', false) !== 'ok') {
+    storageInsert('investments', data);
+
+    storageInsert('loaded', 'ok');
   }
 }
 
 function create(value) {
-  const values = storageSelect();
+  const values = storageSelect('investments');
 
-  value = { id: uuidv4(), ...value };
+  value = { ...value, id: uuidv4() };
 
-  storageInsert([...values, value]);
+  storageInsert('investments', [...values, value]);
 
   return value;
 }
 
 function read(id) {
-  const values = storageSelect();
+  const values = storageSelect('investments');
 
   if (id) {
     return values.find((value) => value.id === id);
@@ -39,7 +50,7 @@ function read(id) {
 }
 
 function update(id, value) {
-  const values = storageSelect();
+  const values = storageSelect('investments');
 
   const index = values.findIndex((value) => value.id === id);
 
@@ -48,7 +59,7 @@ function update(id, value) {
 
     values[index] = value;
 
-    storageInsert(values);
+    storageInsert('investments', values);
 
     return value;
   } else {
@@ -57,7 +68,7 @@ function update(id, value) {
 }
 
 function remove(id) {
-  const values = storageSelect();
+  const values = storageSelect('investments');
 
   const index = values.findIndex((value) => value.id === id);
 
@@ -65,7 +76,7 @@ function remove(id) {
     values.splice(index, 1);
   }
 
-  storageInsert(values);
+  storageInsert('investments', values);
 }
 
 export default { create, read, update, remove };
