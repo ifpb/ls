@@ -2,6 +2,8 @@
 title: Requisição Assíncrona
 ---
 
+import CodePreview from '../../../../components/CodePreview.astro';
+
 # {frontmatter.title}
 
 ### Fetch API
@@ -39,10 +41,13 @@ const data = await getCep('58015430');
 console.log(data);
 ```
 
-### Front-end
+### Invest-app (CRUD)
 
-```js title="/service/api.js"
-const API_URL = 'https://xyz.supabase.co/rest/v1';
+<CodePreview src="/codes/w3c/fetch-api/invest-app/.env.example" />
+
+```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
+const API_TOKEN = import.meta.env.VITE_APP_SUPABASE_KEY;
+const API_URL = import.meta.env.VITE_APP_SUPABASE_URL;
 
 async function create(resource, data) {}
 async function read(resource) {}
@@ -65,8 +70,8 @@ async function create(resource, data) {
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
-      apikey: '${token}'
-      Authorization: 'Bearer ${token}'
+      apikey: API_TOKEN,
+      Authorization: `Bearer ${API_TOKEN}`,
       Prefer: 'return=representation'
     },
   };
@@ -78,7 +83,7 @@ async function create(resource, data) {
 ```
 
 ```js
-import API from './service/api.js';
+import API from './js/service/api.js';
 
 const investment = {
   name: "Tesouro Selic 2029",
@@ -99,8 +104,8 @@ async function read(resource) {
   const options = {
     method: 'get',
     headers: {
-      apikey: '${token}'
-      Authorization: 'Bearer ${token}'
+      apikey: API_TOKEN,
+      Authorization: `Bearer ${API_TOKEN}`,
     },
   };
 
@@ -111,7 +116,7 @@ async function read(resource) {
 ```
 
 ```js
-import API from './service/api.js';
+import API from './js/service/api.js';
 
 API.read('investments');
 API.read('investments/?id=eq.1');
@@ -130,8 +135,8 @@ async function update(resource, data) {
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
-      apikey: '${token}'
-      Authorization: 'Bearer ${token}'
+      apikey: API_TOKEN,
+      Authorization: `Bearer ${API_TOKEN}`,
       Prefer: 'return=representation'
     },
   };
@@ -143,7 +148,7 @@ async function update(resource, data) {
 ```
 
 ```js
-import API from './service/api.js';
+import API from './js/service/api.js';
 
 API.update('investments/?id=eq.1', { value: 15000 });
 ```
@@ -159,8 +164,8 @@ async function remove(resource) {
   const options = {
     method: 'delete',
     headers: {
-      apikey: '${token}'
-      Authorization: 'Bearer ${token}'
+      apikey: API_TOKEN,
+      Authorization: `Bearer ${API_TOKEN}`,
     },
   };
 
@@ -171,7 +176,7 @@ async function remove(resource) {
 ```
 
 ```js
-import API from './service/api.js';
+import API from './js/service/api.js';
 
 API.remove('investments/?id=eq.1');
 ```

@@ -12,7 +12,10 @@ Prefer: return=representation
 
 {
   "name": "Tesouro Selic 2029",
-  "value": 10000
+  "value": 10000,
+  "origin": "Tesouro Direto",
+  "category": "Pós",
+  "interest": "100% Selic"
 }
 
 ### Read investments
