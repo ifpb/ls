@@ -6,3 +6,24 @@ import CodePreview from '../../../../components/CodePreview.astro';
 import CodeTree from '../../../../components/CodeTree.astro';
 
 # {frontmatter.title}
+
+## CLI
+
+<CodePreview src="/codes/package/json-server/db.json" />
+
+[json-server](https://www.npmjs.com/package/json-server)
+
+```bash
+$ npm init -y
+$ npm i json-server
+$ npx json-server --watch db.json
+```
+
+
+## Module
+
+<CodeTree src="/codes/package/json-server/" />
+
+<CodePreview src="/codes/package/json-server/package.json" />
+
+<CodePreview src="/codes/package/json-server/src/server.js" />
