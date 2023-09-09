@@ -6,7 +6,7 @@ import CodeTree from '../../../../components/CodeTree.astro';
 
 # {frontmatter.title}
 
-### Supabase JavaScript Client
+## Supabase JavaScript Client
 
 JavaScript Client Library: [@supabase/supabase-js](https://supabase.com/docs/reference/javascript/introduction)
 
@@ -31,11 +31,13 @@ const { data, error } = await supabase
 console.log(data);
 ```
 
-### Invest-app (CRUD)
+## Invest-app (CRUD)
+
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/package/supabase-client/invest-app/)
 
 <CodeTree src="/codes/package/supabase-client/invest-app/" />
 
-```js title="/codes/package/axios/supabase-client/js/services/storage.js"
+```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
 import { createClient } from '@supabase/supabase-js';
 
 const API_KEY = import.meta.env.VITE_APP_SUPABASE_KEY;
@@ -51,13 +53,13 @@ async function remove(resource) {}
 export default { create, read, update, remove };
 ```
 
-#### Create a investment
+### Create a investment
 
 ![](/ls/imgs/package/supabase-api/post-investment.png)
 
 [Supabase - JavaScript Client - Insert](https://supabase.com/docs/reference/javascript/insert)
 
-```js title="/codes/package/axios/supabase-client/js/services/storage.js"
+```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
 async function create(resource, data) {
   const { data: createdData, error } = await supabase
     .from(resource)
@@ -73,7 +75,7 @@ async function create(resource, data) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
 const investment = {
   name: "Tesouro Selic 2029",
@@ -84,16 +86,16 @@ const investment = {
   created_at: "2021-09-10T00:00:00-03:00",
 };
 
-API.create('investments', investment);
+Storage.create('investments', investment);
 ```
 
-#### Read investments
+### Read investments
 
 ![](/ls/imgs/package/supabase-api/get-investments.png)
 
 [Supabase - JavaScript Client - Fetch data](https://supabase.com/docs/reference/javascript/select)
 
-```js title="/codes/package/axios/supabase-client/js/services/storage.js"
+```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
 async function read(resource, id) {
   let select = '*';
 
@@ -112,19 +114,19 @@ async function read(resource, id) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
-API.read('investments');
-API.read('investments', 1);
+Storage.read('investments');
+Storage.read('investments', 1);
 ```
 
-#### Update a investment
+### Update a investment
 
 ![](/ls/imgs/package/supabase-api/patch-investment.png)
 
 [Supabase - JavaScript Client - Update](https://supabase.com/docs/reference/javascript/update)
 
-```js title="/codes/package/axios/supabase-client/js/services/storage.js"
+```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
 async function update(resource, data) {
   const { data: updatedData, error } = await supabase
     .from(resource)
@@ -141,18 +143,18 @@ async function update(resource, data) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
-API.update('investments', { id: 1, value: 15000 });
+Storage.update('investments', { id: 1, value: 15000 });
 ```
 
-#### Delete a investment
+### Delete a investment
 
 ![](/ls/imgs/package/supabase-api/delete-investment.png)
 
 [Supabase - JavaScript Client - Delete](https://supabase.com/docs/reference/javascript/delete)
 
-```js title="/codes/package/axios/supabase-client/js/services/storage.js"
+```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
 async function remove(resource, id) {
   const { error } = await supabase
     .from(resource)
@@ -168,7 +170,7 @@ async function remove(resource, id) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
-API.remove('investments', 1);
+Storage.remove('investments', 1);
 ```

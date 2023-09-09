@@ -24,7 +24,7 @@ import CodePreview from '../../../../components/CodePreview.astro';
 
 ![](/imgs/api/rest/viacep-get.png)
 
-[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client):
+[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) ([Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/api/rest/)):
 
 <CodePreview src="/codes/api/rest/viacep.http" />
 
@@ -36,22 +36,31 @@ $ curl https://viacep.com.br/ws/58015430/json/
 
 ## Github REST API
 
-Exemplos:
+- Exemplos
+  - [{'https://api.github.com/users/lucachaves'}](https://api.github.com/users/lucachaves)
+  - [{'https://api.github.com/orgs/ifpb/repos'}](https://api.github.com/orgs/ifpb/repos)
+  - [{'https://api.github.com/repos/ifpb/ls'}](https://api.github.com/repos/ifpb/ls)
+  {/* - [Exemplo](https://ifpb.github.io/challenges/web/front-end/js/github-profile-comparator/) */}
+- Token
+  - [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+  - [Authenticating to the REST API](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28)
+    - [Authenticating with a personal access token](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token)
+  - [Quickstart for GitHub REST API](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
+    - [Getting started using curl](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28#getting-started-using-curl)
+- [GitHub - REST API - Doc](https://docs.github.com/en/rest?apiVersion=2022-11-28)
 
-- [{'https://api.github.com/users/lucachaves'}](https://api.github.com/users/lucachaves)
-- [{'https://api.github.com/orgs/ifpb/repos'}](https://api.github.com/orgs/ifpb/repos)
-- [{'https://api.github.com/repos/ifpb/ls'}](https://api.github.com/repos/ifpb/ls)
-{/* - [Exemplo](https://ifpb.github.io/challenges/web/front-end/js/github-profile-comparator/) */}
+### Rotas
 
-### Token
+| Método | Caminho                                | Status | Resposta                              |
+| ------ | -------------------------------------- | ------ | --------------------------------------------- |
+| POST   | `/user/repos`                          | `201`  | Cria um novo repositório                      |
+| GET    | `/users/lucachaves/repos`              | `200`  | Retorna todos os repositórios                 |
+| GET    | `/users/lucachaves/repos?type=private` | `200`  | Retorna todos os repositórios privados        |
+| GET    | `/repos/lucachaves/ls`                 | `200`  | Retorna o repositório com nome lucachaves/ls  |
+| PATCH  | `/repos/lucachaves/ls`                 | `200`  | Atualiza o repositório com nome lucachaves/ls |
+| DELETE | `/repos/lucachaves/ls`                 | `204`  | Exclui o repositório com nome lucachaves/ls   |
 
-- [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-- [Authenticating to the REST API](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28)
-  - [Authenticating with a personal access token](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token)
-- [Quickstart for GitHub REST API](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
-  - [Getting started using curl](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28#getting-started-using-curl)
-
-### HTTP
+[Código Fonte das requisições (Rest Client)](https://github.com/ifpb/ls/tree/main/public/codes/api/rest/)
 
 [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
   - Respostas de informação (100-199)
@@ -72,21 +81,13 @@ Exemplos de Códigos
 | `404`  | Not Found             | O servidor não pode encontrar o recurso solicitado                              |
 | `500`  | Internal Server Error | O servidor encontrou uma situação com a qual não sabe lidar.                    |
 
-
-### Rotas
-
-| Método | Caminho                                | Status | Resposta                                      |
-| ------ | -------------------------------------- | ------ | --------------------------------------------- |
-| POST   | `/user/repos`                          | `201`  | Cria um novo repositório                      |
-| GET    | `/users/lucachaves/repos`              | `200`  | Retorna todos os repositórios                 |
-| GET    | `/users/lucachaves/repos?type=private` | `200`  | Retorna todos os repositórios privados        |
-| GET    | `/repos/lucachaves/ls`                 | `200`  | Retorna o repositório com nome lucachaves/ls  |
-| PATCH  | `/repos/lucachaves/ls`                 | `200`  | Atualiza o repositório com nome lucachaves/ls |
-| DELETE | `/repos/lucachaves/ls`                 | `204`  | Exclui o repositório com nome lucachaves/ls   |
-
 ### Create a repository
 
 ![](/ls/imgs/api/rest/github-post-repository.png)
+
+[GitHub - REST API - Create a repository for the authenticated user](https://docs.github.com/en/free-pro-team@latest/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-for-the-authenticated-user)
+
+<CodePreview src="/codes/api/rest/.env.example" />
 
 ```http
 @host=https://api.github.com
@@ -121,11 +122,11 @@ $ curl -L \
   -d '{"name":"github-repo-api","description":"This is your first repo!","homepage":"https://github.com","private":false,"is_template":true}'
 ```
 
-[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Create a repository for the authenticated user](https://docs.github.com/en/free-pro-team@latest/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-for-the-authenticated-user))
-
 ### Read repositories
 
 ![](/ls/imgs/api/rest/github-get-repositories.png)
+
+[GitHub - REST API - List repositories for a user](https://docs.github.com/en/free-pro-team@latest/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user)
 
 ```http
 @host=https://api.github.com
@@ -147,11 +148,12 @@ $ curl -L \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/users/lucachaves/repos
 ```
-[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([List repositories for a user](https://docs.github.com/en/free-pro-team@latest/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user))
 
 ### Read a repository (name)
 
 ![](/ls/imgs/api/rest/github-get-repository.png)
+
+[GitHub - REST API - Get a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository)
 
 ```http
 @host=https://api.github.com
@@ -176,11 +178,11 @@ $ curl -L \
    https://api.github.com/repos/lucachaves/github-repo-api
 ```
 
-[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Get a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository))
-
 ### Update a repository
 
 ![](/ls/imgs/api/rest/github-patch-repository.png)
+
+[GitHub - REST API - Update a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#update-a-repository)
 
 ```http
 @host=https://api.github.com
@@ -215,11 +217,11 @@ $ curl -L \
    -d '{"name":"github-repo-api","description":"This is your first repo!","homepage":"https://github.com","private":false,"is_template":false}'
 ```
 
-[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Update a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#update-a-repository))
-
 ### Delete a repository
 
 ![](/ls/imgs/api/rest/github-delete-repository.png)
+
+[GitHub - REST API - Delete a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#delete-a-repository)
 
 ```http
 @host=https://api.github.com
@@ -243,5 +245,3 @@ $ curl -L \
    -H "X-GitHub-Api-Version: 2022-11-28" \
    https://api.github.com/repos/lucachaves/github-repo-api
 ```
-
-[GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) ([Delete a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#delete-a-repository))

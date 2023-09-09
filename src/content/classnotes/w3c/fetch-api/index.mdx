@@ -91,11 +91,13 @@ makeRequest('GET', resource)
 
 ![](/ls/imgs/w3c/fetch-api/invest-app-crud.png)
 
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/w3c/fetch-api/invest-app/)
+
 <CodeTree src="/codes/w3c/fetch-api/invest-app/" />
 
 <CodePreview src="/codes/w3c/fetch-api/invest-app/.env.example" />
 
-```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
+```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
 const API_TOKEN = import.meta.env.VITE_APP_SUPABASE_KEY;
 const API_URL = import.meta.env.VITE_APP_SUPABASE_URL;
 
@@ -111,19 +113,19 @@ export default { create, read, update, remove };
 
 ![](/ls/imgs/package/supabase-api/post-investment.png)
 
-```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
+```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
 async function create(resource, data) {
   resource = `${API_URL}/${resource}`;
 
   const options = {
-    method: 'post',
-    body: JSON.stringify(data),
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
       Prefer: 'return=representation',
       'Content-Type': 'application/json',
     },
+    method: 'post',
+    body: JSON.stringify(data),
   };
 
   const res = await fetch(resource, options);
@@ -135,7 +137,7 @@ async function create(resource, data) {
 ```
 
 ```js
-import API from './js/services/api.js';
+import Storage from './js/services/storage.js';
 
 const investment = {
   name: "Tesouro Selic 2029",
@@ -146,23 +148,23 @@ const investment = {
   created_at: "2021-09-10T00:00:00-03:00",
 };
 
-API.create('investments', investment);
+Storage.create('investments', investment);
 ```
 
 #### Read investments
 
 ![](/ls/imgs/package/supabase-api/get-investments.png)
 
-```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
+```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
 async function read(resource) {
   resource = `${API_URL}/${resource}`;
 
   const options = {
-    method: 'get',
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
+    method: 'get',
   };
 
   const res = await fetch(resource, options);
@@ -172,29 +174,29 @@ async function read(resource) {
 ```
 
 ```js
-import API from './js/services/api.js';
+import Storage from './js/services/storage.js';
 
-API.read('investments');
-API.read('investments/?id=eq.1');
+Storage.read('investments');
+Storage.read('investments/?id=eq.1');
 ```
 
 #### Update a investment
 
 ![](/ls/imgs/package/supabase-api/patch-investment.png)
 
-```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
+```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
 async function update(resource, data) {
   resource = `${API_URL}/${resource}`;
 
   const options = {
-    method: 'patch',
-    body: JSON.stringify(data),
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
       Prefer: 'return=representation',
       'Content-Type': 'application/json',
     },
+    method: 'patch',
+    body: JSON.stringify(data),
   };
 
   const res = await fetch(resource, options);
@@ -206,25 +208,25 @@ async function update(resource, data) {
 ```
 
 ```js
-import API from './js/services/api.js';
+import Storage from './js/services/storage.js';
 
-API.update('investments/?id=eq.1', { value: 15000 });
+Storage.update('investments/?id=eq.1', { value: 15000 });
 ```
 
 #### Delete a investment
 
 ![](/ls/imgs/package/supabase-api/delete-investment.png)
 
-```js title="/codes/w3c/fetch-api/invest-app/js/service/api.js"
+```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
 async function remove(resource) {
   resource = `${API_URL}/${resource}`;
 
   const options = {
-    method: 'delete',
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
+    method: 'delete',
   };
 
   const res = await fetch(resource, options);
@@ -234,7 +236,7 @@ async function remove(resource) {
 ```
 
 ```js
-import API from './js/services/api.js';
+import Storage from './js/services/storage.js';
 
-API.remove('investments/?id=eq.1');
+Storage.remove('investments/?id=eq.1');
 ```

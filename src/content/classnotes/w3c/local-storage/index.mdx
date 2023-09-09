@@ -7,8 +7,7 @@ import CodeTree from '../../../../components/CodeTree.astro';
 
 # {frontmatter.title}
 
-
-## Local Storage
+## Objeto localStorage
 
 ```js
 const name = 'value';
@@ -28,17 +27,160 @@ Alternativas Remotas
 
 - [JSON Server](/ls/package/json-server)
 - [Supabase](/ls/package/supabase-api)
-- Firebase
+- [Firebase](/ls/package/firebase-firestore)
 
-<CodePreview src="/codes/w3c/local-storage/invest-app/js/data/seed.js" />
-
-<CodePreview src="/codes/w3c/local-storage/invest-app/js/services/storage.js" />
 
 ## Invest-app (CRUD)
 
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/w3c/local-storage/invest-app/)
+
 <CodeTree src="/codes/w3c/local-storage/invest-app/" />
 
-<CodePreview src="/codes/w3c/local-storage/invest-app/index.html" />
+## Local Storage
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/data/seed.js" />
+
+```js title="/codes/w3c/local-storage/invest-app/js/services/storage.js"
+import { v4 as uuidv4 } from 'uuid';
+
+function storageInsert(key, value) {
+  if (typeof value === 'object') {
+    value = JSON.stringify(value);
+  }
+
+  localStorage.setItem(`@invest-app:${key}`, value);
+}
+
+function storageSelect(key, isJSON = true) {
+  let value = localStorage.getItem(`@invest-app:${key}`);
+
+  if (isJSON) {
+    value = JSON.parse(value);
+  }
+
+  return value;
+}
+
+function load(resourse, data) {
+  if (storageSelect('loaded', false) !== 'ok') {
+    storageInsert(resourse, data);
+
+    storageInsert('loaded', 'ok');
+  }
+}
+
+function create(resourse, value) {}
+
+function read(resourse, id) {}
+
+function update(resourse, id, value) {}
+
+function remove(resourse, id) {}
+
+export default { load, create, read, update, remove };
+```
+
+### Create a investment
+
+```js title="/codes/w3c/local-storage/invest-app/js/services/storage.js"
+function create(resource, value) {
+  const values = storageSelect(resource);
+
+  value = { ...value, id: uuidv4() };
+
+  storageInsert(resource, [...values, value]);
+
+  return value;
+}
+```
+
+```js
+import Storage from './services/storage.js';
+
+const investment = {
+  name: "Tesouro Selic 2029",
+  value: 10000,
+  origin: "Tesouro Direto",
+  category: "Pós",
+  interest: "100% Selic",
+  created_at: "2021-09-10T00:00:00-03:00",
+};
+
+Storage.create('investments', investment);
+```
+
+### Read investments
+
+```js title="/codes/w3c/local-storage/invest-app/js/services/storage.js"
+function read(resourse, id) {
+  const values = storageSelect(resourse);
+
+  if (id) {
+    return values.find((value) => value.id === id);
+  } else {
+    return values;
+  }
+}
+```
+
+```js
+import Storage from './services/storage.js';
+
+Storage.read('investments');
+Storage.read('investments', 1);
+```
+
+### Update a investment
+
+```js title="/codes/w3c/local-storage/invest-app/js/services/storage.js"
+function update(resourse, id, value) {
+  const values = storageSelect(resourse);
+
+  const index = values.findIndex((value) => value.id === id);
+
+  if (index >= 0) {
+    value = { id, ...value };
+
+    values[index] = {...values[index], ...value};
+
+    storageInsert(resourse, values);
+
+    return value;
+  } else {
+    return false;
+  }
+}
+```
+
+```js
+import Storage from './services/storage.js';
+
+Storage.update('investments', { id: 1, value: 15000 });
+```
+
+### Delete a investment
+
+```js title="/codes/w3c/local-storage/invest-app/js/services/storage.js"
+function remove(resourse, id) {
+  const values = storageSelect(resourse);
+
+  const index = values.findIndex((value) => value.id === id);
+
+  if (index >= 0) {
+    values.splice(index, 1);
+  }
+
+  storageInsert(resourse, values);
+}
+```
+
+```js
+import Storage from './services/storage.js';
+
+Storage.remove('investments', 1);
+```
+
+## Front-end
 
 ```bash
 $ npm i @iconify/iconify
@@ -48,9 +190,19 @@ $ npm i @preline/overlay
 
 <CodePreview src="/codes/w3c/local-storage/invest-app/tailwind.config.js" />
 
+<CodePreview src="/codes/w3c/local-storage/invest-app/index.html" />
+
 <CodePreview src="/codes/w3c/local-storage/invest-app/js/main.js" />
 
+### Utilitários
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/lib/dom.js" />
+
+<CodePreview src="/codes/w3c/local-storage/invest-app/js/lib/format.js" />
+
 <CodePreview src="/codes/w3c/local-storage/invest-app/js/lib/investments.js" />
+
+### Componentes
 
 <CodePreview src="/codes/w3c/local-storage/invest-app/js/components/InvestmentCard.js" />
 

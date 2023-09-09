@@ -1,7 +1,4 @@
 import { v4 as uuidv4 } from 'uuid';
-import { investments } from '../data/seed';
-
-load(investments);
 
 function storageInsert(key, value) {
   if (typeof value === 'object') {
@@ -21,26 +18,26 @@ function storageSelect(key, isJSON = true) {
   return value;
 }
 
-function load(data) {
+function load(resourse, data) {
   if (storageSelect('loaded', false) !== 'ok') {
-    storageInsert('investments', data);
+    storageInsert(resourse, data);
 
     storageInsert('loaded', 'ok');
   }
 }
 
-function create(value) {
-  const values = storageSelect('investments');
+function create(resourse, value) {
+  const values = storageSelect(resourse);
 
   value = { ...value, id: uuidv4() };
 
-  storageInsert('investments', [...values, value]);
+  storageInsert(resourse, [...values, value]);
 
   return value;
 }
 
-function read(id) {
-  const values = storageSelect('investments');
+function read(resourse, id) {
+  const values = storageSelect(resourse);
 
   if (id) {
     return values.find((value) => value.id === id);
@@ -49,17 +46,17 @@ function read(id) {
   }
 }
 
-function update(id, value) {
-  const values = storageSelect('investments');
+function update(resourse, id, value) {
+  const values = storageSelect(resourse);
 
   const index = values.findIndex((value) => value.id === id);
 
   if (index >= 0) {
     value = { id, ...value };
 
-    values[index] = value;
+    values[index] = { ...values[index], ...value };
 
-    storageInsert('investments', values);
+    storageInsert(resourse, values);
 
     return value;
   } else {
@@ -67,8 +64,8 @@ function update(id, value) {
   }
 }
 
-function remove(id) {
-  const values = storageSelect('investments');
+function remove(resourse, id) {
+  const values = storageSelect(resourse);
 
   const index = values.findIndex((value) => value.id === id);
 
@@ -76,7 +73,7 @@ function remove(id) {
     values.splice(index, 1);
   }
 
-  storageInsert('investments', values);
+  storageInsert(resourse, values);
 }
 
-export default { create, read, update, remove };
+export default { load, create, read, update, remove };

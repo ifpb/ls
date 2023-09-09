@@ -7,6 +7,8 @@ import CodeTree from '../../../../components/CodeTree.astro';
 
 # {frontmatter.title}
 
+## Objeto Axios
+
 [axios](https://axios-http.com/)
 
 ```bash
@@ -17,10 +19,11 @@ $ npm install axios
 
 ### Invest-app (CRUD)
 
-#### Axios Config
-
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/package/axios/invest-app/)
 
 <CodeTree src="/codes/package/axios/invest-app/" />
+
+#### Axios Config
 
 <CodePreview src="/codes/package/axios/invest-app/js/services/api.js" />
 
@@ -50,7 +53,7 @@ async function create(resource, data) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
 const investment = {
   name: "Tesouro Selic 2029",
@@ -61,7 +64,7 @@ const investment = {
   created_at: "2021-09-10T00:00:00-03:00",
 };
 
-API.create('investments', investment);
+Storage.create('investments', investment);
 ```
 
 #### Read investments
@@ -79,10 +82,10 @@ async function read(resource) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
-API.read('investments');
-API.read('investments/?id=eq.1');
+Storage.read('investments');
+Storage.read('investments/?id=eq.1');
 ```
 
 #### Update a investment
@@ -100,9 +103,9 @@ async function update(resource, data) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
-API.update('investments/?id=eq.1', { value: 15000 });
+Storage.update('investments/?id=eq.1', { value: 15000 });
 ```
 
 #### Delete a investment
@@ -124,7 +127,7 @@ async function remove(resource) {
 ```
 
 ```js
-import API from './services/api.js';
+import Storage from './services/storage.js';
 
-API.remove('investments/?id=eq.1');
+Storage.remove('investments/?id=eq.1');
 ```

@@ -1,0 +1,37 @@
+---
+title: Date
+---
+
+# {frontmatter.title}
+
+https://www.timestamp-converter.com/
+
+new Date()
+new Date().toLocaleDateString('pt-br')
+new Date().toISOString()
+
+date = new Date('2023-09-01')
+date.toLocaleDateString('pt-br')
+date.toISOString()
+date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000)
+date.toLocaleDateString('pt-br')
+
+
+new Date(Date.UTC(2023, 9, 1, 0, 0, 0))
+new Date(Date.UTC(2023, 9, 1, 0, 0, 0)).toLocaleDateString('pt-br')
+new Date(Date.UTC(2023, 9, 1, 0, 0, 0)).toISOString()
+
+
+ISO 8601
+new Date('2023-09-01T03:00:00.000Z').toLocaleDateString('pt-br')
+
+new Date('2023-09-01T00:00:00-03:00').toLocaleDateString('pt-br')
+
+Intl.DateTimeFormat('pt-br').format(date);
+Intl.DateTimeFormat('pt-br', {timeZone: 'America/Sao_Paulo'}).format(date);
+
+https://npmtrends.com/date-fns-vs-dayjs-vs-luxon-vs-moment
+https://momentjs.com/
+https://date-fns.org/
+https://day.js.org/
+luxon

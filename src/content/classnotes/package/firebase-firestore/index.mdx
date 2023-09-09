@@ -1,0 +1,186 @@
+---
+title: Cloud Firestore
+---
+
+import CodePreview from '../../../../components/CodePreview.astro';
+import CodeTree from '../../../../components/CodeTree.astro';
+
+# {frontmatter.title}
+
+## Projeto Firebase
+
+- [Get started with Cloud Firestore](https://firebase.google.com/docs/firestore/quickstart)
+  - [Firebase Console](https://console.firebase.google.com/)
+  - Seus projetos do Firebase > Adicionar projeto
+    - Criar um projeto
+    - Google Analytics para seu projeto Firebase
+    - Configurar o Google Analytics
+  - Adicionar o Firebase ao seu aplicativo da Web
+    - Registrar app
+    - Copiar configuração
+  - [Cloud Firestore](https://firebase.google.com/docs/firestore)
+
+```bash
+$ npm install firebase
+```
+
+```js
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "...",
+  authDomain: "...",
+  projectId: "...",
+  storageBucket: "...",
+  messagingSenderId: "...",
+  appId: "...",
+  measurementId: "...",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+```
+
+## Invest-app (CRUD)
+
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/package/firebase-firestore/invest-app/)
+
+<CodeTree src="/codes/package/firebase-firestore/invest-app/" />
+
+[Firebase - Firestore - Initialize Cloud Firestore](https://firebase.google.com/docs/firestore/query-data/get-data#initialize)
+
+<CodePreview src="/codes/package/firebase-firestore/invest-app/.env.example" />
+
+<CodePreview src="/codes/package/firebase-firestore/invest-app/js/services/api.js" />
+
+```js title="/codes/package/firebase-firestore/invest-app/js/services/storage.js"
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
+import { db } from './api.js';
+
+async function create(resource, data) {}
+async function read(resource, filter, value) {}
+async function update(resource, data) {}
+async function remove(resource, id) {}
+
+export default { create, read, update, remove };
+```
+
+### Create a investment
+
+[Firebase - Firestore - Add a document](https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document)
+
+```js title="/codes/package/firebase-firestore/invest-app/js/services/storage.js"
+async function create(resource, data) {
+  data.created_at = new Date(data.created_at);
+
+  const colRef = collection(db, resource);
+
+  const docRef = await addDoc(colRef, data);
+
+  return { ...data, id: docRef.id };
+}
+```
+
+```js
+import API from './services/storage.js';
+
+const investment = {
+  name: "Tesouro Selic 2029",
+  value: 10000,
+  origin: "Tesouro Direto",
+  category: "Pós",
+  interest: "100% Selic",
+  created_at: "2021-09-10T00:00:00-03:00",
+};
+
+API.create('investments', investment);
+```
+
+### Read investments
+
+[Firebase - Firestore - Get a document](https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document)
+
+```js title="/codes/package/firebase-firestore/invest-app/js/services/storage.js"
+async function read(resource, filter, value) {
+  const data = [];
+
+  const colRef = collection(db, resource);
+
+  let docs;
+
+  if (filter && value) {
+    const q = query(colRef, where(filter, '==', value));
+
+    docs = await getDocs(q);
+  } else {
+    docs = await getDocs(colRef);
+  }
+
+  docs.forEach((docRef) => data.push({ ...docRef.data(), id: docRef.id }));
+
+  return data;
+}
+```
+
+```js
+import API from './services/storage.js';
+
+API.read('investments');
+API.read('investments', 'id', 1);
+```
+
+### Update a investment
+
+[Firebase - Firestore - Update a document](https://firebase.google.com/docs/firestore/manage-data/add-data#update-data)
+
+```js title="/codes/package/firebase-firestore/invest-app/js/services/storage.js"
+async function update(resource, data) {
+  data.created_at = new Date(data.created_at);
+
+  const docRef = doc(db, resource, data.id);
+
+  await updateDoc(docRef, data);
+
+  return data;
+}
+```
+
+```js
+import API from './services/storage.js';
+
+API.update('investments', { id: 1, value: 15000 });
+```
+
+### Delete a investment
+
+[Firebase - Firestore - Delete a document](https://firebase.google.com/docs/firestore/manage-data/delete-data)
+
+```js title="/codes/package/firebase-firestore/invest-app/js/services/storage.js"
+async function remove(resource, id) {
+  const docRef = doc(db, resource, id);
+
+  return await deleteDoc(docRef);
+}
+```
+
+```js
+import API from './services/storage.js';
+
+API.remove('investments', 1);
+```
