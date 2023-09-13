@@ -1,5 +1,157 @@
 ---
-title: Introdução ao ReactJS
+title: React Hooks
 ---
 
 # {frontmatter.title}
+
+## Estado (useState)
+
+src/components/App.jsx:
+
+```jsx
+import foods from '../models/foods';
+import Food from './Food';
+
+function App() {
+  const handleClick = () => {
+    const newFood = {
+      id: 5,
+      name: 'Batata',
+      image: 'imgs/batatafrita.jpg',
+    };
+
+    foods.push(newFood);
+  };
+
+  return (
+    <>
+      <h1>Menu</h1>
+      <button
+        type="button"
+        className="btn btn-secondary rounded-circle mr-4 font-weight-bold"
+        onClick={handleClick}
+      >
+        +
+      </button>
+      <section className="card-deck my-3">
+        {foods.map((food) => (
+          <Food food={food} key={food.id} />
+        ))}
+      </section>
+    </>
+  );
+}
+
+export default App;
+```
+
+src/components/App.jsx (useState):
+
+```jsx
+import { useState } from 'react';
+
+import data from './models/foods';
+import Food from './components/Food';
+
+function App() {
+  const [foods, setFoods] = useState(data);
+
+  const handleClick = () => {
+    const newFood = {
+      id: 5,
+      name: 'Batata',
+      image: 'imgs/batatafrita.jpg',
+    };
+
+    setFoods([...foods, newFood]);
+
+    console.log(foods);
+  };
+
+  return (
+    <>
+      <h1>Menu</h1>
+      <button
+        type="button"
+        className="btn btn-secondary rounded-circle mr-4 font-weight-bold"
+        onClick={handleClick}
+      >
+        +
+      </button>
+      <section className="card-deck my-3">
+        {foods.map((food) => (
+          <Food food={food} key={food.id} />
+        ))}
+      </section>
+    </>
+  );
+}
+
+export default App;
+
+```
+
+## Efeitos Colaterais (useEffect)
+
+src/components/App.jsx:
+
+```jsx
+import { useEffect, useRef, useState } from 'react';
+import { Button, CardDeck, Container } from 'react-bootstrap';
+
+import Food from './components/Food';
+import FoodForm from './components/FoodForm';
+import api from './services/api';
+
+import 'bootstrap/dist/css/bootstrap.css';
+
+function App() {
+  const [foods, setFoods] = useState([]);
+  const [isShowFoodForm, setIsShowFoodForm] = useState(false);
+
+  const buttonEl = useRef(null);
+
+  const handleClick = (event) => {
+    setIsShowFoodForm(true);
+
+    event.currentTarget.blur();
+  };
+
+  useEffect(() => {
+    const loadFoods = async () => {
+      const data = await api.readAll();
+
+      setFoods([...foods, ...data]);
+    };
+
+    loadFoods();
+  }, []);
+
+  return (
+    <Container>
+      <h1 className="mt-5 text-center">Menu</h1>
+      <div className="text-right">
+        <Button
+          variant="secondary"
+          className="rounded-circle mr-4 font-weight-bold"
+          onClick={handleClick}
+          ref={buttonEl}
+        >
+          +
+        </Button>
+      </div>
+      <CardDeck className="my-3">
+        {foods.map((food) => (
+          <Food food={food} key={food.id} />
+        ))}
+      </CardDeck>
+      <FoodForm
+        isShowFoodForm={isShowFoodForm}
+        setIsShowFoodForm={setIsShowFoodForm}
+      />
+    </Container>
+  );
+}
+
+export default App;
+```

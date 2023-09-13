@@ -1,7 +1,7 @@
 export const GITHUB_EDIT_URL = 'https://github.com/ifpb/ls/tree/main';
 
 export const CLASSNOTE_SLUGS = [
-  'ecma/introduction-ecma',
+  'ecma/introduction',
   'ecma/variable',
   'ecma/expression-and-operator',
   'ecma/statements',
@@ -26,7 +26,7 @@ export const CLASSNOTE_SLUGS = [
   'package/supabase-client',
   'package/firebase-firestore',
   'ecma/regexp',
-  // 'react/introduction-react',
+  'react/introduction',
 ];
 
 export const MENU = [

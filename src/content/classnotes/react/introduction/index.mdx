@@ -1,0 +1,682 @@
+---
+title: ReactJS
+---
+
+# {frontmatter.title}
+
+## Projeto Next.js
+
+```bash
+$ npx create-next-app
+✔ What is your project named? invest-app
+✔ Would you like to use TypeScript with this project? No / Yes
+✔ Would you like to use ESLint with this project? No / Yes
+✔ Would you like to use Tailwind CSS with this project? No / Yes
+✔ Would you like to use `src/` directory with this project? No / Yes
+✔ Use App Router (recommended)? No / Yes
+✔ Would you like to customize the default import alias? No / Yes
+Creating a new Next.js app in /codes/react/introduction/invest-app.
+
+Using npm.
+
+Initializing project with template: app-tw
+
+
+Installing dependencies:
+- react
+- react-dom
+- next
+- tailwindcss
+- postcss
+- autoprefixer
+- eslint
+- eslint-config-next
+
+
+added 323 packages, and audited 324 packages in 28s
+
+117 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+
+```text title="Arquivos"
+invest-app
+├── README.md
+├── jsconfig.json
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── public
+│   ├── next.svg
+│   └── vercel.svg
+├── src
+│   └── app
+│       ├── favicon.ico
+│       ├── globals.css
+│       ├── layout.js
+│       └── page.js
+└── tailwind.config.js
+```
+
+## Componentes
+
+### Multiplataforma
+
+![](/imgs/react/introduction/components-reactjs.png)
+
+- Web: [react-dom](https://github.com/facebook/react/) (ReactJS), [react-native-dom](https://github.com/vincentriemer/react-native-dom) (React Native)
+- Mobile: android-native, ios-native ([React Native](https://reactnative.dev/))
+- Desktop: [react-native-windows](https://github.com/Microsoft/react-native-windows), [proton-native](https://github.com/kusti8/proton-native) (React Native)
+- TV: [react-native-tvos](https://github.com/react-native-tvos/react-native-tvos) (React Native)
+- [Outras](https://reactnative.dev/docs/out-of-tree-platforms)
+
+![](/imgs/react/introduction/components-react-native.png)
+
+### Declaração
+
+Function Component
+
+```jsx
+export default function Home() {
+  return <h1>Investimentos</h1>
+}
+```
+
+Class Component
+
+```jsx
+export default class App extends React.Component {
+  render() {
+    return <h1>Investimentos</h1>;
+  }
+}
+```
+
+## Fragment
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+export default function Home() {
+  return (
+    <>
+      <h1 className="text-center text-2xl my-12 font-bold">Investimentos</h1>
+
+      <div className="investments grid grid-cols-3 gap-3">
+      </div>
+    </>
+  );
+}
+```
+
+## JavaScript XML (JSX)
+
+Regras
+
+- Return a single root element
+- Close all the tags
+- camelCase all most of the things!
+
+Curly Braces
+
+- Passing strings with quotes
+- Text and Attributes
+- double curlies
+
+Exemplo
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+import { investments } from '@/data/seed';
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function Home() {
+  const investment = {
+    id: 'b9f2414d-b8dd-484d-8179-83383d10a3fd',
+    name: 'Tesouro Selic 2029',
+    value: 10050,
+    origin: 'Tesouro Nacional',
+    category: 'Pós',
+    created_at: '2023-08-22T00:00:00-03:00',
+    interest: '100% Selic',
+  };
+
+  return (
+    <>
+      <h1 className="text-center text-2xl my-12 font-bold">Investimentos</h1>
+
+      <div className="investments grid grid-cols-3 gap-3">
+        <div className="bg-white shadow-md rounded-lg p-4 relative">
+          <div className="flex justify-between items-center">
+            <h3 className="investment-name text-lg font-semibold text-gray-700">
+              {investment.name}
+            </h3>
+            <p className="investment-value text-lg font-semibold text-gray-700">
+              {formatCurrency(investment.value / 100)}
+            </p>
+          </div>
+          <div className="mt-4">
+            <p className="text-sm text-gray-500">
+              <span className="font-bold mr-1">Origem:</span>
+              <span className="investment-origin">{investment.origin}</span>
+            </p>
+            <p className="text-sm text-gray-500">
+              <span className="font-bold mr-1">Categoria:</span>
+              <span className="investment-category">{investment.category}</span>
+            </p>
+            <p className="text-sm text-gray-500">
+              <span className="font-bold mr-1">Taxa:</span>
+              <span className="investment-interest">{investment.interest}</span>
+            </p>
+            <p className="text-sm text-gray-500">
+              <span className="font-bold mr-1">Data:</span>
+              <span className="investment-created_at">
+                {formatDate(investment.created_at)}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+## Propriedades
+
+### props
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+import InvestmentCard from '@/components/InvestmentCard';
+
+export default function Home() {
+  const investment = {
+    id: 'b9f2414d-b8dd-484d-8179-83383d10a3fd',
+    name: 'Tesouro Selic 2029',
+    value: 10050,
+    origin: 'Tesouro Nacional',
+    category: 'Pós',
+    created_at: '2023-08-22T00:00:00-03:00',
+    interest: '100% Selic',
+  };
+
+  return (
+    <>
+      <h1 className="text-center text-2xl my-12 font-bold">Investimentos</h1>
+
+      <div className="investments grid grid-cols-3 gap-3">
+        <InvestmentCard investment={investment} />
+      </div>
+    </>
+  );
+}
+```
+
+```jsx title="/codes/react/introduction/invest-app/src/components/InvestmentCard.jsx"
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function InvestmentCard(props) {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <h3 className="investment-name text-lg font-semibold text-gray-700">
+          {props, investment.name}
+        </h3>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {formatCurrency(props, investment.value / 100)}
+        </p>
+      </div>
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Origem:</span>
+          <span className="investment-origin">{props, investment.origin}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Categoria:</span>
+          <span className="investment-category">{props, investment.category}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Taxa:</span>
+          <span className="investment-interest">{props, investment.interest}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Data:</span>
+          <span className="investment-created_at">
+            {formatDate(props, investment.created_at)}
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### Object (double curlies)
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+<InvestmentCard
+  id="b9f2414d-b8dd-484d-8179-83383d10a3fd"
+  name={`Tesouro Selic ${2029}`}
+  value={10050}
+  origin="Tesouro Nacional"
+  category="Pós"
+  created_at="2023-08-22T00:00:00-03:00"
+  interest="100% Selic"
+/>
+```
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+<InvestmentCard {{
+  id: 'b9f2414d-b8dd-484d-8179-83383d10a3fd',
+  name: 'Tesouro Selic 2029',
+  value: 10050,
+  origin: 'Tesouro Nacional',
+  category: 'Pós',
+  created_at: '2023-08-22T00:00:00-03:00',
+  interest: '100% Selic',
+}} />
+```
+
+```jsx title="/codes/react/introduction/invest-app/src/components/InvestmentCard.jsx"
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function InvestmentCard({
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+}) {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <h3 className="investment-name text-lg font-semibold text-gray-700">
+          {name}
+        </h3>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {formatCurrency(value / 100)}
+        </p>
+      </div>
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Origem:</span>
+          <span className="investment-origin">{origin}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Categoria:</span>
+          <span className="investment-category">{category}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Taxa:</span>
+          <span className="investment-interest">{interest}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Data:</span>
+          <span className="investment-created_at">{formatDate(created_at)}</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### JSX spread syntax
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+const investment = {
+  id: 'b9f2414d-b8dd-484d-8179-83383d10a3fd',
+  name: 'Tesouro Selic 2029',
+  value: 10050,
+  origin: 'Tesouro Nacional',
+  category: 'Pós',
+  created_at: '2023-08-22T00:00:00-03:00',
+  interest: '100% Selic',
+};
+
+<InvestmentCard {...investment} />
+```
+
+```jsx title="/codes/react/introduction/invest-app/src/components/InvestmentCard.jsx"
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function InvestmentCard({
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+}) {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <h3 className="investment-name text-lg font-semibold text-gray-700">
+          {name}
+        </h3>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {formatCurrency(value / 100)}
+        </p>
+      </div>
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Origem:</span>
+          <span className="investment-origin">{origin}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Categoria:</span>
+          <span className="investment-category">{category}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Taxa:</span>
+          <span className="investment-interest">{interest}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Data:</span>
+          <span className="investment-created_at">{formatDate(created_at)}</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### JSX as children
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+const investment = {
+  id: 'b9f2414d-b8dd-484d-8179-83383d10a3fd',
+  name: 'Tesouro Selic 2029',
+  value: 10050,
+  origin: 'Tesouro Nacional',
+  category: 'Pós',
+  created_at: '2023-08-22T00:00:00-03:00',
+  interest: '100% Selic',
+};
+
+<InvestmentCard {...investment}>
+  <strong>#</strong>
+  {investment.name}
+</InvestmentCard>
+```
+
+```jsx title="/codes/react/introduction/invest-app/src/components/InvestmentCard.jsx"
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function InvestmentCard({
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+  children
+}) {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <h3 className="investment-name text-lg font-semibold text-gray-700">
+          {children}
+        </h3>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {formatCurrency(value / 100)}
+        </p>
+      </div>
+      <div className="mt-4">
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Origem:</span>
+          <span className="investment-origin">{origin}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Categoria:</span>
+          <span className="investment-category">{category}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Taxa:</span>
+          <span className="investment-interest">{interest}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-bold mr-1">Data:</span>
+          <span className="investment-created_at">{formatDate(created_at)}</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+## Lista e Chaves
+
+```js title="/codes/react/introduction/invest-app/src/data/seed.js"
+export const investments = [
+  {
+    id: 'b9f2414d-b8dd-484d-8179-83383d10a3fd',
+    name: 'Tesouro Selic 2029',
+    value: 10050,
+    origin: 'Tesouro Nacional',
+    category: 'Pós',
+    created_at: '2023-08-22T00:00:00-03:00',
+    interest: '100% Selic',
+  },
+  {
+    id: 'bb0a4c9b-8eea-4d79-a248-39c8b846fa9e',
+    name: 'Tesouro IPCA 2029',
+    value: 10000,
+    origin: 'Tesouro Nacional',
+    category: 'IPCA',
+    created_at: '2023-08-22T00:00:00-03:00',
+    interest: 'IPCA + 5,83%',
+  },
+];
+```
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+import InvestmentCard from '@/components/InvestmentCard';
+import { investments } from '@/data/seed';
+
+export default function Home() {
+  return (
+    <>
+      <h1 className="text-center text-2xl my-12 font-bold">Investimentos</h1>
+
+      <div className="investments grid grid-cols-3 gap-3">
+        {investments.map((investment) => (
+          <InvestmentCard investment={investment} key={investment.id} />
+        ))}
+      </div>
+    </>
+  );
+}
+```
+
+## Next.js
+
+### Fetching Data (Cache)
+
+```jsx title="/codes/react/introduction/invest-app/src/app/page.jsx"
+import InvestmentCard from '@/components/InvestmentCard';
+import Storage from '@/services/supabase';
+
+async function getData() {
+  return Storage.read('investments');
+}
+
+export default async function Home() {
+  const investments = await getData();
+
+  return (
+    <>
+      <h1 className="text-center text-2xl my-12 font-bold">Investimentos</h1>
+
+      <div className="investments grid grid-cols-3 gap-3">
+        {investments.map((investment) => (
+          <InvestmentCard investment={investment} key={investment.id} />
+        ))}
+      </div>
+    </>
+  );
+}
+```
+
+### Routes
+
+![](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Froute-segments-to-path-segments.png&w=3840&q=75&dpl=dpl_Cwk9nEfGMCGXVNS2aBtf8GtguTZw)
+
+Fonte: [Next.js Docs - Routing Fundamentals - Route Segments](https://nextjs.org/docs/app/building-your-application/routing)
+
+![](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fdefining-routes.png&w=3840&q=75&dpl=dpl_Cwk9nEfGMCGXVNS2aBtf8GtguTZw)
+
+Fonte: [Next.js Docs - Routing Fundamentals - Defining Routes](https://nextjs.org/docs/app/building-your-application/routing/defining-routes)
+
+### Dynamic Routes
+
+```jsx title="/codes/react/introduction/invest-app/src/app/[investment]/page.jsx"
+import { formatCurrency, formatDate } from '@/lib/format';
+import Storage from '@/services/supabase';
+
+export async function generateStaticParams() {
+  const investments = await Storage.read('investments');
+
+  return investments.map((investment) => ({
+    slug: investment.id,
+  }));
+}
+
+async function getData(slug) {
+  const investment = await Storage.read('investments', slug);
+
+  return investment;
+}
+
+export default async function Investment({ params: { slug } }) {
+  const [{ name, value, origin, category, interest, created_at }] =
+    await getData(slug);
+
+  return (
+    <>
+      <h1 className="text-center text-2xl my-12 font-bold">{name}</h1>
+      <div className="w-64 m-auto">
+        <p className="text-gray-600 flex justify-between p-1">
+          <span className="font-bold mr-1">Valor:</span>
+          <span className="investment-origin">{formatCurrency(value)}</span>
+        </p>
+        <p className="text-gray-600 flex justify-between p-1">
+          <span className="font-bold mr-1">Origem:</span>
+          <span className="investment-origin">{origin}</span>
+        </p>
+        <p className="text-gray-600 flex justify-between p-1">
+          <span className="font-bold mr-1">Categoria:</span>
+          <span className="investment-category">{category}</span>
+        </p>
+        <p className="text-gray-600 flex justify-between p-1">
+          <span className="font-bold mr-1">Taxa:</span>
+          <span className="investment-interest">{interest}</span>
+        </p>
+        <p className="text-gray-600 flex justify-between p-1">
+          <span className="font-bold mr-1">Data:</span>
+          <span className="investment-created_at">
+            {formatDate(created_at)}
+          </span>
+        </p>
+      </div>
+    </>
+  );
+}
+```
+
+- [Dynamic Routes](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes)
+  - [Generating Static Params](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#generating-static-params)
+    - [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)
+
+### Linking and Navigating
+
+```jsx title="/codes/react/introduction/invest-app/src/components/InvestmentCard.jsx"
+import Link from 'next/link';
+
+import { IconTrash } from '@tabler/icons-react';
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function InvestmentCard({
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+}) {
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <Link href={`/investments/${investment.id}`}>
+          <h3 className="investment-name text-lg font-semibold text-gray-700">
+            {name}
+          </h3>
+        </Link>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {formatCurrency(value / 100)}
+        </p>
+      </div>
+      <div className="mt-4">
+        ...
+      </div>
+    </div>
+  );
+}
+```
+
+[Link Component](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#link-component)
+
+## Tratamento de Evento
+
+```bash
+$ npm install -d @iconify/react
+```
+
+```jsx title="/codes/react/introduction/invest-app/src/components/InvestmentCard.jsx"
+'use client';
+
+import Link from 'next/link';
+
+import { IconTrash } from '@tabler/icons-react';
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function InvestmentCard({
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+}) {
+  const handleDeleteInvestment = (name) => {
+    confirm(`Deseja remover ${name}?`);
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <Link href={`/investments/${investment.id}`}>
+          <h3 className="investment-name text-lg font-semibold text-gray-700">
+            {name}
+          </h3>
+        </Link>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {formatCurrency(value / 100)}
+        </p>
+      </div>
+      <div className="mt-4">
+        ...
+      </div>
+      <div className="absolute bottom-4 right-4 inline-flex">
+        <IconTrash
+          size={20}
+          className="text-gray-400 hover:text-gray-500 cursor-pointer"
+          onClick={() => handleDeleteInvestment(name)}
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/react/introduction/invest-app/)
