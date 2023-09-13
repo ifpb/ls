@@ -4,7 +4,7 @@ import { MENU } from '../consts';
 
 <aside
   id="default-sidebar"
-  class="fixed z-50 left-0 top-11 md:h-screen w-full md:w-40 xl:w-64 self-start shadow-md bg-gray-100 dark:bg-slate-800 hidden dark:border-r-white/30 dark:border-r lg:block"
+  class="fixed z-50 left-0 top-11 md:h-screen md:w-36 xl:w-48 self-start bg-gray-100 dark:bg-slate-800 hidden lg:block"
   aria-label="Sidebar"
 >
   <div class="md:h-screen px-3 py-4 overflow-y-auto">
@@ -32,11 +32,11 @@ import { MENU } from '../consts';
 </style>
 
 <script is:inline>
-  document.querySelectorAll('#default-sidebar a').forEach((el) => {
-    if (el.href === window.location.href) {
-      el.classList.add('active');
-    } else {
-      el.classList.remove('active');
-    }
-  });
+document.querySelectorAll('#default-sidebar a').forEach((el) => {
+  if (el.href === window.location.href) {
+    el.classList.add('active');
+  } else {
+    el.classList.remove('active');
+  }
+});
 </script>
