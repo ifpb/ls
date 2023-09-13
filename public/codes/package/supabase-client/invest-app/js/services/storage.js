@@ -19,13 +19,9 @@ async function create(resource, data) {
 }
 
 async function read(resource, id) {
-  let select = '*';
-
-  if (id) {
-    select = `*?id=eq.${id}`;
-  }
-
-  const { data, error } = await supabase.from(resource).select(select);
+  const { data, error } = id
+    ? await supabase.from(resource).select('*').eq('id', id)
+    : await supabase.from(resource).select('*');
 
   if (error) {
     throw error;
