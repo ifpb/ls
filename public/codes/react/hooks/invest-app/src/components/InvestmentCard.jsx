@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { IconTrash } from '@tabler/icons-react';
+import { IconTrash, IconPencil } from '@tabler/icons-react';
 import { formatCurrency, formatDate } from '@/lib/format';
 import { useInvestment } from '@/contexts/InvestmentContext';
 
@@ -14,13 +14,8 @@ export default function InvestmentCard({
   interest,
   created_at,
 }) {
-  const { removeInvestment, isShowValues } = useInvestment();
-
-  const handleDeleteInvestment = (id) => {
-    if (confirm(`Deseja remover ${name}?`)) {
-      removeInvestment(id);
-    }
-  };
+  const { isShowValues, handleLoadModalData, handleUpdateInvestment } =
+    useInvestment();
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4 relative">
@@ -58,7 +53,12 @@ export default function InvestmentCard({
         <IconTrash
           size={20}
           className="text-gray-400 hover:text-gray-500 cursor-pointer"
-          onClick={() => handleDeleteInvestment(id)}
+          onClick={() => handleLoadModalData(id)}
+        />
+        <IconPencil
+          size={20}
+          className="text-gray-400 hover:text-gray-500 cursor-pointer"
+          onClick={() => handleUpdateInvestment(id)}
         />
       </div>
     </div>
