@@ -597,6 +597,7 @@ import { IconTrash } from '@tabler/icons-react';
 import { formatCurrency, formatDate } from '@/lib/format';
 
 export default function InvestmentCard({
+  id,
   name,
   value,
   origin,
@@ -607,7 +608,7 @@ export default function InvestmentCard({
   return (
     <div className="bg-white shadow-md rounded-lg p-4 relative">
       <div className="flex justify-between items-center">
-        <Link href={`/investments/${investment.id}`}>
+        <Link href={`/investments/${id}`}>
           <h3 className="investment-name text-lg font-semibold text-gray-700">
             {name}
           </h3>
@@ -641,6 +642,7 @@ import { IconTrash } from '@tabler/icons-react';
 import { formatCurrency, formatDate } from '@/lib/format';
 
 export default function InvestmentCard({
+  id,
   name,
   value,
   origin,
@@ -655,7 +657,7 @@ export default function InvestmentCard({
   return (
     <div className="bg-white shadow-md rounded-lg p-4 relative">
       <div className="flex justify-between items-center">
-        <Link href={`/investments/${investment.id}`}>
+        <Link href={`/investments/${id}`}>
           <h3 className="investment-name text-lg font-semibold text-gray-700">
             {name}
           </h3>
