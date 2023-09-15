@@ -27,6 +27,7 @@ export const CLASSNOTE_SLUGS = [
   'package/firebase-firestore',
   'ecma/regexp',
   'react/introduction',
+  'react/hooks',
 ];
 
 export const MENU = [

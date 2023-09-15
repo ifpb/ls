@@ -4,154 +4,484 @@ title: React Hooks
 
 # {frontmatter.title}
 
-## Estado (useState)
+## Hooks
 
-src/components/App.jsx:
+[Built-in React Hooks](https://react.dev/reference/react)
 
-```jsx
-import foods from '../models/foods';
-import Food from './Food';
+- Estado (useState)
+- Efeitos Colaterais (useEffect)
+- Contexto (useContext)
+- Reducer (useReduce)
+- Referência (useRef)
+- Callback (useCallback)
+- Cache (useMemo)
 
-function App() {
-  const handleClick = () => {
-    const newFood = {
-      id: 5,
-      name: 'Batata',
-      image: 'imgs/batatafrita.jpg',
-    };
+## useState
 
-    foods.push(newFood);
-  };
+### Home
 
-  return (
-    <>
-      <h1>Menu</h1>
-      <button
-        type="button"
-        className="btn btn-secondary rounded-circle mr-4 font-weight-bold"
-        onClick={handleClick}
-      >
-        +
-      </button>
-      <section className="card-deck my-3">
-        {foods.map((food) => (
-          <Food food={food} key={food.id} />
-        ))}
-      </section>
-    </>
-  );
-}
+```js
+const [isShowValues, setIsShowValues] = useState(true);
 
-export default App;
+const toggleShowValues = () => {
+  setIsShowValues(!isShowValues);
+};
 ```
 
-src/components/App.jsx (useState):
+Conditional Rendering
 
 ```jsx
+{isShowValues ? <IconEye size={24} /> : <IconEyeOff size={24} />}
+```
+
+```jsx title="/codes/react/hooks/invest-app/src/app/page.jsx"
+'use client';
+
 import { useState } from 'react';
+import { IconEye, IconEyeOff } from '@tabler/icons-react';
+import InvestmentCard from '@/components/InvestmentCard';
+import { investments } from '@/data/seed';
 
-import data from './models/foods';
-import Food from './components/Food';
+export default function Home() {
+  const [isShowValues, setIsShowValues] = useState(true);
 
-function App() {
-  const [foods, setFoods] = useState(data);
-
-  const handleClick = () => {
-    const newFood = {
-      id: 5,
-      name: 'Batata',
-      image: 'imgs/batatafrita.jpg',
-    };
-
-    setFoods([...foods, newFood]);
-
-    console.log(foods);
+  const toggleShowValues = () => {
+    setIsShowValues(!isShowValues);
   };
 
   return (
     <>
-      <h1>Menu</h1>
-      <button
-        type="button"
-        className="btn btn-secondary rounded-circle mr-4 font-weight-bold"
-        onClick={handleClick}
-      >
-        +
-      </button>
-      <section className="card-deck my-3">
-        {foods.map((food) => (
-          <Food food={food} key={food.id} />
+      <header className="my-12">
+        <div className="float-right" onClick={toggleShowValues}>
+          {isShowValues ? <IconEye size={24} /> : <IconEyeOff size={24} />}
+        </div>
+        <h1 className="text-center text-2xl font-bold">Investimentos</h1>
+      </header>
+
+      <div className="investments grid grid-cols-3 gap-3">
+        {investments.map((investment) => (
+          <InvestmentCard
+            {...investment}
+            isShowValue={isShowValues}
+            key={investment.id}
+          />
         ))}
-      </section>
+      </div>
     </>
   );
 }
-
-export default App;
-
 ```
 
-## Efeitos Colaterais (useEffect)
+### InvestmentCard
 
-src/components/App.jsx:
+```js
+{isShowValue ? formatCurrency(value / 100) : 'R$ ****'}
+```
 
-```jsx
-import { useEffect, useRef, useState } from 'react';
-import { Button, CardDeck, Container } from 'react-bootstrap';
+```jsx title="/codes/react/hooks/invest-app/src/components/InvestmentCard.jsx"
+'use client';
 
-import Food from './components/Food';
-import FoodForm from './components/FoodForm';
-import api from './services/api';
+import Link from 'next/link';
 
-import 'bootstrap/dist/css/bootstrap.css';
+import { IconTrash } from '@tabler/icons-react';
+import { formatCurrency, formatDate } from '@/lib/format';
 
-function App() {
-  const [foods, setFoods] = useState([]);
-  const [isShowFoodForm, setIsShowFoodForm] = useState(false);
+export default function InvestmentCard({
+  id,
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+  isShowValue,
+}) {
+  const handleDeleteInvestment = (name) => {
+    confirm(`Deseja remover ${name}?`);
+  };
 
-  const buttonEl = useRef(null);
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <Link href={`/investments/${id}`}>
+          <h3 className="investment-name text-lg font-semibold text-gray-700">
+            {name}
+          </h3>
+        </Link>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {isShowValue ? formatCurrency(value / 100) : 'R$ ****'}
+        </p>
+      </div>
+      <div className="mt-4">
+        ...
+      </div>
+      <div className="absolute bottom-4 right-4 inline-flex">
+        <IconTrash
+          size={20}
+          className="text-gray-400 hover:text-gray-500 cursor-pointer"
+          onClick={() => handleDeleteInvestment(name)}
+        />
+      </div>
+    </div>
+  );
+}
+```
 
-  const handleClick = (event) => {
-    setIsShowFoodForm(true);
+## useEffect
 
-    event.currentTarget.blur();
+### Home
+
+```js
+const loadInvestment = async () => {
+  const investments = await Storage.read('investments');
+
+  setInvestments(investments);
+};
+
+useEffect(() => {
+  loadInvestment();
+}, []);
+```
+
+```jsx title="/codes/react/hooks/invest-app/src/app/page.jsx"
+'use client';
+
+import Storage from '@/services/supabase';
+import { useEffect, useState } from 'react';
+import { IconEye, IconEyeOff } from '@tabler/icons-react';
+import InvestmentCard from '@/components/InvestmentCard';
+
+export default function Home() {
+  const [isShowValues, setIsShowValues] = useState(true);
+  const [investments, setInvestments] = useState([]);
+
+  const toggleShowValues = () => {
+    setIsShowValues(!isShowValues);
+  };
+
+  const loadInvestment = async () => {
+    const investments = await Storage.read('investments');
+
+    setInvestments(investments);
   };
 
   useEffect(() => {
-    const loadFoods = async () => {
-      const data = await api.readAll();
-
-      setFoods([...foods, ...data]);
-    };
-
-    loadFoods();
+    loadInvestment();
   }, []);
 
   return (
-    <Container>
-      <h1 className="mt-5 text-center">Menu</h1>
-      <div className="text-right">
-        <Button
-          variant="secondary"
-          className="rounded-circle mr-4 font-weight-bold"
-          onClick={handleClick}
-          ref={buttonEl}
-        >
-          +
-        </Button>
-      </div>
-      <CardDeck className="my-3">
-        {foods.map((food) => (
-          <Food food={food} key={food.id} />
+    <>
+      <header className="my-12">
+        <div className="float-right" onClick={toggleShowValues}>
+          {isShowValues ? <IconEye size={24} /> : <IconEyeOff size={24} />}
+        </div>
+        <h1 className="text-center text-2xl font-bold">Investimentos</h1>
+      </header>
+
+      <div className="investments grid grid-cols-3 gap-3">
+        {investments.map((investment) => (
+          <InvestmentCard
+            {...investment}
+            isShowValue={isShowValues}
+            investments={investments}
+            setInvestments={setInvestments}
+            key={investment.id}
+          />
         ))}
-      </CardDeck>
-      <FoodForm
-        isShowFoodForm={isShowFoodForm}
-        setIsShowFoodForm={setIsShowFoodForm}
-      />
-    </Container>
+      </div>
+    </>
   );
 }
 
-export default App;
 ```
+
+### InvestmentCard
+
+```js
+const handleDeleteInvestment = (id) => {
+  if (confirm(`Deseja remover ${name}?`)) {
+    const newInvestments = investments.filter(
+      (investment) => investment.id !== id
+    );
+
+    setInvestments(newInvestments);
+
+    Storage.remove('investments', id);
+  }
+};
+```
+
+```jsx title="/codes/react/hooks/invest-app/src/components/InvestmentCard.jsx"
+import Link from 'next/link';
+import { IconTrash } from '@tabler/icons-react';
+import { formatCurrency, formatDate } from '@/lib/format';
+
+export default function InvestmentCard({
+  id,
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+  isShowValue,
+  investments,
+  setInvestments,
+}) {
+  const handleDeleteInvestment = (id) => {
+    if (confirm(`Deseja remover ${name}?`)) {
+      const newInvestments = investments.filter(
+        (investment) => investment.id !== id
+      );
+
+      setInvestments(newInvestments);
+
+      Storage.remove('investments', id);
+    }
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <Link href={`/investments/${id}`}>
+          <h3 className="investment-name text-lg font-semibold text-gray-700">
+            {name}
+          </h3>
+        </Link>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {isShowValue ? formatCurrency(value / 100) : 'R$ ****'}
+        </p>
+      </div>
+      <div className="mt-4">
+        ...
+      </div>
+      <div className="absolute bottom-4 right-4 inline-flex">
+        <IconTrash
+          size={20}
+          className="text-gray-400 hover:text-gray-500 cursor-pointer"
+          onClick={() => handleDeleteInvestment(id)}
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+## useContext
+
+### InvestmentContext
+
+```jsx title="/codes/react/hooks/invest-app/src/context/InvestmentContext.jsx"
+'use client';
+
+import { createContext, useState, useContext } from 'react';
+
+export const InvestmentContext = createContext({});
+
+export function InvestmentProvider({ children }) {
+  const [investments, setInvestments] = useState([]);
+
+  ...
+
+  return (
+    <InvestmentContext.Provider
+      value={{
+        investments,
+        setInvestments,
+        ...
+      }}
+    >
+      {children}
+    </InvestmentContext.Provider>
+  );
+}
+
+export function useInvestment() {
+  return useContext(InvestmentContext);
+}
+```
+
+```jsx title="/codes/react/hooks/invest-app/src/context/InvestmentContext.jsx"
+'use client';
+
+import { createContext, useState, useContext } from 'react';
+import Storage from '@/services/supabase';
+
+export const InvestmentContext = createContext({});
+
+export function InvestmentProvider({ children }) {
+  const [investments, setInvestments] = useState([]);
+
+  const [isShowValues, setIsShowValues] = useState(true);
+
+  const toggleShowValues = () => {
+    setIsShowValues(!isShowValues);
+  };
+
+  const loadInvestments = async () => {
+    const investments = await Storage.read('investments');
+
+    setInvestments(investments);
+  };
+
+  const removeInvestment = (id) => {
+    const newInvestments = investments.filter(
+      (investment) => investment.id !== id
+    );
+
+    setInvestments(newInvestments);
+
+    Storage.remove('investments', id);
+  };
+
+  return (
+    <InvestmentContext.Provider
+      value={{
+        investments,
+        setInvestments,
+        isShowValues,
+        setIsShowValues,
+        toggleShowValues,
+        loadInvestments,
+        removeInvestment,
+      }}
+    >
+      {children}
+    </InvestmentContext.Provider>
+  );
+}
+
+export function useInvestment() {
+  return useContext(InvestmentContext);
+}
+```
+
+### RootLayout
+
+```jsx  title="/codes/react/hooks/invest-app/src/app/layout.jsx"
+import { Inter } from 'next/font/google';
+import { InvestmentProvider } from '@/contexts/InvestmentContext';
+
+import './globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata = {
+  title: 'invest-app',
+  description: 'Aplicação de investimentos',
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className={`${inter.className} bg-gray-100`}>
+        <div className="container min-h-screen mx-auto lg:max-w-screen-lg">
+          <InvestmentProvider>{children}</InvestmentProvider>
+        </div>
+      </body>
+    </html>
+  );
+}
+```
+
+### Home
+
+```js
+const { investments, loadInvestments, isShowValues, toggleShowValues } =
+    useInvestment();
+```
+
+```jsx title="/codes/react/hooks/invest-app/src/app/page.jsx"
+'use client';
+
+import { useEffect } from 'react';
+import { IconEye, IconEyeOff } from '@tabler/icons-react';
+import InvestmentCard from '@/components/InvestmentCard';
+import { useInvestment } from '@/contexts/InvestmentContext';
+
+export default function Home() {
+  const { investments, loadInvestments, isShowValues, toggleShowValues } =
+    useInvestment();
+
+  useEffect(() => {
+    loadInvestments();
+  }, []);
+
+  return (
+    <>
+      <header className="my-12">
+        <div className="float-right" onClick={toggleShowValues}>
+          {isShowValues ? <IconEye size={24} /> : <IconEyeOff size={24} />}
+        </div>
+        <h1 className="text-center text-2xl font-bold">Investimentos</h1>
+      </header>
+
+      <div className="investments grid grid-cols-3 gap-3">
+        {investments.map((investment) => (
+          <InvestmentCard {...investment} key={investment.id} />
+        ))}
+      </div>
+    </>
+  );
+}
+```
+
+### InvestmentCard
+
+```js
+const { removeInvestment, isShowValues } = useInvestment();
+```
+
+```jsx title="/codes/react/hooks/invest-app/src/components/InvestmentCard.jsx"
+'use client';
+
+import Link from 'next/link';
+import { IconTrash } from '@tabler/icons-react';
+import { formatCurrency, formatDate } from '@/lib/format';
+import { useInvestment } from '@/contexts/InvestmentContext';
+
+export default function InvestmentCard({
+  id,
+  name,
+  value,
+  origin,
+  category,
+  interest,
+  created_at,
+}) {
+  const { removeInvestment, isShowValues } = useInvestment();
+
+  const handleDeleteInvestment = (id) => {
+    if (confirm(`Deseja remover ${name}?`)) {
+      removeInvestment(id);
+    }
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="flex justify-between items-center">
+        <Link href={`/investments/${id}`}>
+          <h3 className="investment-name text-lg font-semibold text-gray-700">
+            {name}
+          </h3>
+        </Link>
+        <p className="investment-value text-lg font-semibold text-gray-700">
+          {isShowValues ? formatCurrency(value / 100) : 'R$ ****'}
+        </p>
+      </div>
+      <div className="mt-4">
+        ...
+      </div>
+      <div className="absolute bottom-4 right-4 inline-flex">
+        <IconTrash
+          size={20}
+          className="text-gray-400 hover:text-gray-500 cursor-pointer"
+          onClick={() => handleDeleteInvestment(id)}
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+{/* ## Invest-app (CRUD) */}
