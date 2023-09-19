@@ -28,6 +28,10 @@ export const CLASSNOTE_SLUGS = [
   'ecma/regexp',
   'react/introduction',
   'react/hooks',
+  'react/firebase-auth',
+  // 'react/style',
+  // 'extra/next-steps',
+  // 'extra/exercises',
 ];
 
 export const MENU = [

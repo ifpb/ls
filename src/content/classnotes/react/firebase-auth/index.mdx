@@ -1,0 +1,41 @@
+---
+title: Autenticação
+---
+
+import CodeTree from '../../../../components/CodeTree.astro';
+import CodePreview from '../../../../components/CodePreview.astro';
+
+# {frontmatter.title}
+
+## Firebase Auth
+
+[Firebase Authentication](https://firebase.google.com/docs/auth):
+
+- createUserWithEmailAndPassword
+- signInWithEmailAndPassword
+- signInWithPopup
+- signOut
+- GoogleAuthProvider
+- onAuthStateChanged
+
+## InvestApp (Auth)
+
+![](/ls/imgs/react/firebase-auth/signin.png)
+
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/react/firebase-auth/invest-app/)
+
+<CodeTree src="/codes/react/firebase-auth/" />
+
+<CodePreview src="/codes/react/firebase-auth/invest-app/src/services/firebase.js" />
+
+<CodePreview src="/codes/react/firebase-auth/invest-app/src/contexts/UserAuthContext.jsx" />
+
+<CodePreview src="/codes/react/firebase-auth/invest-app/src/components/ProtectedPage.jsx" />
+
+<CodePreview src="/codes/react/firebase-auth/invest-app/src/components/NavBar.jsx" />
+
+<CodePreview src="/codes/react/firebase-auth/invest-app/src/app/signup/page.jsx" />
+
+<CodePreview src="/codes/react/firebase-auth/invest-app/src/app/signin/page.jsx" />
+
+
