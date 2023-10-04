@@ -64,6 +64,8 @@ CREATE POLICY "Allow anonymous access"
 
 ### Rotas
 
+[Código Fonte (Requisição | Rest Client)](https://github.com/ifpb/ls/tree/main/public/codes/package/supabase-api/)
+
 | Método | Caminho                               | Status | Resposta                                       |
 | ------ | ------------------------------------- | ------ | ---------------------------------------------- |
 | POST   | `/rest/v1/investments`                | `201`  | Cria um novo investimento                      |
@@ -72,8 +74,6 @@ CREATE POLICY "Allow anonymous access"
 | GET    | `/rest/v1/investments?id=eq.1`        | `200`  | Retorna o investimento com id igual a 1        |
 | PATCH  | `/rest/v1/investments?id=eq.1`        | `200`  | Atualiza o investimento com id igual a 1       |
 | DELETE | `/rest/v1/investments?id=eq.1`        | `204`  | Exclui o investimento com id igual a 1         |
-
-[Código Fonte das requisições (Rest Client)](https://github.com/ifpb/ls/tree/main/public/codes/package/supabase-api/)
 
 ### Create a investment
 

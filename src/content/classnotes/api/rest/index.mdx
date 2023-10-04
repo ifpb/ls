@@ -24,7 +24,7 @@ import CodePreview from '../../../../components/CodePreview.astro';
 
 ![](/imgs/api/rest/viacep-get.png)
 
-[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) ([Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/api/rest/)):
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/api/rest/) (Requisição | [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)):
 
 <CodePreview src="/codes/api/rest/viacep.http" />
 
@@ -51,6 +51,8 @@ $ curl https://viacep.com.br/ws/58015430/json/
 
 ### Rotas
 
+[Código Fonte (Requisição | Rest Client)](https://github.com/ifpb/ls/tree/main/public/codes/api/rest/)
+
 | Método | Caminho                                | Status | Resposta                              |
 | ------ | -------------------------------------- | ------ | --------------------------------------------- |
 | POST   | `/user/repos`                          | `201`  | Cria um novo repositório                      |
@@ -59,8 +61,6 @@ $ curl https://viacep.com.br/ws/58015430/json/
 | GET    | `/repos/lucachaves/ls`                 | `200`  | Retorna o repositório com nome lucachaves/ls  |
 | PATCH  | `/repos/lucachaves/ls`                 | `200`  | Atualiza o repositório com nome lucachaves/ls |
 | DELETE | `/repos/lucachaves/ls`                 | `204`  | Exclui o repositório com nome lucachaves/ls   |
-
-[Código Fonte das requisições (Rest Client)](https://github.com/ifpb/ls/tree/main/public/codes/api/rest/)
 
 [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
   - Respostas de informação (100-199)
