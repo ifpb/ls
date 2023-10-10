@@ -32,7 +32,7 @@ export const CLASSNOTE_SLUGS = [
   // 'react/firebase-auth',
   // 'react/style',
   'extra/next-steps',
-  // 'extra/exercises',
+  'extra/exercises',
 ];
 
 export const MENU = [
