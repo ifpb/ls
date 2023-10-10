@@ -46,7 +46,7 @@ export function InvestmentProvider({ children }) {
 
   const loadInvestments = async (user) => {
     if (user) {
-      const investments = await Storage.read('investments', { uid: user.uid });
+      const investments = await Storage.read('investments', { uid: user.id });
 
       setInvestments(investments);
     }
@@ -117,7 +117,7 @@ export function InvestmentProvider({ children }) {
       investmentFormData.created_at + 'T00:00:00-03:00'
     ).toISOString();
 
-    investmentFormData.uid = user.uid;
+    investmentFormData.uid = user.id;
 
     investmentFormAction === 'create'
       ? createInvestment(investmentFormData)

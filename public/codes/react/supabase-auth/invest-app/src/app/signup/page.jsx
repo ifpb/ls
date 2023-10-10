@@ -1,46 +1,45 @@
 'use client';
 
 import { useUserAuth } from '@/contexts/UserAuthContext';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
+
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   const { signUp } = useUserAuth();
-
-  const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setError('');
+    setMessage('');
 
     if (password !== confirmPassword) {
-      setError('As senhas não conferem.');
+      setMessage('As senhas não conferem.');
     }
 
     try {
-      if (!error) {
+      if (!message) {
         await signUp(email, password);
 
-        router.push('/');
+        setMessage('Acess sua caixa de email para confirmar o cadastro.');
       }
     } catch (err) {
-      setError('Erro no cadastro, tente novamente.');
+      setMessage('Erro no cadastro, tente novamente.');
     }
   };
 
   return (
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm h-full px-6 py-12 lg:px-8">
       <h1 className="mb-8 text-3xl text-center">Cadastro</h1>
-      {error && (
-        <div className="bg-orange-100 text-orange-700 p-4 my-4" role="alert">
-          <p>{error}</p>
+      {message && (
+        <div class="bg-gray-300 text-gray-700 p-4 my-4" role="alert">
+          <p>{message}</p>
         </div>
       )}
       <form onSubmit={handleSubmit}>
@@ -57,6 +56,7 @@ export default function Signup() {
             className="block p-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
 
@@ -73,6 +73,7 @@ export default function Signup() {
             className="block p-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
 
@@ -89,6 +90,7 @@ export default function Signup() {
             className="block p-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
         </div>
 

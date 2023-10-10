@@ -1,0 +1,83 @@
+---
+title: Autenticação
+---
+
+import CodeTree from '../../../../components/CodeTree.astro';
+import CodePreview from '../../../../components/CodePreview.astro';
+
+# {frontmatter.title}
+
+## Supabase Auth
+
+[Supabase Auth](https://supabase.com/docs/reference/javascript/auth-api):
+
+- [supabase.auth.signUp](https://supabase.com/docs/reference/javascript/auth-signup)
+- [supabase.auth.signInWithPassword](https://supabase.com/docs/reference/javascript/auth-signinwithpassword)
+- [supabase.auth.signInWithOAuth](https://supabase.com/docs/reference/javascript/auth-signinwithoauth)
+- [supabase.auth.signOut](https://supabase.com/docs/reference/javascript/auth-signout)
+- [supabase.auth.onAuthStateChange](https://supabase.com/docs/reference/javascript/auth-onauthstatechange)
+
+## Banco de Dados
+
+Coluna `uid` na tabela `investments`:
+
+```sql
+create table
+  public.investments (
+    name character varying null,
+    created_at timestamp with time zone not null default now(),
+    value bigint null,
+    origin character varying null,
+    category character varying null,
+    interest character varying null,
+    id uuid not null default gen_random_uuid (),
+    uid uuid null,
+    constraint investments_pkey primary key (id),
+    constraint investments_uid_fkey foreign key (uid) references auth.users (id)
+  ) tablespace pg_default;
+```
+
+## Permitir Acesso Anônimo
+
+[Row Level Security](https://supabase.com/docs/guides/auth/row-level-security) (Authentication > Configuration > Policies) - authenticated users:
+
+```text
+-- Turn on security
+alter table "investments"
+enable row level security;
+
+-- Allow anonymous access
+CREATE POLICY "Allow anonymous access"
+  ON investments
+  FOR SELECT
+  TO anon, authenticated
+  USING (true);
+```
+
+## Google Provider
+
+- [Supabase - Login with Google](https://supabase.com/docs/guides/auth/social-login/auth-google)
+- [Google Clound Console](https://console.cloud.google.com/)
+- [Google OAuth Provider](https://www.youtube.com/watch?v=_XM9ziOzWk4)
+
+## InvestApp (Auth)
+
+![](/ls/imgs/react/supabase-auth/signin.png)
+
+[Código Fonte](https://github.com/ifpb/ls/tree/main/public/codes/react/supabase-auth/invest-app/)
+
+<CodeTree src="/codes/react/supabase-auth/invest-app/" />
+
+<CodePreview src="/codes/react/supabase-auth/invest-app/src/services/supabase.js" />
+
+<CodePreview src="/codes/react/supabase-auth/invest-app/src/contexts/UserAuthContext.jsx" />
+
+<CodePreview src="/codes/react/supabase-auth/invest-app/src/components/ProtectedPage.jsx" />
+
+<CodePreview src="/codes/react/supabase-auth/invest-app/src/components/NavBar.jsx" />
+
+<CodePreview src="/codes/react/supabase-auth/invest-app/src/app/signup/page.jsx" />
+
+<CodePreview src="/codes/react/supabase-auth/invest-app/src/app/signin/page.jsx" />
+
+
