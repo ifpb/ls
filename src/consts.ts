@@ -31,7 +31,7 @@ export const CLASSNOTE_SLUGS = [
   'react/supabase-auth',
   // 'react/firebase-auth',
   // 'react/style',
-  // 'extra/next-steps',
+  'extra/next-steps',
   // 'extra/exercises',
 ];
 
