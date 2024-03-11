@@ -3,103 +3,122 @@ layout: ../layouts/MarkDownLayout.astro
 title: Especificação do Projeto
 ---
 
+import { SUBJECT } from '../consts.js'
+
 # {frontmatter.title}
 
-## Introdução e Objetivo
+A disciplina de Linguagem de Script tem como objetivo principal proporcionar aos alunos uma compreensão prática do desenvolvimento Front-end de aplicações Web. Dada a ampla variedade de tópicos na disciplina, não é viável abordar todos os detalhes em exercícios isolados. No entanto, por meio de um projeto, os alunos têm a oportunidade de aplicar os conceitos aprendidos em sala de aula, bem como explorar conteúdos adicionais. O projeto final é, portanto, uma atividade obrigatória para todos os estudantes da disciplina, permitindo a criação de aplicações Web mais sólidas e robustas.
 
-A disciplina de LS tem como objetivo principal fazer com que os alunos compreendam como se desenvolve uma aplicação Web. Por isso, que em sua trajetória são apresentadas inúmeras tecnologias que compõe camada Front-end de uma aplicação Web. Contudo, muitas vezes devido a vasta extensão de temas é impraticável expor todos os detalhes em um único projeto ou exercício em sala de aula.
+## Apresentação do Tema
 
-Então, através desse projeto o aluno vai poder praticar os conceitos vistos em sala de aula, e alguns pontos extras definidos mais adiante, de tal maneira que no final se obtenha uma aplicação Web mais sólida e robusta.
+O tema do projeto é livre! Entretanto, você pode se inspirar nos projetos dos outros períodos (consulte [ifpb/projects](https://ifpb.github.io/projects/)), explorar os Padlet dos outros períodos da disciplina ([project-ls-ano-semestre](https://padlet.com/lucachaves/)) ou até mesmo buscar clientes para resolver problemas reais.
 
-## Definição do Tema
+No que diz respeito ao escopo do projeto, os membros da equipe serão responsáveis por definir o domínio de negócio, o layout, as funcionalidades e a navegabilidade.
 
-O tema do projeto é livre!
+Para a escolha do tema, sugiro que se formem equipes com no máximo **três integrantes** para a definição inicial do projeto. Após a escolha do tema, todos os projetos devem declarar suas propostas no Padlet dos <a href={SUBJECT.PROJECTS_URL} target="_blank">projetos deste período</a>, seguindo o formato de card a seguir:
 
-Então para a escolha do tema sugiro que sejam formadas equipes com no máximo três integrantes para a definição inicial do projeto. Para obter mais inspiração, sugiro que sejam analisados os projetos dos outros períodos (basta acessar [ifpb/projects](https://ifpb.github.io/projects/)) ou tente procurar clientes para resolver problemas reais.
-
-Depois de escolhido o tema, todos os projetos devem declarar suas propostas [neste padlet](https://padlet.com/lucachaves/projetols20191) seguindo esse formato de card:
-
-```txt
+```text title="Conteúdo do Card"
 Título/Tema do Projeto
 
-Descrição:
-Resumidamente descreva a ideia central do seu projeto
+Descrição: Resumidamente descreva a ideia central do seu projeto
 
 Equipe:
-- Nome do Aluno 1 (matricula)
-- Nome do Aluno 2 (matricula)
-- Nome do Aluno 3 (matricula)
+- Nome do Aluno 1 (matricula, github, linkedin)
+- Nome do Aluno 2 (matricula, github, linkedin)
+- Nome do Aluno 3 (matricula, github, linkedin)
 
 Proposta:
 http://link-da-apresentação-da-proposta
+
+Protótipo:
+http://link-do-protótipo
 
 Repositório:
 http://github.com/link-do-repositorio
 ```
 
-A declaração de informações no Padlet deve ser realizada por apenas um dos integrantes da equipe, e para possibilitar modificações futuras é necessário possuir uma conta no [padlet](https://padlet.com/referrals/lucachaves). Também é importante destacar que a ordem de apresentação do projeto será definida pela sequência de cards deste [padlet](https://padlet.com/lucachaves/projetols20191), de modo que o último card será o primeiro da fila de apresentação, e vice-versa.
+A declaração de informações no Padlet deve ser feita por apenas um dos integrantes da equipe. Além disso, para permitir modificações futuras, é necessário possuir uma conta no [Padlet](https://padlet.com/referrals/lucachaves). É importante destacar que a ordem de apresentação dos projetos será definida pela sequência dos cards. Portanto, o primeiro card será o primeiro da fila de apresentação.
 
-> **Obs:** É muito importante que você deixe o card do projeto sempre atualizado com suas informações.
+> Obs: É muito importante que você deixe o card do projeto sempre atualizado com suas informações.
 
-## Requisitos e Pontuação
+Após a definição do tema, será exigida uma apresentação curta com duração máxima de **3 minutos**, semelhante a um [pitch](https://endeavor.org.br/dinheiro/como-elaborar-um-pitch-quase-perfeito/). Essa apresentação deve abordar os seguintes pontos:
 
-A definição dos critérios de avaliação será estruturada por questões de organização e uso de recursos tecnológicos abordados na disciplina. Para ser mais pragmático, a seguir, serão listados os critérios de pontuação:
+1. Ideia e Objetivo Principal:
+     - Explique a ideia central do projeto e seus principais objetivos.
+     - Liste possíveis funcionalidades que serão desenvolvidas.
+2. Referências de Sistemas Existentes:
+      - Apresente telas de sistemas já existentes que realizam algo semelhante ao que seu projeto propõe.
+      - Lembre-se de que não é necessário reinventar a roda sempre.
+3. Esboços da Interface Final:
+     - Crie esboços de tela que representem como a equipe visualiza a interface final do projeto.
+     - Use [rabiscos em papel](<(https://developers.google.com/web/fundamentals/design-and-ux/ux-basics/)>) ou [ferramenta de prototipagem](https://uxtools.co/tools/prototyping) gráfica.
+     - Certifique-se de que as interações do sistema e a navegabilidade estejam claras.
 
-| Item | Requisitos não funcionais                          |
-| ---- | -------------------------------------------------- |
-| 1    | Uso de programação funcional                       |
-| 2    | Criação de componentes dinâmicos                   |
-| 3    | Uso do FETCH API e JSON                            |
-| 4    | Uso de RegExp                                      |
-| 5    | Uso de módulos com Webpack                         |
-| 6    | Uso de pacotes do JS (no mínimo um pacote inédito) |
+> O Figma é uma excelente ferramenta gratuita para prototipagem. Se desejar ver um exemplo de uso, recomendo conferir o projeto [Conectando estabelecimentos de beleza a clientes durante a quarentena com segurança](https://medium.com/@nativasconcelos/conectando-estabelecimentos-de-beleza-a-clientes-durante-a-quarentena-com-seguran%C3%A7a-ebf0584b1de1).
 
-Para auxiliar no cálculo da nota final do projeto utilize esse checklist:
 
-| Item | Critérios (%)         | Projeto 1 | Projeto 2 | ... | Projeto n |
-| ---- | --------------------- | --------- | --------- | --- | --------- |
-| 1    | Funcional             |           |           |     |           |
-| 2    | Dinâmico              |           |           |     |           |
-| 3    | Fetch                 |           |           |     |           |
-| 4    | RegExp                |           |           |     |           |
-| 5    | Webpack               |           |           |     |           |
-| 6    | Packages              |           |           |     |           |
-|      | Organização do código |           |           |     |           |
-|      | Funcionamento Geral   |           |           |     |           |
-|      | Nota\*                |           |           |     |           |
+## Critérios de Avaliação
 
-_(\*) A soma de todos os itens será 100, mas também será analisado a organização e o funcionamento geral._
+A definição dos critérios de avaliação será estruturada com base na organização e no uso dos recursos tecnológicos abordados na disciplina. Para simplificar, listarei os critérios de pontuação:
 
-Também vale salientar que ocorrerão penalizações nos seguintes casos:
+| Item | Etapa    | Requisitos não funcionais                   |
+| ---- | -------- | ------------------------------------------- |
+| 1    | Etapa I  | Programação funcional                       |
+| 2    | Etapa I  | Tratamento de Eventos                       |
+| 3    | Etapa I  | Estrutura com ESM                           |
+| 4    | Etapa I  | Pacotes com ViteJS                          |
+| 5    | Etapa I  | Páginas dinâmicas com dados no LocalStorage |
+| 6    | Etapa II | Regexp                                      |
+| 7    | Etapa II | Requisição Assíncrona                       |
+| 8    | Etapa II | Back-end com DBaaS (Supabase)               |
+| 9    | Etapa II | Componentes ReactJS                         |
+| 10   | Etapa II | Gerencia de estado entre Componentes        |
+
+A apresentação desses itens ocorrerá em duas etapas, e a pontuação será distribuída da seguinte forma para a Etapa I (Estilização manual):
+
+| Item | Critérios (%) | Projeto 1 | Projeto 2 | ... | Projeto n |
+| ---- | ------------- | --------- | --------- | --- | --------- |
+| 1    | 20%           |           |           |     |           |
+| 2    | 20%           |           |           |     |           |
+| 3    | 20%           |           |           |     |           |
+| 4    | 20%           |           |           |     |           |
+| 5    | 20%           |           |           |     |           |
+|      | Nota\*        |           |           |     |           |
+
+E para a Etapa II (Estilização com Biblioteca CSS), a pontuação será distribuída da seguinte forma:
+
+| Item | Critérios (%) | Projeto 1 | Projeto 2 | ... | Projeto n |
+| ---- | ------------- | --------- | --------- | --- | --------- |
+| 6    | 20%           |           |           |     |           |
+| 7    | 20%           |           |           |     |           |
+| 8    | 20%           |           |           |     |           |
+| 9    | 20%           |           |           |     |           |
+| 10   | 20%           |           |           |     |           |
+|      | Nota\*        |           |           |     |           |
+
+_(\*) A soma de todos os itens será 100, mas também será analisada a organização e o funcionamento geral._
+
+Cada etapa deverá ser apresentada oralmente de forma objetiva em sala por cada integrante do projeto, nas datas definidas pelo cronograma do curso. O projeto deve estar em funcionamento.
+
+Para quem deseja dicas de apresentação de projetos, recomendo assistir os Demo Day do Le Wagon (A exemplo deste [Demo Day](https://www.youtube.com/watch?v=nlC1OBVZuOg&list=PLkbmdtbypn7R_BN6nFX-XZc7uDyMSxhye&index=32) em São Paulo). Além disso, uma boa prática é fazer a apresentação do sistema sem abordar detalhes técnicos, mas esteja preparado para responder a perguntas sobre arquiteturais da aplicação.
+
+Em relação ao código, é fundamental que todos os artefatos estejam disponibilizados em um repositório de código aberto, como o GitHub. Certifique-se de que:
+
+- Na raiz do repositório, exista um arquivo `README.md` contendo possivelmente:
+  - `Descrição do projeto`
+  - `Telas do sistema`
+  - `Descrição das funcionalidades do projeto`
+  - `Instruções de instalação`
+  - `Informações de contato`
+- Organize bem os arquivos e diretórios dentro do repositório.
+- Adicione comentários aos arquivos sempre que possível para garantir boa legibilidade do código.
+
+Além disso, é importante estar ciente das penalizações nos seguintes casos:
 
 - Não seja apresentado na data marcada;
-- Não seja enviado o projeto na data marcada com o material exigido;
-- Ultrapassar o prazo estipulado de apresentação;
+- Não enviar o projeto com o material exigido na data estipulada.
+- Ultrapassar o prazo definido para a apresentação.
 - Falta de usabilidade do sistema;
 - Falta de domínio do projeto.
 
-## Etapas da Apresentação
-
-O projeto será apresentado em duas etapas com objetivos distintos. A primeira apresentação será para validar a `Proposta de Tema`, e a segunda exibirá o sistema implementado, ou seja, o `Projeto Final`.
-
-Cada etapa deverá ser apresentada oralmente de modo objetivo em sala por cada integrante do projeto em datas a serem definidas conforme o cronograma do curso.
-
-Já em relação as entregas de cada etapa é preciso que todo o material esteja disponibilizado em algum repositório de código aberto, como o [github](http://github.com/), considerando que:
-
-- No raiz deve existir um arquivo `README.md` que deve possuir: a `Descrição do projeto`, `Inspirações de Funcionalidade e Telas`, `Descrição das Funcionalidades do Projeto` e `Contato`;
-- Os arquivos e diretórios devem estar bem organizados;
-- Os arquivos devem sempre que possível possuir comentário e boa legibilidade.
-
-### Proposta de Tema
-
-Para ajudar na definição do tema central do projeto será exigido que a apresentação possua um tempo máximo de **3 minutos**, tipo uma apresentação de [pitch](https://endeavor.org.br/dinheiro/como-elaborar-um-pitch-quase-perfeito/), e contemple os seguintes pontos:
-
-- Exibição da ideia e objetivo principal do projeto através de propostas de funcionalidades;
-- Seleção de telas de sistemas existentes que façam algo parecido ao que se propõe no projeto, afinal de contas, não precisamos reinventar a roda sempre;
-- Apresentar alguns esboços de tela de como a equipe enxerga a interface final do projeto. Pode ser até mesmo em [rabiscos de papel](<(https://developers.google.com/web/fundamentals/design-and-ux/ux-basics/)>), o importante é que fique claro as interações do sistema e sua navegabilidade. Quem já possui as ideias mais consolidadas, outra opção pode ser utilizar alguma [ferramenta de prototipagem](https://uxtools.co/tools/prototyping).
-
-### Projeto Final
-
-Por fim, esta etapa será a apresentação final que deverá ser entregue no último dia de aula da disciplina, e a aplicação Web Font-end deve estar em funcionamento.
-
-Para quem deseja alguma dica de apresentação de projeto recomendo assistir os [Demo Day do Le Wagon](https://www.youtube.com/playlist?list=PLkbmdtbypn7R_BN6nFX-XZc7uDyMSxhye) (Esse [Demo Day](https://www.youtube.com/watch?v=nlC1OBVZuOg&list=PLkbmdtbypn7R_BN6nFX-XZc7uDyMSxhye&index=32) foi em São Paulo). Mas, uma boa dica é fazer a apresentação do sistema sem abordar detalhes técnicos, contudo esteja preparado para perguntas arquiteturais de suas aplicação.
+Por fim, leio com atenção essas diretrizes para garantir o sucesso do seu projeto! 😊

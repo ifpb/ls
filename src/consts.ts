@@ -1,6 +1,36 @@
+// subject data
+export const SUBJECT = {
+  CLASSROOM_URLS: {
+    A: 'https://classroom.google.com/c/NjYzNjMwODc0MzU5',
+    B: 'https://classroom.google.com/c/NjY3NjYyODA4NTQw',
+  },
+  CHAT_URL: 'https://mail.google.com/mail/u/0/#chat/space/AAAAgCdnH8s',
+  PROJECTS_URL: 'https://padlet.com/lucachaves/projetols20241',
+  GITHUB_URLS: {
+    A: 'https://github.com/lucachaves/ls-2024-1',
+  },
+  SCHEDULES: [
+    {
+      className: 'A',
+      room: 'Lab 3',
+      day: 'Segunda',
+      start: '14:40',
+      end: '16:40',
+    },
+    {
+      className: 'B',
+      room: 'Lab 5',
+      day: 'Segunda',
+      start: '14:40',
+      end: '16:40',
+    },
+  ],
+};
+
+// project data
 export const GITHUB_EDIT_URL = 'https://github.com/ifpb/ls/tree/main';
 
-export const CLASSNOTE_SLUGS = [
+export const CONTENT_SLUGS = [
   'ecma/introduction',
   'ecma/variable',
   'ecma/expression-and-operator',
@@ -17,10 +47,10 @@ export const CLASSNOTE_SLUGS = [
   'w3c/dom-api',
   // 'ecma/date',
   'w3c/local-storage',
-  'ecma/promise',
+  // 'ecma/promise',
   'api/rest',
   // 'package/json-server',
-  'package/supabase-api',
+  // 'package/supabase-api',
   'w3c/fetch-api',
   'package/axios',
   'package/supabase-client',
