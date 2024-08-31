@@ -6,7 +6,7 @@ skinparam monochrome true
 entity "Investments" as investiments {
   *id : uuid
   name : character
-  price: bigint
+  value: bigint
   origin : character
   category : character
   interest : character
