@@ -37,7 +37,7 @@ $ curl https://viacep.com.br/ws/58015430/json/
 ## Github REST API
 
 - Exemplos
-  - [{'https://api.github.com/users/lucachaves'}](https://api.github.com/users/lucachaves)
+  - [{'https://api.github.com/users/luizchaves'}](https://api.github.com/users/luizchaves)
   - [{'https://api.github.com/orgs/ifpb/repos'}](https://api.github.com/orgs/ifpb/repos)
   - [{'https://api.github.com/repos/ifpb/ls'}](https://api.github.com/repos/ifpb/ls)
   {/* - [Exemplo](https://ifpb.github.io/challenges/web/front-end/js/github-profile-comparator/) */}
@@ -56,11 +56,11 @@ $ curl https://viacep.com.br/ws/58015430/json/
 | Método | Caminho                                | Status | Resposta                              |
 | ------ | -------------------------------------- | ------ | --------------------------------------------- |
 | POST   | `/user/repos`                          | `201`  | Cria um novo repositório                      |
-| GET    | `/users/lucachaves/repos`              | `200`  | Retorna todos os repositórios                 |
-| GET    | `/users/lucachaves/repos?type=private` | `200`  | Retorna todos os repositórios privados        |
-| GET    | `/repos/lucachaves/ls`                 | `200`  | Retorna o repositório com nome lucachaves/ls  |
-| PATCH  | `/repos/lucachaves/ls`                 | `200`  | Atualiza o repositório com nome lucachaves/ls |
-| DELETE | `/repos/lucachaves/ls`                 | `204`  | Exclui o repositório com nome lucachaves/ls   |
+| GET    | `/users/luizchaves/repos`              | `200`  | Retorna todos os repositórios                 |
+| GET    | `/users/luizchaves/repos?type=private` | `200`  | Retorna todos os repositórios privados        |
+| GET    | `/repos/luizchaves/ls`                 | `200`  | Retorna o repositório com nome luizchaves/ls  |
+| PATCH  | `/repos/luizchaves/ls`                 | `200`  | Atualiza o repositório com nome luizchaves/ls |
+| DELETE | `/repos/luizchaves/ls`                 | `204`  | Exclui o repositório com nome luizchaves/ls   |
 
 [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
   - Respostas de informação (100-199)
@@ -92,7 +92,7 @@ Exemplos de Códigos
 ```http
 @host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
-@username=lucachaves
+@username=luizchaves
 @repo=github-repo-api
 
 ###
@@ -131,7 +131,7 @@ $ curl -L \
 ```http
 @host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
-@username=lucachaves
+@username=luizchaves
 
 ###
 GET {{host}}/users/{{username}}/repos
@@ -146,7 +146,7 @@ $ curl -L \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer ${TOKEN}" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/users/lucachaves/repos
+  https://api.github.com/users/luizchaves/repos
 ```
 
 ### Read a repository (name)
@@ -158,7 +158,7 @@ $ curl -L \
 ```http
 @host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
-@username=lucachaves
+@username=luizchaves
 @repo=github-repo-api
 
 ###
@@ -175,7 +175,7 @@ $ curl -L \
    -H "Accept: application/vnd.github+json" \
    -H "Authorization: Bearer ${TOKEN}" \
    -H "X-GitHub-Api-Version: 2022-11-28" \
-   https://api.github.com/repos/lucachaves/github-repo-api
+   https://api.github.com/repos/luizchaves/github-repo-api
 ```
 
 ### Update a repository
@@ -187,7 +187,7 @@ $ curl -L \
 ```http
 @host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
-@username=lucachaves
+@username=luizchaves
 @repo=github-repo-api
 
 ###
@@ -213,7 +213,7 @@ $ curl -L \
    -H "Accept: application/vnd.github+json" \
    -H "Authorization: Bearer ${TOKEN}" \
    -H "X-GitHub-Api-Version: 2022-11-28" \
-   https://api.github.com/repos/lucachaves/github-repo-api \
+   https://api.github.com/repos/luizchaves/github-repo-api \
    -d '{"name":"github-repo-api","description":"This is your first repo!","homepage":"https://github.com","private":false,"is_template":false}'
 ```
 
@@ -226,7 +226,7 @@ $ curl -L \
 ```http
 @host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
-@username=lucachaves
+@username=luizchaves
 @repo=github-repo-api
 
 ###
@@ -243,5 +243,5 @@ $ curl -L \
    -H "Accept: application/vnd.github+json" \
    -H "Authorization: Bearer ${TOKEN}" \
    -H "X-GitHub-Api-Version: 2022-11-28" \
-   https://api.github.com/repos/lucachaves/github-repo-api
+   https://api.github.com/repos/luizchaves/github-repo-api
 ```

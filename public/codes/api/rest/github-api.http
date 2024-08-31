@@ -1,6 +1,6 @@
 @host=https://api.github.com
 @token={{$dotenv GITHUB_TOKEN}}
-@username=lucachaves
+@username=luizchaves
 @repo=github-repo-api
 
 

@@ -3,8 +3,8 @@ title DELETE
 hide footbox
 skinparam monochrome true
 
-Client -> Server: DELETE /repos/lucachaves/github-repo-api
-note right: DELETE /repos/lucachaves/github-repo-api HTTP/1.1\nHost: https://api.github.com\nAccept: application/vnd.github+json\nAuthorization: Bearer TOKEN\nX-GitHub-Api-Version: 2022-11-28
+Client -> Server: DELETE /repos/luizchaves/github-repo-api
+note right: DELETE /repos/luizchaves/github-repo-api HTTP/1.1\nHost: https://api.github.com\nAccept: application/vnd.github+json\nAuthorization: Bearer TOKEN\nX-GitHub-Api-Version: 2022-11-28
 Server -> Client: HTTP/1.1 204 No Content
 note left: HTTP/1.1 204 No Content\nServer: GitHub.com
 @enduml

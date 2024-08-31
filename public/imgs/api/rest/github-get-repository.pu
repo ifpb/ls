@@ -3,8 +3,8 @@ title GET
 hide footbox
 skinparam monochrome true
 
-Client -> Server: GET /repos/lucachaves/github-repo-api
-note right: GET /repos/lucachaves/github-repo-api HTTP/1.1\nHost: https://api.github.com\nAccept: application/vnd.github+json\nAuthorization: Bearer TOKEN\nX-GitHub-Api-Version: 2022-11-28
+Client -> Server: GET /repos/luizchaves/github-repo-api
+note right: GET /repos/luizchaves/github-repo-api HTTP/1.1\nHost: https://api.github.com\nAccept: application/vnd.github+json\nAuthorization: Bearer TOKEN\nX-GitHub-Api-Version: 2022-11-28
 Server -> Client: HTTP/1.1 200 OK
-note left: HTTP/1.1 200 OK\nServer: GitHub.com\n\n{\n  "id": 688673759,\n  "node_id": "R_kgDOKQxT3w",\n  "name": "github-repo-api",\n  "full_name": "lucachaves/github-repo-api",\n  ...\n}
+note left: HTTP/1.1 200 OK\nServer: GitHub.com\n\n{\n  "id": 688673759,\n  "node_id": "R_kgDOKQxT3w",\n  "name": "github-repo-api",\n  "full_name": "luizchaves/github-repo-api",\n  ...\n}
 @enduml
