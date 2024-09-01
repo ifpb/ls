@@ -50,16 +50,13 @@ values
 [Row Level Security](https://supabase.com/docs/guides/auth/row-level-security) (Authentication > Configuration > Policies):
 
 ```text
--- Turn on security
-alter table "investments"
-enable row level security;
-
--- Allow anonymous access
-CREATE POLICY "Allow anonymous access"
-  ON investments
-  FOR SELECT
-  TO anon
-  USING (true);
+CREATE POLICY "Allow public access"
+  ON "public"."investments"
+  as PERMISSIVE
+  FOR ALL
+  TO public
+  USING (true)
+  WITH CHECK (true);
 ```
 
 ### Rotas
