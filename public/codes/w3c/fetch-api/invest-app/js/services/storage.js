@@ -8,10 +8,10 @@ async function create(resource, data) {
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
-      prefer: 'return=representation',
+      Prefer: 'return=representation',
       'Content-Type': 'application/json',
     },
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(data),
   };
 
@@ -30,7 +30,7 @@ async function read(resource) {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
-    method: 'get',
+    method: 'GET',
   };
 
   const res = await fetch(resource, options);
@@ -38,21 +38,18 @@ async function read(resource) {
   return await res.json();
 }
 
-async function update(resource, data) {
-  resource = `${API_URL}/${resource}`;
+async function update(resource, id, data) {
+  resource = `${API_URL}/${resource}?id=eq.${id}`;
 
   const options = {
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
-      prefer: 'return=representation',
+      Prefer: 'return=representation',
+      'Content-Type': 'application/json',
     },
-    method: 'patch',
+    method: 'PATCH',
     body: JSON.stringify(data),
-    referrer: location.origin,
-    referrerPolicy: 'strict-origin-when-cross-origin',
-    mode: 'cors',
-    credentials: 'include',
   };
 
   const res = await fetch(resource, options);
@@ -62,15 +59,15 @@ async function update(resource, data) {
   return updatedData?.[0];
 }
 
-async function remove(resource) {
-  resource = `${API_URL}/${resource}`;
+async function remove(resource, id) {
+  resource = `${API_URL}/${resource}?id=eq.${id}`;
 
   const options = {
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
-    method: 'delete',
+    method: 'DELETE',
   };
 
   const res = await fetch(resource, options);

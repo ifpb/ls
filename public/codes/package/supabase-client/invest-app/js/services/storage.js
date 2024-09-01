@@ -30,11 +30,11 @@ async function read(resource, id) {
   return data;
 }
 
-async function update(resource, data) {
+async function update(resource, id, data) {
   const { data: updatedData, error } = await supabase
     .from(resource)
     .update(data)
-    .eq('id', data.id)
+    .eq('id', id)
     .select('*');
 
   if (error) {

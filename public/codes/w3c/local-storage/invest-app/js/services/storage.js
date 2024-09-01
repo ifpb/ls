@@ -1,79 +1,79 @@
 import { v4 as uuidv4 } from 'uuid';
 
-function storageInsert(key, value) {
-  if (typeof value === 'object') {
-    value = JSON.stringify(value);
+function storageInsert(key, data) {
+  if (typeof data === 'object') {
+    data = JSON.stringify(data);
   }
 
-  localStorage.setItem(`@invest-app:${key}`, value);
+  localStorage.setItem(`@invest-app:${key}`, data);
 }
 
 function storageSelect(key, isJSON = true) {
-  let value = localStorage.getItem(`@invest-app:${key}`);
+  let data = localStorage.getItem(`@invest-app:${key}`);
 
   if (isJSON) {
-    value = JSON.parse(value);
+    data = JSON.parse(data);
   }
 
-  return value;
+  return data;
 }
 
-function load(resourse, data) {
+function load(resource, dataset) {
   if (storageSelect('loaded', false) !== 'ok') {
-    storageInsert(resourse, data);
+    storageInsert(resource, dataset);
 
     storageInsert('loaded', 'ok');
   }
 }
 
-function create(resourse, value) {
-  const values = storageSelect(resourse);
+function create(resource, data) {
+  const dataset = storageSelect(resource);
 
-  value = { ...value, id: uuidv4() };
+  data = { ...data, id: uuidv4() };
 
-  storageInsert(resourse, [...values, value]);
+  storageInsert(resource, [...dataset, data]);
 
-  return value;
+  return data;
 }
 
-function read(resourse, id) {
-  const values = storageSelect(resourse);
+function read(resource, id) {
+  const dataset = storageSelect(resource);
 
   if (id) {
-    return values.find((value) => value.id === id);
+    return dataset.find((data) => data.id === id);
   } else {
-    return values;
+    return dataset;
   }
 }
 
-function update(resourse, id, value) {
-  const values = storageSelect(resourse);
+function update(resource, id, data) {
+  const dataset = storageSelect(resource);
 
-  const index = values.findIndex((value) => value.id === id);
+  const index = dataset.findIndex((data) => data.id === id);
 
   if (index >= 0) {
-    value = { id, ...value };
+    data = { id, ...data };
 
-    values[index] = { ...values[index], ...value };
+    dataset[index] = { ...dataset[index], ...data };
 
-    storageInsert(resourse, values);
+    storageInsert(resource, dataset);
 
-    return value;
+    return data;
   } else {
     return false;
   }
 }
 
-function remove(resourse, id) {
-  const values = storageSelect(resourse);
+function remove(resource, id) {
+  const dataset = storageSelect(resource);
 
-  const index = values.findIndex((value) => value.id === id);
+  const index = dataset.findIndex((data) => data.id === id);
 
   if (index >= 0) {
-    values.splice(index, 1);
+    dataset.splice(index, 1);
   }
 
-  storageInsert(resourse, values);
+  storageInsert(resource, dataset);
 }
 
 export default { load, create, read, update, remove };

@@ -18,10 +18,7 @@ async function create(investment) {
 async function update(investment) {
   const { id } = investment;
 
-  const updatedInvestment = await Storage.update(
-    `investments?id=eq.${id}`,
-    investment
-  );
+  const updatedInvestment = await Storage.update('investments', id, investment);
 
   InvestmentCard.update(updatedInvestment);
 }
@@ -29,7 +26,7 @@ async function update(investment) {
 async function remove(investment) {
   const { id } = investment;
 
-  Storage.remove(`investments?id=eq.${id}`);
+  Storage.remove('investments', id);
 
   InvestmentCard.remove(id);
 }

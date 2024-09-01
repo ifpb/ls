@@ -102,9 +102,9 @@ const API_TOKEN = import.meta.env.VITE_APP_SUPABASE_KEY;
 const API_URL = import.meta.env.VITE_APP_SUPABASE_URL;
 
 async function create(resource, data) {}
-async function read(resource) {}
-async function update(resource, data) {}
-async function remove(resource) {}
+async function read(resource, id) {}
+async function update(resource, id, data) {}
+async function remove(resource, id) {}
 
 export default { create, read, update, remove };
 ```
@@ -124,7 +124,7 @@ async function create(resource, data) {
       Prefer: 'return=representation',
       'Content-Type': 'application/json',
     },
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(data),
   };
 
@@ -156,15 +156,17 @@ Storage.create('investments', investment);
 ![](/ls/imgs/package/supabase-api/get-investments.png)
 
 ```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
-async function read(resource) {
-  resource = `${API_URL}/${resource}`;
+async function read(resource, id) {
+  resource = id
+    ? `${API_URL}/${resource}?id=eq.${id}`
+    : `${API_URL}/${resource}`;
 
   const options = {
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
-    method: 'get',
+    method: 'GET',
   };
 
   const res = await fetch(resource, options);
@@ -177,7 +179,7 @@ async function read(resource) {
 import Storage from './js/services/storage.js';
 
 Storage.read('investments');
-Storage.read('investments/?id=eq.1');
+Storage.read('investments', 1);
 ```
 
 #### Update a investment
@@ -185,8 +187,8 @@ Storage.read('investments/?id=eq.1');
 ![](/ls/imgs/package/supabase-api/patch-investment.png)
 
 ```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
-async function update(resource, data) {
-  resource = `${API_URL}/${resource}`;
+async function update(resource, id, data) {
+  resource = `${API_URL}/${resource}?id=eq.${id}`;
 
   const options = {
     headers: {
@@ -195,7 +197,7 @@ async function update(resource, data) {
       Prefer: 'return=representation',
       'Content-Type': 'application/json',
     },
-    method: 'patch',
+    method: 'PATCH',
     body: JSON.stringify(data),
   };
 
@@ -210,7 +212,7 @@ async function update(resource, data) {
 ```js
 import Storage from './js/services/storage.js';
 
-Storage.update('investments/?id=eq.1', { value: 15000 });
+Storage.update('investments', 1, { value: 15000 });
 ```
 
 #### Delete a investment
@@ -218,15 +220,15 @@ Storage.update('investments/?id=eq.1', { value: 15000 });
 ![](/ls/imgs/package/supabase-api/delete-investment.png)
 
 ```js title="/codes/w3c/fetch-api/invest-app/js/service/storage.js"
-async function remove(resource) {
-  resource = `${API_URL}/${resource}`;
+async function remove(resource, id) {
+  resource = `${API_URL}/${resource}?id=eq.${id}`;
 
   const options = {
     headers: {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
-    method: 'delete',
+    method: 'DELETE',
   };
 
   const res = await fetch(resource, options);
@@ -238,5 +240,5 @@ async function remove(resource) {
 ```js
 import Storage from './js/services/storage.js';
 
-Storage.remove('investments/?id=eq.1');
+Storage.remove('investments', 1);
 ```

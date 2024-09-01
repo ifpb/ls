@@ -46,9 +46,9 @@ const API_URL = import.meta.env.VITE_APP_SUPABASE_URL;
 const supabase = createClient(API_URL, API_KEY);
 
 async function create(resource, data) {}
-async function read(resource) {}
-async function update(resource, data) {}
-async function remove(resource) {}
+async function read(resource, id) {}
+async function update(resource, id, data) {}
+async function remove(resource, id) {}
 
 export default { create, read, update, remove };
 ```
@@ -98,8 +98,8 @@ Storage.create('investments', investment);
 ```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
 async function read(resource, id) {
   const { data, error } = id
-  ? await supabase.from(resource).select('*').eq('id', id)
-  : await supabase.from(resource).select('*');
+    ? await supabase.from(resource).select('*').eq('id', id)
+    : await supabase.from(resource).select('*');
 
   if (error) {
     throw error;
@@ -123,11 +123,11 @@ Storage.read('investments', 1);
 [Supabase - JavaScript Client - Update](https://supabase.com/docs/reference/javascript/update)
 
 ```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
-async function update(resource, data) {
+async function update(resource, id, data) {
   const { data: updatedData, error } = await supabase
     .from(resource)
     .update(data)
-    .eq('id', data.id)
+    .eq('id', id)
     .select('*');
 
   if (error) {
@@ -141,7 +141,7 @@ async function update(resource, data) {
 ```js
 import Storage from './services/storage.js';
 
-Storage.update('investments', { id: 1, value: 15000 });
+Storage.update('investments', 1, { value: 15000 });
 ```
 
 ### Delete a investment
@@ -152,10 +152,7 @@ Storage.update('investments', { id: 1, value: 15000 });
 
 ```js title="/codes/package/supabase-client/invest-app/js/services/storage.js"
 async function remove(resource, id) {
-  const { error } = await supabase
-    .from(resource)
-    .delete()
-    .eq('id', id);
+  const { error } = await supabase.from(resource).delete().eq('id', id);
 
   if (error) {
     throw error;

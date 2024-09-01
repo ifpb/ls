@@ -31,9 +31,9 @@ $ npm install axios
 import API from '/services/api.js';
 
 async function create(resource, data) {}
-async function read(resource) {}
-async function update(resource, data) {}
-async function remove(resource) {}
+async function read(resource, id) {}
+async function update(resource, id, data) {}
+async function remove(resource, id) {}
 
 export default { create, read, update, remove };
 ```
@@ -74,7 +74,11 @@ Storage.create('investments', investment);
 [Axios - GET Request](https://axios-http.com/docs/example)
 
 ```js  title="/codes/package/axios/invest-app/js/services/storage.js"
-async function read(resource) {
+async function read(resource, id) {
+  if (id) {
+    resource = `${resource}?id=eq.${id}`;
+  }
+
   const { data } = await API.get(resource);
 
   return data;
@@ -85,7 +89,7 @@ async function read(resource) {
 import Storage from './services/storage.js';
 
 Storage.read('investments');
-Storage.read('investments/?id=eq.1');
+Storage.read('investments', 1);
 ```
 
 #### Update a investment
@@ -95,7 +99,9 @@ Storage.read('investments/?id=eq.1');
 [Axios - PATCH Request](https://axios-http.com/docs/api_intro)
 
 ```js  title="/codes/package/axios/invest-app/js/services/storage.js"
-async function update(resource, data) {
+async function update(resource, id, data) {
+  resource = `${resource}?id=eq.${id}`;
+
   const { data: updatedData } = await API.patch(resource, data);
 
   return updatedData?.[0];
@@ -105,7 +111,7 @@ async function update(resource, data) {
 ```js
 import Storage from './services/storage.js';
 
-Storage.update('investments/?id=eq.1', { value: 15000 });
+Storage.update('investments', 1, { value: 15000 });
 ```
 
 #### Delete a investment
@@ -115,7 +121,9 @@ Storage.update('investments/?id=eq.1', { value: 15000 });
 [Axios - DELETE Resquest](https://axios-http.com/docs/api_intro)
 
 ```js  title="/codes/package/axios/invest-app/js/services/storage.js"
-async function remove(resource) {
+async function remove(resource, id) {
+  resource = `${resource}?id=eq.${id}`;
+
   const { error } = await API.delete(resource);
 
   if (error) {
@@ -129,5 +137,5 @@ async function remove(resource) {
 ```js
 import Storage from './services/storage.js';
 
-Storage.remove('investments/?id=eq.1');
+Storage.remove('investments', 1);
 ```

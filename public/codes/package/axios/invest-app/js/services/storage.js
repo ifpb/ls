@@ -6,19 +6,27 @@ async function create(resource, data) {
   return createdData?.[0];
 }
 
-async function read(resource) {
+async function read(resource, id) {
+  if (id) {
+    resource = `${resource}?id=eq.${id}`;
+  }
+
   const { data } = await API.get(resource);
 
   return data;
 }
 
-async function update(resource, data) {
+async function update(resource, id, data) {
+  resource = `${resource}?id=eq.${id}`;
+
   const { data: updatedData } = await API.patch(resource, data);
 
   return updatedData?.[0];
 }
 
-async function remove(resource) {
+async function remove(resource, id) {
+  resource = `${resource}?id=eq.${id}`;
+
   const { error } = await API.delete(resource);
 
   if (error) {
