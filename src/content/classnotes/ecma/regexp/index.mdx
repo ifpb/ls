@@ -8,20 +8,20 @@ title: Expressão Regular
 
 | Names                        | Regexp                                                                                                          |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| FLAGS                        | `g`, `i`, `m`, `u`, `y`                                                                                         |
-| CHARACTER CLASSES            | `.` , `\d`, `\D`, `\w`, `\W`, `\s`, `\S`, `\`                                                                   |
-| CHARACTER SET                | `[]`, `[^]`                                                                                                     |
-| BOUNDARIES                   | `^`, `$`, `\b`, `\B`                                                                                            |
-| ALTERNATION                  | `|`                                                                                                             |
-| GROUPING AND BACK REFERENCES | `()`, `\n`, `(?:x)`                                                                                             |
-| QUANTIFIERS                  | Greedy (`*`, `+`, `?`, `{n}`, `{n,}`, `{n, m}`), Non-Greedy (`x*?`, `x+?`, `x??`, `x{n}?`, `x{n,}?`, `x{n,m}?`) |
-| ASSERTIONS                   | `x(?=y)`, `x(?!y)`                                                                                              |
+| FLAGS                        | g, i, m, u, y                                                                                         |
+| CHARACTER CLASSES            | . , \d, \D, \w, \W, \s, \S, \                                                                   |
+| CHARACTER SET                | [], [^]                                                                                                     |
+| BOUNDARIES                   | ^, $, \b, \B                                                                                            |
+| ALTERNATION                  | \|                                                                                                             |
+| GROUPING AND BACK REFERENCES | (), \n, (?:x)                                                                                             |
+| QUANTIFIERS                  | \*, +, ?, \{n\}, \{n,\}, \{n, m\} (Greedy), <br /> x*?, x+?, x??, x\{n\}?, x\{n,\}?, x\{n,m\}? (Non-Greedy) |
+| ASSERTIONS                   | x(?=y), x(?!y)                                                                                              |
 
 ## Padrões
 
 ### Byte
 
-> /[01]{8}/
+/[01]\{8\}/
 
 ![](/ls/imgs/ecma/regexp/byte.png)
 
@@ -40,7 +40,7 @@ console.log(pattern.test('11110002')); //=> false
 
 ### CPF
 
-> /^(\d{11}\|\d{3}\.\d{3}\.\d{3}-\d{2})$/
+/^(\d\{11\}\|\d\{3\}\\.\d\{3\}\\.\d\{3\}-\d\{2\})$/
 
 ![](/ls/imgs/ecma/regexp/cpf.png)
 
@@ -65,7 +65,7 @@ console.log(pattern.test('11122233344X')); //=> false
 
 ### CEP
 
-> /^(\d{8}\|\d{2}\\.?\d{3}-\d{3})\$/
+/^(\d\{8\}\|\d\{2\}\\.?\d\{3\}-\d\{3\})\$/
 
 ![](/ls/imgs/ecma/regexp/cep.png)
 
@@ -88,6 +88,22 @@ console.log(pattern.test('01-001.000')); //=> false
 console.log(pattern.test('01.001000')); //=> false
 ```
 
+### Desafio
+
+Qual é a expressão da hora no padrão 24h (hh:mm)?
+
+```txt
+00:00 - válidos
+00:01 - válidos
+20:00 - válidos
+23:59 - válidos
+23:99 - inválidos
+24:70 - inválidos
+60:00 - inválidos
+```
+
+<p class="text-gray-100 m-0">/^([01]\d|2[0-3]):[0-5]\d$/</p>
+
 ## Aplicação
 
 ### RegExp.prototype.test()
@@ -103,7 +119,14 @@ console.log(pattern.test(message)); //=> true
 ```js
 let message = 'lorem ipsum\ndolor';
 let pattern = /\s/g;
-console.log(message.split(pattern))[('lorem', 'ipsum', 'dolor')];
+console.log(message.split(pattern)); //=> [('lorem', 'ipsum', 'dolor')];
+```
+
+### String.prototype.replace()
+
+```js
+let cep = '12.345-678';
+console.log(cep.replace(/[\.-]/g, '')); //=> 12345678;
 ```
 
 ### HTML input pattern
@@ -115,3 +138,9 @@ console.log(message.split(pattern))[('lorem', 'ipsum', 'dolor')];
 ### Busca em aplicativos
 
 - [VSCode - Advanced find and replace options](https://code.visualstudio.com/docs/editor/codebasics#_advanced-find-and-replace-options)
+
+## Referências
+
+- [Regex 101](https://regex101.com/)
+- [Regex para data](https://stackoverflow.com/questions/15491894/regex-to-validate-date-formats-dd-mm-yyyy-dd-mm-yyyy-dd-mm-yyyy-dd-mmm-yyyy)
+- [ReDoS](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS)
