@@ -76,9 +76,11 @@ As aulas da disciplina serão alocados nesse horário e ambiente:
 
 A nota final será computada através da média ponderada das três maiores avaliações:
 
-- Avaliação I: [Exercícios](https://ifpb.github.io/exercises/);
-- Avaliação II: [Projeto I](/ls/project) (<a href={SUBJECT.PROJECTS_URL} target="_blank">padlet</a>);
-- Avaliação III: [Projeto II](/ls/project);
+- [Exercícios](https://ifpb.github.io/exercises/):
+  - Avaliação I
+- [Projeto](/ls/project) (<a href={SUBJECT.PROJECTS_URL.padlet} target="_blank">padlet</a>, <a href={SUBJECT.PROJECTS_URL.github} target="_blank">ifpb/projects</a>):
+  - Avaliação II: Projeto - Etapa I;
+  - Avaliação III: Projeto - Etapa II.;
 
 Estas salas do Google Classroom ({Object.keys(SUBJECT.CLASSROOM_URLS).map((github) => (<a href={SUBJECT.GITHUB_URLS[github]} target="_blank">Turma {github}</a>)).reduce((prev, curr) => [prev, ', ', curr])}) serão utilizadas para enviar todas as avaliações.
 

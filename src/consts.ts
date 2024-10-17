@@ -1,26 +1,43 @@
 // subject data
 export const SUBJECT = {
   CLASSROOM_URLS: {
-    A: 'https://classroom.google.com/c/NjYzNjMwODc0MzU5',
-    B: 'https://classroom.google.com/c/NjY3NjYyODA4NTQw',
+    A: 'https://classroom.google.com/c/NzIzOTg2NzMwNzcy',
+    B: 'https://classroom.google.com/c/NzE0ODY1MTk2Mzk5',
   },
-  CHAT_URL: 'https://mail.google.com/mail/u/0/#chat/space/AAAAgCdnH8s',
-  PROJECTS_URL: 'https://padlet.com/lucachaves/projetols20241',
+  CHAT_URL: 'https://mail.google.com/mail/u/0/#chat/space/AAAAhZsrfgs',
+  PROJECTS_URL: {
+    padlet: 'https://padlet.com/lucachaves/projetols20242',
+    github: 'https://ifpb.github.io/projects/codes/ls/1',
+  },
   GITHUB_URLS: {
-    B: 'https://github.com/luizchaves/ls-2024-1',
+    B: 'https://github.com/luizchaves/ls-2024-2',
   },
   SCHEDULES: [
     {
       className: 'A',
-      room: 'Lab 3',
+      room: 'Lab 57',
       day: 'Segunda',
       start: '14:40',
       end: '16:40',
     },
     {
       className: 'B',
-      room: 'Lab 5',
+      room: 'Lab 58',
       day: 'Segunda',
+      start: '14:40',
+      end: '16:40',
+    },
+    {
+      className: 'A',
+      room: 'Lab 4',
+      day: 'Quarta',
+      start: '14:40',
+      end: '16:40',
+    },
+    {
+      className: 'B',
+      room: 'Lab 5',
+      day: 'Quarta',
       start: '14:40',
       end: '16:40',
     },
