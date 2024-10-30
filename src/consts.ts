@@ -10,6 +10,7 @@ export const SUBJECT = {
     github: 'https://ifpb.github.io/projects/codes/ls/1',
   },
   GITHUB_URLS: {
+    A: 'https://github.com/franciscodnn/ls-2024-2',
     B: 'https://github.com/luizchaves/ls-2024-2',
   },
   SCHEDULES: [
