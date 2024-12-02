@@ -48,6 +48,8 @@ export const SUBJECT = {
 // project data
 export const GITHUB_EDIT_URL = 'https://github.com/ifpb/ls/tree/main';
 
+export const GITHUB_PAGES_URL = 'https://ifpb.github.io/ls';
+
 export const CONTENT_SLUGS = [
   'ecma/introduction',
   'ecma/variable',
